@@ -1,28 +1,71 @@
+#' bg_pca 
+#' 
+#' This function is built on pca output of vegan rda function and 
+#' uses Aurelien Boye's code as a basis for creating pretty PCAs but
+#' with a lot of new cosmetic options
+#' 
+#' @param pca a vegan pca output
+#' @param axes numeric vector;the selected pca axes to plot
+#' @param metadata a table containing the metadata mandatory to define the 
+#' main and second groups
+#' @param site.scaling numeric; scaling for the first plot -  defaut is 
+#' scaling 1
+#' @param species.scaling numeric; scaling for the second plot - defaut is
+#' scaling 2
+#' @param goodness.axis numeric; the number of axis used to calculate the goodness 
+#' of fit of the species
+#' @param goodness.thresh numeric; goodness of fit threshold for selecting species
+#' @param main.group factor; defines the grouping variable used to calculate the
+#'  densities and to define the color and fill aesthethics, it cannot be empty
+#' @param second.group factor; defines a second level of grouping that, if present,
+#' will be highlighted with different shape
+#' @param nudge.x numeric vector; defines the gap between the labels and the group
+#' centroid in the x axis, it must have the same length as the grouping variables
+#' defined in main.group
+#' @param nudge.y numeric vector; defines the gap between the labels and the group
+#' centroid in the y axis, it must have the same length as the grouping variables
+#' defined in main.group
+#' @param scale.fill string; contains the palette for fill aesthetics
+#' @param scale.shape numeric vector; contains the shape types for shape aesthetics 
+#' @param scale.colour string; contains the palette for colour aesthetics
+#' @param labels factor; factor in metadata containing the label of each level of
+#' the grouping variables in main.group or second.group
+#' @param print.sp.thresh logical; print the goodness of fit threshold for
+#'  selecting species' vectors
+#' @param ext.plot.scale numeric; scale for density plots in proportion to other
+#' plots
+#' @param add.stat1 logical; add either a convex hull or an ellipse to each group
+#' on the first plot
+#' @param stat1 character; choose between a convex hull "chull" or an ellipse
+#' "ellipse" for the first plot
+#' @param add.stat2 logical; add either a convex hull or an ellipse to each group
+#' on the second plot
+#' @param stat2 character; choose between a convex hull "chull" or an ellipse
+#' "ellipse" for the second plot
+#' @param add.dens logical; add the density plots
+#' @param add.centroids logical; add centroids for each group
+#' @param point.size numeric; define sites' point size
+#' @param c.size numeric; define centroids' point size
+#' @param p.alpha numeric;  define the alpha for sites' points
+#' @param font.size character;  defines the font size for geom_label using
+#' the syntax "18/.pt"
+#' @param axis.size numeric; defines the font size for the axes titles
+#' @param axis.text numeric; defines the font size fot the axes text
+#' @param conf.level numeric; defines the C.I. of the ellipse
+#' @param ysites numeric vector; force y axis limits for the first plot
+#' @param xsites numeric vector; force x axis limits for the first plot
+#' @param ysp numeric vector; force y axis limits for the second plot
+#' @param xsp numeric vector; force x axis limits for the second plot
+#' @param add.labels logical; add geom_label for plotting the group names
+#'
+#' @return returns a grid.arrange with two plots with the species and sites
+#'  scaling biplots
+#' @export
+#'
+#' @examples
+#' not today, sorry...
 
-#-----------------------------------------
-
-# This function is built on pca output of vegan rda function
-# metadata comprises the info on the samples and must be in the same order than the PCA coordinates
-# goodness.axis : the number of axis used to calculate the goodness of fit of the species
-# main.group define the grouping variable used to calculate the densities and to define the colors, it cannot be empty
-# second.group is used to define a second level of goruping that, if present, will be highligthed with different shapes
-# nudge.x and nudge.y define the gap between the labels and the group centroid, it must have the same length as the grouping variable defined in main.group
-# labels are use to labels the main groups while different color are given to the labels according to the second grouping variable if there is one
-# scale.fill : colour pallette for fill aesthetics
-# scale.colour : colour pallette for colour aesthetics
-# scale.shape : vector of shape types for geom_point aesthetics
-# print.sp.thresh : print the goodness of fit threshold for selecting species' vectors
-# ext.plot.scale : scale for density plots
-# add.stat1 and 2: logical. add a convex hull or a 95% CI ellipse in each of the plots
-# stat1 and 2: either "chull" for a convex hull or "ellipse" for an ellipse
-# add dens : logical, either to draw density plots or not
-# add.centroids :  logical, either to draw centroids of each main group or not
-# c.size : centroid point size
-# p.alpha : point oppacity 
-# axis.size : font size for axes titles
-# conf.level : confidence level for ellipses
-
-pca_victor <- function(pca,axes=c(1,2), metadata= NULL, site.scaling = 1, species.scaling = 2, goodness.axis = 2, goodness.thresh = 0.3, main.group = NULL, second.group = NULL, nudge.x = NULL, nudge.y = NULL, scale.fill = NULL, scale.shape = NULL, scale.colour = NULL, labels = NULL, print.sp.thresh = FALSE, ext.plot.scale = 5, add.stat1 = TRUE, stat1 = "chull", add.stat2 = FALSE, stat2 = NULL, add.dens = TRUE, add.centroids = FALSE, point.size = 2.5, c.size = 5, p.alpha = 1, font.size = 18/.pt, axis.size = 22, axis.text = 20, conf.level = .95, ysites = NULL, xsites = NULL, ysp = NULL, xsp = NULL, add.labels = TRUE){
+bg_pca <- function(pca,axes=c(1,2), metadata= NULL, site.scaling = 1, species.scaling = 2, goodness.axis = 2, goodness.thresh = 0.3, main.group = NULL, second.group = NULL, nudge.x = NULL, nudge.y = NULL, scale.fill = NULL, scale.shape = NULL, scale.colour = NULL, labels = NULL, print.sp.thresh = FALSE, ext.plot.scale = 5, add.stat1 = TRUE, stat1 = "chull", add.stat2 = FALSE, stat2 = NULL, add.dens = TRUE, add.centroids = FALSE, point.size = 2.5, c.size = 5, p.alpha = 1, font.size = 18/.pt, axis.size = 22, axis.text = 20, conf.level = .95, ysites = NULL, xsites = NULL, ysp = NULL, xsp = NULL, add.labels = TRUE){
 
   require(ggplot2)
   require(dplyr)
