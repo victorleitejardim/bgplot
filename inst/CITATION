@@ -1,0 +1,10 @@
+citHeader("To cite bgplot in publications use:")
+
+bibentry(
+  bibtype = "Manual",
+  title   = "bgplot: {An} {R} package to ...",
+  author  = c(person("Leite Jardim Victor")),
+  year    = "2022",
+  note    = "R package version 0.0.0.9000",
+  url     = "https://github.com/victorleitejardim/bgplot"
+)
