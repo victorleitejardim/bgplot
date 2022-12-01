@@ -1,0 +1,1335 @@
+Espece	Mobility	AFF.MO	AMBI	Fragilite	AFF.RO	Tube	Taille	GT	Position	Phylum	Class	Order	Family
+Abludomelita gladiosa	Mobile	I	III	Peu fragile	Meuble	0	TP	Deposivore	Epifaune	Arthropoda	Malacostraca	Amphipoda	Melitidae
+Abludomelita obtusata	Mobile	I	III	Peu fragile	Dur	0	TP	Deposivore	Epifaune	Arthropoda	Malacostraca	Amphipoda	Melitidae
+Abra alba	Peu mobile	III	III	Peu fragile	Meuble	0	P	Deposivore	Endofaune	Mollusca	Bivalvia	Cardiida	Semelidae
+Acanthochitona	Peu mobile	I	I	Peu fragile	Dur	0	PM	Brouteur	Epifaune	Mollusca	Polyplacophora	Chitonida	Acanthochitonidae
+Acanthochitona crinita	Peu mobile	I	I	Peu fragile	Dur	0	P	Brouteur	Epifaune	Mollusca	Polyplacophora	Chitonida	Acanthochitonidae
+Acanthochitona discrepans			I						Epifaune				
+Acanthochitona fascicularis	Peu mobile	I	I	Peu fragile	Dur	0	PM	Brouteur	Epifaune	Mollusca	Polyplacophora	Chitonida	Acanthochitonidae
+Acanthodoris pilosa	Mobile	I	I	Tres fragile	Dur	0	PM	Predateur	Epifaune	Mollusca	Gastropoda	Nudibranchia	Onchidorididae
+Acasta spongites	Fixe	I	NA	Tres fragile	Dur	0	TP	Suspensivore	Epifaune	Arthropoda	Thecostraca	Balanomorpha	Balanidae
+Achaeus cranchii	Mobile	I	I	Peu fragile	Dur	0	P	Predateur	Epifaune	Arthropoda	Malacostraca	Decapoda	Inachidae
+Achelia echinata	Mobile	I	I	Tres fragile	Dur	0	TP	Omnivore	Epifaune	Arthropoda	Pycnogonida	Pantopoda	Ammotheidae
+Acidostoma obesum			I						Endofaune				
+Aclis gulsonae			I						Interstice				
+Acrocnida brachiata	Mobile	I	I	Tres fragile	Meuble	0	PM	Deposivore	Endofaune	Echinodermata	Ophiuroidea	Amphilepidida	Amphiuridae
+Acrocnida spatulispina	Mobile	I	I	Tres fragile	Meuble	0	PM	Deposivore	Endofaune	Echinodermata	Ophiuroidea	Amphilepidida	Amphiuridae
+Acromegalomma	Peu mobile	I	II	Tres fragile	Meuble	1	M	Suspensivore	Interstice	Annelida	Polychaeta	Sabellida	Sabellidae
+Acromegalomma lanigerum	Peu mobile	I	II	Tres fragile	Meuble	1	M	Suspensivore	Interstice	Annelida	Polychaeta	Sabellida	Sabellidae
+Acromegalomma vesiculosum	Peu mobile	I	II	Tres fragile	Meuble	1	M	Suspensivore	Interstice	Annelida	Polychaeta	Sabellida	Sabellidae
+Actiniaria	Fixe	I	I	Tres fragile	Dur	0	PM	Predateur	Epifaune	Cnidaria	Anthozoa	Actiniaria	
+Adamsia palliata			II						Epifaune				
+Aequipecten opercularis	Mobile	I	I	Peu fragile	Indifferent	0	PM	Suspensivore	Epifaune	Mollusca	Bivalvia	Pectinida	Pectinidae
+Aglaophamus agilis	Mobile	I	II	Tres fragile	Meuble	0	P	Predateur	Endofaune	Annelida	Polychaeta	Phyllodocida	Nephtyidae
+Akera bullata	Mobile	I	I	Tres fragile	Meuble	0	PM	Herbivore	Interstice	Mollusca	Gastropoda	Aplysiida	Akeridae
+Alentia gelatinosa	Mobile	II	NA	Tres fragile	Dur	0	PM	Predateur	Epifaune	Annelida	Polychaeta	Phyllodocida	Polynoidae
+Alpheus glaber	Mobile	I	II	Peu fragile	Meuble	0	P	Predateur	Endofaune	Arthropoda	Malacostraca	Decapoda	Alpheidae
+Alpheus macrocheles	Mobile	I	II	Peu fragile	Dur	0	P	Predateur	Epifaune	Arthropoda	Malacostraca	Decapoda	Alpheidae
+Alvania	Peu mobile	I	I	Peu fragile	Indifferent	0	TP	Deposivore	Epifaune	Mollusca	Gastropoda	Littorinimorpha	Rissoidae
+Alvania beanii	Peu mobile	I	I	Peu fragile	Indifferent	0	TP	Deposivore	Epifaune	Mollusca	Gastropoda	Littorinimorpha	Rissoidae
+Alvania cancellata	Peu mobile	I	I	Pas fragile	Indifferent	0	TP	Detritivore	Epifaune	Mollusca	Gastropoda	Littorinimorpha	Rissoidae
+Alvania carinata	Peu mobile	I	I	Peu fragile	Indifferent	0	TP	Deposivore	Epifaune	Mollusca	Gastropoda	Littorinimorpha	Rissoidae
+Alvania jeffreysi			I						Epifaune				
+Alvania punctura	Peu mobile	I	I	Peu fragile	Meuble	0	TP	Brouteur	Epifaune	Mollusca	Gastropoda	Littorinimorpha	Rissoidae
+Amaeana trilobata	Peu mobile	II	I	Tres fragile	Meuble	1	P	Deposivore	Epifaune	Annelida	Polychaeta	Terebellida	Terebellidae
+Amblyosyllis	Mobile	II	II	Tres fragile	Dur	0	P	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Syllidae
+Amblyosyllis madeirensis	Mobile	II	II	Tres fragile	Dur	0	P	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Syllidae
+Amblyosyllis spectabilis	Mobile	II	II	Tres fragile	Dur	0	P	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Syllidae
+Ammodytes tobianus			NA						Epifaune				
+Ampelisca	Peu mobile	I	I	Peu fragile	Indifferent	1	P	Suspensivore	Interstice	Arthropoda	Malacostraca	Amphipoda	Ampeliscidae
+Ampelisca armoricana	Peu mobile	I	I	Peu fragile	Meuble	1	P	Suspensivore	Endofaune	Arthropoda	Malacostraca	Amphipoda	Ampeliscidae
+Ampelisca anomala			I						Epifaune				
+Ampelisca spinimana	Peu mobile	I	I	Peu fragile	Meuble	1	TP	Suspensivore	Endofaune	Arthropoda	Malacostraca	Amphipoda	Ampeliscidae
+Ampelisca spinipes	Peu mobile	I	I	Peu fragile	Meuble	1	P	Suspensivore	Epifaune	Arthropoda	Malacostraca	Amphipoda	Ampeliscidae
+Ampelisca brevicornis			I						Interstice				
+Ampelisca toulemonti	Peu mobile	I	I	Peu fragile	Meuble	1	TP	Suspensivore	Endofaune	Arthropoda	Malacostraca	Amphipoda	Ampeliscidae
+Ampelisca diadema			II						Epifaune				
+Ampelisca typica	Peu mobile	I	I	Peu fragile	Meuble	1	P	Suspensivore	Endofaune	Arthropoda	Malacostraca	Amphipoda	Ampeliscidae
+Ampelisca sarsi			I						Epifaune				
+Ampharete	Peu mobile	III	I	Tres fragile	Meuble	1	P	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Ampharetidae
+Ampharete acutifrons	Peu mobile	III	II	Tres fragile	Meuble	1	PM	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Ampharetidae
+Ampharete goesi	Peu mobile	III	I	Tres fragile	Meuble	1	PM	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Ampharetidae
+Ampelisca tenuicornis			I						Epifaune				
+Ampharete lindstroemi	Peu mobile	III	I	Tres fragile	Meuble	1	TP	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Ampharetidae
+Amphicteis gunneri	Peu mobile	III	III	Tres fragile	Meuble	1	P	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Ampharetidae
+Amphicteis midas	Peu mobile	III	III	Tres fragile	Meuble	1	P	Inconnu	Endofaune	Annelida	Polychaeta	Terebellida	Ampharetidae
+Amphictene auricoma	Peu mobile	I	I	Tres fragile	Meuble	1	P	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Pectinariidae
+Ampharete finmarchica			I						Epifaune				
+Amphiglena mediterranea	Peu mobile	I	I	Tres fragile	Dur	1	TP	Suspensivore	Interstice	Annelida	Polychaeta	Sabellida	Sabellidae
+Amphilectus fucorum	Fixe	I	NA	Tres fragile	Dur	0	M	Suspensivore	Epifaune	Porifera	Demospongiae	Poecilosclerida	Esperiopsidae
+Amphilochus manudens	Mobile	I	II	Peu fragile	Indifferent	0	TP	Predateur	Epifaune	Arthropoda	Malacostraca	Amphipoda	Amphilochidae
+Amphipholis squamata	Mobile	I	I	Tres fragile	Dur	0	P	Predateur	Epifaune	Echinodermata	Ophiuroidea	Amphilepidida	Amphiuridae
+Amphipoda	Mobile	I	NA	Peu fragile	Indifferent	1	TP	Omnivore	Interstice	Arthropoda	Malacostraca	Amphipoda	
+Amphiporus	Peu mobile	II	NA	Tres fragile	Meuble	0	PM	Predateur	Interstice	Nemertea	Hoplonemertea	Monostilifera	Amphiporidae
+Amphitritides gracilis	Peu mobile	I	II	Tres fragile	Indifferent	1	M	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Terebellidae
+Amphilectus			NA						Epifaune				
+Amphiura	Mobile	I	II	Tres fragile	Indifferent	0	PM	Suspensivore	Endofaune	Echinodermata	Ophiuroidea	Amphilepidida	Amphiuridae
+Amphiura (Amphiura) incana	Mobile	I	NA	Tres fragile	Meuble	0	PM	Suspensivore	Endofaune	Echinodermata	Ophiuroidea	Amphilepidida	Amphiuridae
+Amphilochus			NA						Epifaune				
+Amphiura (Ophiopeltis) securigera	Mobile	I	II	Tres fragile	Dur	0	M	Suspensivore	Interstice	Echinodermata	Ophiuroidea	Amphilepidida	Amphiuridae
+Amphiura chiajei	Mobile	I	II	Tres fragile	Meuble	0	PM	Deposivore	Endofaune	Echinodermata	Ophiuroidea	Amphilepidida	Amphiuridae
+Amphiura filiformis	Mobile	I	II	Tres fragile	Meuble	0	M	Suspensivore	Interstice	Echinodermata	Ophiuroidea	Amphilepidida	Amphiuridae
+Amphitrite			NA						Endofaune				
+Ampithoe ramondi	Mobile	I	III	Peu fragile	Dur	1	P	Herbivore	Epifaune	Arthropoda	Malacostraca	Amphipoda	Ampithoidae
+Ampithoe rubricata	Mobile	I	I	Peu fragile	Dur	1	P	Herbivore	Epifaune	Arthropoda	Malacostraca	Amphipoda	Ampithoidae
+Anapagurus hyndmanni	Mobile	I	I	Peu fragile	Meuble	0	P	Detritivore	Epifaune	Arthropoda	Malacostraca	Decapoda	Paguridae
+Anchialina agilis	Mobile	I	II	Pas fragile	Meuble	0	TP	Omnivore	Epifaune	Arthropoda	Malacostraca	Mysida	Mysidae
+Anemonia viridis	Fixe	I	I	Tres fragile	Dur	0	PM	Predateur	Epifaune	Cnidaria	Anthozoa	Actiniaria	Actiniidae
+Animoceradocus semiserratus	Mobile	I	I	Peu fragile	Meuble	0	TP	Detritivore	Epifaune	Arthropoda	Malacostraca	Amphipoda	Maeridae
+Anapagurus chiroacanthus			I						Epifaune				
+Anomia ephippium	Fixe	I	I	Tres fragile	Dur	0	PM	Suspensivore	Epifaune	Mollusca	Bivalvia	Pectinida	Anomiidae
+Anomiidae	Fixe	I	I	Tres fragile	Dur	0	PM	Suspensivore	Epifaune	Mollusca	Bivalvia	Pectinida	Anomiidae
+Anapagurus laevis			III						Epifaune				
+Anoplodactylus angulatus	Peu mobile	I	II	Tres fragile	Meuble	0	TP	Omnivore	Epifaune	Arthropoda	Pycnogonida	Pantopoda	Phoxichilidiidae
+Anseropoda placenta	Mobile	I	I	Tres fragile	Meuble	0	MG	Predateur	Epifaune	Echinodermata	Asteroidea	Valvatida	Anseropodidae
+Antalis entalis	Peu mobile	I	I	Pas fragile	Meuble	0	PM	Deposivore	Endofaune	Mollusca	Scaphopoda	Dentaliida	Dentaliidae
+Antalis vulgaris	Peu mobile	I	I	Pas fragile	Meuble	0	PM	Deposivore	Endofaune	Mollusca	Scaphopoda	Dentaliida	Dentaliidae
+Anthozoa	Fixe	I	I	Tres fragile	Indifferent	1	MG	Predateur	Interstice	Cnidaria	Anthozoa		
+Anthura gracilis	Mobile	I	I	Peu fragile	Dur	1	TP	Detritivore	Epifaune	Arthropoda	Malacostraca	Isopoda	Anthuridae
+Anthuridae	Peu mobile	II	NA	Peu fragile	Indifferent	0	P	Predateur	Interstice	Arthropoda	Malacostraca	Isopoda	Anthuridae
+Anoplodactylus petiolatus			II						Epifaune				
+Aonides	Peu mobile	III	III	Tres fragile	Meuble	1	PM	Deposivore	Endofaune	Annelida	Polychaeta	Spionida	Spionidae
+Aonides oxycephala	Peu mobile	III	III	Tres fragile	Meuble	1	PM	Deposivore	Endofaune	Annelida	Polychaeta	Spionida	Spionidae
+Aonides paucibranchiata	Peu mobile	III	III	Tres fragile	Dur	1	P	Deposivore	Endofaune	Annelida	Polychaeta	Spionida	Spionidae
+Antalis novemcostata			I						Endofaune				
+Aora	Mobile	I	I	Tres fragile	Indifferent	1	TP	Deposivore	Epifaune	Arthropoda	Malacostraca	Amphipoda	Aoridae
+Aora gracilis	Mobile	I	I	Tres fragile	Dur	1	TP	Deposivore	Epifaune	Arthropoda	Malacostraca	Amphipoda	Aoridae
+Antedon bifida			NA						Epifaune				
+Aora spinicornis	Mobile	I	I	Tres fragile	Indifferent	1	TP	Detritivore	Epifaune	Arthropoda	Malacostraca	Amphipoda	Aoridae
+Aoridae	Mobile	I	I	Tres fragile	Indifferent	0	TP	Deposivore	Epifaune	Arthropoda	Malacostraca	Amphipoda	Aoridae
+Aphelochaeta	Peu mobile	IV	IV	Tres fragile	Meuble	1	PM	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Cirratulidae
+Aphelochaeta marioni	Peu mobile	IV	IV	Tres fragile	Meuble	0	PM	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Cirratulidae
+Apherusa bispinosa	Mobile	I	I	Peu fragile	Dur	0	TP	Predateur	Epifaune	Arthropoda	Malacostraca	Amphipoda	Calliopiidae
+Apherusa cirrus	Mobile	I	I	Peu fragile	Dur	0	TP	Deposivore	Epifaune	Arthropoda	Malacostraca	Amphipoda	Calliopiidae
+Apherusa jurinei	Mobile	I	I	Peu fragile	Dur	0	TP	Detritivore	Epifaune	Arthropoda	Malacostraca	Amphipoda	Calliopiidae
+Apherusa ovalipes	Mobile	I	I	Peu fragile	Dur	0	TP	Predateur	Epifaune	Arthropoda	Malacostraca	Amphipoda	Calliopiidae
+Aphroceras ensata	Fixe	I	NA	Tres fragile	Dur	0	P	Suspensivore	Epifaune	Porifera	Calcarea	Leucosolenida	Grantiidae
+Aphrodita aculeata	Mobile	II	I	Peu fragile	Meuble	0	M	Predateur	Endofaune	Annelida	Polychaeta	Phyllodocida	Aphroditidae
+Apletodon dentatus	Mobile	NA	NA	Peu fragile	Dur	0	P	Predateur	Epifaune	Chordata	Actinopteri	Gobiesociformes	Gobiesocidae
+Aplidium	Fixe	I	II	Tres fragile	Dur	0	PM	Suspensivore	Epifaune	Chordata	Ascidiacea	Aplousobranchia	Polyclinidae
+Aphelochaeta filiformis			III						Endofaune				
+Aplidium elegans	Fixe	I	II	Tres fragile	Dur	0	PM	Suspensivore	Epifaune	Chordata	Ascidiacea	Aplousobranchia	Polyclinidae
+Apherusa			NA						Epifaune				
+Aplysia depilans	Mobile	I	I	Tres fragile	Indifferent	0	M	Herbivore	Epifaune	Mollusca	Gastropoda	Aplysiida	Aplysiidae
+Aplysia punctata	Mobile	I	I	Tres fragile	Indifferent	0	M	Herbivore	Epifaune	Mollusca	Gastropoda	Aplysiida	Aplysiidae
+Apocorophium acutum	Mobile	III	III	Peu fragile	Dur	0	TP	Detritivore	Epifaune	Arthropoda	Malacostraca	Amphipoda	Corophiidae
+Apolochus neapolitanus	Mobile	I	II	Pas fragile	Dur	0	TP	Predateur	Epifaune	Arthropoda	Malacostraca	Amphipoda	Amphilochidae
+Apolochus spencebatei	Peu mobile	I	II	Pas fragile	Meuble	0	TP	Predateur	Interstice	Arthropoda	Malacostraca	Amphipoda	Amphilochidae
+Aponuphis bilineata	Mobile	I	I	Tres fragile	Meuble	1	PM	Omnivore	Endofaune	Annelida	Polychaeta	Eunicida	Onuphidae
+Apseudes talpa	Mobile	III	II	Peu fragile	Indifferent	0	TP	Deposivore	Epifaune	Arthropoda	Malacostraca	Tanaidacea	Apseudidae
+Apseudopsis latreillii	Mobile	III	III	Peu fragile	Indifferent	0	TP	Detritivore	Epifaune	Arthropoda	Malacostraca	Tanaidacea	Apseudidae
+Aplysia			NA						Epifaune				
+Arabella iricolor	Mobile	II	I	Peu fragile	Indifferent	0	G	Predateur	Endofaune	Annelida	Polychaeta	Eunicida	Oenonidae
+Arcopagia crassa	Peu mobile	I	I	Pas fragile	Meuble	0	PM	Deposivore	Endofaune	Mollusca	Bivalvia	Cardiida	Tellinidae
+Aricidea	Peu mobile	I	I	Peu fragile	Meuble	0	P	Deposivore	Endofaune	Annelida	Polychaeta		Paraonidae
+Aricidea (Acmira) cerrutii	Peu mobile	I	I	Peu fragile	Meuble	0	P	Predateur	Endofaune	Annelida	Polychaeta		Paraonidae
+Armandia cirrhosa	Peu mobile	I	I	Tres fragile	Indifferent	0	TP	Deposivore	Endofaune	Annelida	Polychaeta		Opheliidae
+Armandia polyophthalma	Peu mobile	I	I	Peu fragile	Meuble	0	P	Deposivore	Endofaune	Annelida	Polychaeta		Opheliidae
+Ascidia	Fixe	I	III	Tres fragile	Dur	0	M	Suspensivore	Epifaune	Chordata	Ascidiacea	Phlebobranchia	Ascidiidae
+Ascidia mentula	Fixe	I	III	Tres fragile	Dur	0	PM	Suspensivore	Epifaune	Chordata	Ascidiacea	Phlebobranchia	Ascidiidae
+Ascidia virginea	Fixe	I	III	Tres fragile	Dur	0	PM	Suspensivore	Epifaune	Chordata	Ascidiacea	Phlebobranchia	Ascidiidae
+Ascidiacea	Fixe	I	III	Tres fragile	Dur	0	M	Suspensivore	Epifaune	Chordata	Ascidiacea		
+Ascidiella	Fixe	I	III	Tres fragile	Dur	0	PM	Suspensivore	Epifaune	Chordata	Ascidiacea	Phlebobranchia	Ascidiidae
+Arenicolides ecaudata			NA						Endofaune				
+Ascidiella aspersa	Fixe	I	III	Tres fragile	Dur	0	PM	Suspensivore	Epifaune	Chordata	Ascidiacea	Phlebobranchia	Ascidiidae
+Ascidiella scabra	Fixe	I	III	Tres fragile	Dur	0	P	Suspensivore	Epifaune	Chordata	Ascidiacea	Phlebobranchia	Ascidiidae
+Asclerocheilus intermedius	Peu mobile	I	III	Peu fragile	Meuble	0	P	Deposivore	Endofaune	Annelida	Polychaeta		Scalibregmatidae
+Asbjornsenia pygmaea			I						Epifaune				
+Aslia lefevrei	Peu mobile	I	NA	Peu fragile	Dur	0	M	Inconnu	Interstice	Echinodermata	Holothuroidea	Dendrochirotida	Cucumariidae
+Aspidosiphon (Aspidosiphon) muelleri muelleri	Peu mobile	I	I	Tres fragile	Dur	0	PM	Detritivore	Endofaune	Sipuncula	Phascolosomatidea	Aspidosiphonida	Aspidosiphonidae
+Astacilla longicornis	Mobile	I	I	Peu fragile	Indifferent	0	P	Suspensivore	Epifaune	Arthropoda	Malacostraca	Isopoda	Arcturidae
+Asterias rubens	Mobile	I	III	Peu fragile	Dur	0	MG	Predateur	Epifaune	Echinodermata	Asteroidea	Forcipulatida	Asteriidae
+Asterina gibbosa	Mobile	I	I	Peu fragile	Dur	0	PM	Predateur	Epifaune	Echinodermata	Asteroidea	Valvatida	Asterinidae
+Atelecyclus rotundatus	Mobile	I	I	Peu fragile	Meuble	0	P	Predateur	Epifaune	Arthropoda	Malacostraca	Decapoda	Atelecyclidae
+Atelecyclus undecimdentatus	Mobile	I	I	Peu fragile	Meuble	0	P	Predateur	Epifaune	Arthropoda	Malacostraca	Decapoda	Atelecyclidae
+Athanas nitescens	Mobile	I	I	Peu fragile	Meuble	0	P	Predateur	Epifaune	Arthropoda	Malacostraca	Decapoda	Alpheidae
+Austrosyrrhoe	Mobile	I	NA	Tres fragile	Meuble	0	TP	Deposivore	Epifaune	Arthropoda	Malacostraca	Amphipoda	Synopiidae
+Axius stirhynchus	Mobile	I	NA	Peu fragile	Meuble	0	PM	Inconnu	Epifaune	Arthropoda	Malacostraca	Decapoda	Axiidae
+Balanus spongicola	Fixe	NA	II	Pas fragile	Dur	0	P	Suspensivore	Epifaune	Arthropoda	Thecostraca	Balanomorpha	Balanidae
+Barleeia unifasciata	Peu mobile	I	II	Peu fragile	Dur	0	TP	Herbivore	Epifaune	Mollusca	Gastropoda	Littorinimorpha	Barleeiidae
+Astropecten irregularis			I						Interstice				
+Bathyporeia pelagica	Mobile	I	I	Peu fragile	Meuble	0	TP	Deposivore	Endofaune	Arthropoda	Malacostraca	Amphipoda	Bathyporeiidae
+Bathyporeia sarsi	Mobile	I	I	Pas fragile	Meuble	0	TP	Deposivore	Endofaune	Arthropoda	Malacostraca	Amphipoda	Bathyporeiidae
+Bathyporeia tenuipes	Mobile	I	I	Peu fragile	Meuble	0	TP	Deposivore	Endofaune	Arthropoda	Malacostraca	Amphipoda	Bathyporeiidae
+Auchenoplax crinita			NA						Endofaune				
+Berthella plumula	Mobile	I	I	Tres fragile	Dur	0	PM	Brouteur	Epifaune	Mollusca	Gastropoda	Pleurobranchida	Pleurobranchidae
+Bispira	Fixe	I	I	Tres fragile	Dur	1	PM	Suspensivore	Epifaune	Annelida	Polychaeta	Sabellida	Sabellidae
+Axiothella			NA						Endofaune				
+Bittium reticulatum	Peu mobile	I	I	Pas fragile	Meuble	0	P	Brouteur	Epifaune	Mollusca	Gastropoda	[unassigned] Caenogastropoda	Cerithiidae
+Balanus balanus			II						Epifaune				
+Bodotria arenosa	Mobile	I	II	Tres fragile	Meuble	0	TP	Deposivore	Endofaune	Arthropoda	Malacostraca	Cumacea	Bodotriidae
+Balanus crenatus			II						Epifaune				
+Bodotria scorpioides	Mobile	I	I	Tres fragile	Meuble	0	TP	Deposivore	Endofaune	Arthropoda	Malacostraca	Cumacea	Bodotriidae
+Bonelliidae	Peu mobile	I	NA	Tres fragile	Meuble	0	M	Detritivore	Endofaune	Annelida	Polychaeta	Echiuroidea	Bonelliidae
+Boreochiton ruber	Peu mobile	I	I	Peu fragile	Dur	0	TP	Brouteur	Epifaune	Mollusca	Polyplacophora	Chitonida	Tonicellidae
+Bosemprella incarnata	Peu mobile	I	I	Pas fragile	Meuble	0	P	Suspensivore	Endofaune	Mollusca	Bivalvia	Cardiida	Tellinidae
+Branchiomma	Peu mobile	I	I	Tres fragile	Indifferent	1	P	Suspensivore	Epifaune	Annelida	Polychaeta	Sabellida	Sabellidae
+Branchiomma bairdi	Fixe	I	I	Tres fragile	Dur	1	P	Suspensivore	Epifaune	Annelida	Polychaeta	Sabellida	Sabellidae
+Branchiostoma lanceolatum	Mobile	I	I	Peu fragile	Meuble	0	PM	Suspensivore	Endofaune	Chordata	Leptocardii		Branchiostomatidae
+Buccinum undatum	Mobile	I	II	Pas fragile	Dur	0	PM	Predateur	Epifaune	Mollusca	Gastropoda	Neogastropoda	Buccinidae
+Bivalvia			NA						Interstice				
+Caecum glabrum	Fixe	I	I	Tres fragile	Meuble	0	TP	Brouteur	Endofaune	Mollusca	Gastropoda	Littorinimorpha	Caecidae
+Caecum trachea	Peu mobile	I	I	Peu fragile	Meuble	0	TP	Detritivore	Interstice	Mollusca	Gastropoda	Littorinimorpha	Caecidae
+Calliactis parasitica	Fixe	I	NA	Tres fragile	Dur	0	PM	Predateur	Epifaune	Cnidaria	Anthozoa	Actiniaria	Hormathiidae
+Callionymus lyra	Mobile	NA	NA	Peu fragile	Meuble	0	MG	Predateur	Epifaune	Chordata	Actinopteri	Callionymiformes	Callionymidae
+Callochiton septemvalvis	Peu mobile	I	I	Peu fragile	Meuble	0	P	Brouteur	Epifaune	Mollusca	Polyplacophora	Chitonida	Callochitonidae
+Calyptraea chinensis	Fixe	I	I	Tres fragile	Dur	0	P	Suspensivore	Epifaune	Mollusca	Gastropoda	Littorinimorpha	Calyptraeidae
+Brachystomia eulimoides			II						Epifaune				
+Capitella capitata	Peu mobile	IV	V	Tres fragile	Meuble	0	PM	Deposivore	Endofaune	Annelida	Polychaeta		Capitellidae
+Capitella minima	Peu mobile	IV	V	Tres fragile	Indifferent	1	P	Deposivore	Endofaune	Annelida	Polychaeta		Capitellidae
+Branchiomma bombyx			I						Epifaune				
+Branchiomma lucullanum			I						Epifaune				
+Capnea sanguinea	Fixe	I	NA	Tres fragile	Meuble	0	PM	Predateur	Epifaune	Cnidaria	Anthozoa	Actiniaria	Capneidae
+Caprella acanthifera	Mobile	I	II	Peu fragile	Dur	0	P	Predateur	Epifaune	Arthropoda	Malacostraca	Amphipoda	Caprellidae
+Bubaris vermiculata			NA						Epifaune				
+Caprella fretensis	Peu mobile	I	II	Peu fragile	Dur	0	TP	Predateur	Epifaune	Arthropoda	Malacostraca	Amphipoda	Caprellidae
+Caprella grandimana	Peu mobile	I	II	Peu fragile	Dur	0	TP	Predateur	Epifaune	Arthropoda	Malacostraca	Amphipoda	Caprellidae
+Cadlina laevis			NA						Epifaune				
+Carcinus maenas	Mobile	I	III	Tres fragile	Indifferent	0	PM	Omnivore	Epifaune	Arthropoda	Malacostraca	Decapoda	Carcinidae
+Cataphellia brodricii	Fixe	I	NA	Tres fragile	Dur	0	PM	Predateur	Epifaune	Cnidaria	Anthozoa	Actiniaria	Hormathiidae
+Caulleriella	Peu mobile	IV	III	Tres fragile	Meuble	1	P	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Cirratulidae
+Calliostoma zizyphinum			I						Epifaune				
+Caulleriella alata	Peu mobile	IV	III	Tres fragile	Meuble	1	P	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Cirratulidae
+Callipallene brevirostris			I						Epifaune				
+Caulleriella bioculata	Peu mobile	IV	III	Tres fragile	Meuble	1	P	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Cirratulidae
+Centraloecetes kroyeranus	Peu mobile	III	I	Peu fragile	Meuble	1	TP	Detritivore	Epifaune	Arthropoda	Malacostraca	Amphipoda	Ischyroceridae
+Campylaspis legendrei			II						Endofaune				
+Cerastoderma edule	Peu mobile	III	III	Pas fragile	Meuble	0	PM	Suspensivore	Endofaune	Mollusca	Bivalvia	Cardiida	Cardiidae
+Cancer pagurus			III						Epifaune				
+Cereus pedunculatus	Fixe	I	I	Tres fragile	Dur	0	M	Predateur	Endofaune	Cnidaria	Anthozoa	Actiniaria	Sagartiidae
+Cerianthus lloydii	Fixe	I	I	Peu fragile	Indifferent	1	M	Predateur	Interstice	Cnidaria	Anthozoa	Spirularia	Cerianthidae
+Cerithiopsis tubercularis	Peu mobile	I	I	Pas fragile	Dur	0	TP	Predateur	Epifaune	Mollusca	Gastropoda	[unassigned] Caenogastropoda	Cerithiopsidae
+Chaetognatha	Mobile	NA	NA	Pas fragile	Indifferent	0	P	Predateur	Epifaune	Chaetognatha			
+Caprella			NA						Epifaune				
+Chaetopteridae	Fixe	I	IV	Tres fragile	Indifferent	1	M	Suspensivore	Interstice	Annelida	Polychaeta		Chaetopteridae
+Chaetopterus	Peu mobile	I	I	Tres fragile	Indifferent	1	PM	Suspensivore	Endofaune	Annelida	Polychaeta		Chaetopteridae
+Chaetopterus variopedatus	Peu mobile	I	I	Tres fragile	Meuble	1	MG	Suspensivore	Endofaune	Annelida	Polychaeta		Chaetopteridae
+Chaetozone	Peu mobile	IV	IV	Tres fragile	Meuble	0	P	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Cirratulidae
+Caprella penantis			II						Epifaune				
+Chaetozone caputesocis	Peu mobile	IV	IV	Tres fragile	Meuble	0	P	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Cirratulidae
+Caprelloidea			NA						Epifaune				
+Chaetozone christiei	Peu mobile	IV	IV	Tres fragile	Meuble	0	P	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Cirratulidae
+Chaetozone corona	Peu mobile	III	IV	Tres fragile	Meuble	0	P	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Cirratulidae
+Chaetozone gibber	Peu mobile	IV	IV	Tres fragile	Meuble	0	P	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Cirratulidae
+Chaetozone zetlandica	Peu mobile	IV	IV	Tres fragile	Meuble	0	P	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Cirratulidae
+Chamelea striatula	Peu mobile	I	I	Pas fragile	Meuble	0	P	Suspensivore	Endofaune	Mollusca	Bivalvia	Venerida	Veneridae
+Cerebratulus			NA						Endofaune				
+Chauvetia brunnea	Peu mobile	I	I	Pas fragile	Dur	0	TP	Oophage	Epifaune	Mollusca	Gastropoda	Neogastropoda	Chauvetiidae
+Cheirocratus	Mobile	I	I	Peu fragile	Meuble	0	TP	Detritivore	Epifaune	Arthropoda	Malacostraca	Amphipoda	Cheirocratidae
+Cheirocratus assimilis	Mobile	I	I	Peu fragile	Dur	0	P	Detritivore	Epifaune	Arthropoda	Malacostraca	Amphipoda	Cheirocratidae
+Cheirocratus sundevallii	Mobile	I	I	Peu fragile	Meuble	0	TP	Detritivore	Epifaune	Arthropoda	Malacostraca	Amphipoda	Cheirocratidae
+Cestopagurus timidus			I						Epifaune				
+Chondrochelia savignyi	Mobile	I	III	Peu fragile	Meuble	0	TP	Inconnu	Epifaune	Arthropoda	Malacostraca	Tanaidacea	Leptocheliidae
+Chone	Peu mobile	III	II	Tres fragile	Indifferent	1	P	Suspensivore	Endofaune	Annelida	Polychaeta	Sabellida	Sabellidae
+Chone duneri	Peu mobile	III	II	Tres fragile	Indifferent	1	P	Suspensivore	Endofaune	Annelida	Polychaeta	Sabellida	Sabellidae
+Chone filicaudata	Peu mobile	III	II	Tres fragile	Meuble	1	P	Suspensivore	Endofaune	Annelida	Polychaeta	Sabellida	Sabellidae
+Chone infundibuliformis	Peu mobile	I	II	Tres fragile	Meuble	1	P	Suspensivore	Endofaune	Annelida	Polychaeta	Sabellida	Sabellidae
+Chone kroyerii	Peu mobile	III	II	Tres fragile	Meuble	1	TP	Suspensivore	Epifaune	Annelida	Polychaeta	Sabellida	Sabellidae
+Chrysopetalum debile	Mobile	I	I	Tres fragile	Indifferent	0	P	Predateur	Epifaune	Annelida	Polychaeta	Phyllodocida	Chrysopetalidae
+Ciliata mustela	Mobile	NA	NA	Peu fragile	Indifferent	0	M	Predateur	Epifaune	Chordata	Actinopteri	Gadiformes	Lotidae
+Cirolana cranchii	Mobile	I	II	Peu fragile	Meuble	0	TP	Predateur	Epifaune	Arthropoda	Malacostraca	Isopoda	Cirolanidae
+Cirratulidae	Peu mobile	IV	IV	Tres fragile	Meuble	0	PM	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Cirratulidae
+Cirratulus cirratus	Peu mobile	IV	IV	Tres fragile	Indifferent	0	M	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Cirratulidae
+Cirriformia tentaculata	Peu mobile	IV	IV	Tres fragile	Meuble	1	M	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Cirratulidae
+Cirrophorus furcatus	Peu mobile	I	II	Peu fragile	Meuble	0	P	Deposivore	Endofaune	Annelida	Polychaeta		Paraonidae
+Cheirocratus intermedius			I						Epifaune				
+Clausinella fasciata	Peu mobile	I	I	Pas fragile	Meuble	0	P	Suspensivore	Endofaune	Mollusca	Bivalvia	Venerida	Veneridae
+Chirimia biceps			II						Endofaune				
+Cliona celata	Fixe	I	III	Tres fragile	Dur	0	G	Suspensivore	Epifaune	Porifera	Demospongiae	Clionaida	Clionaidae
+Chlamys			NA						Epifaune				
+Clymenella cincta	Peu mobile	I	I	Tres fragile	Meuble	1	M	Detritivore	Endofaune	Annelida	Polychaeta		Maldanidae
+Clymenura	Fixe	I	III	Tres fragile	Indifferent	1	PM	Detritivore	Endofaune	Annelida	Polychaeta		Maldanidae
+Comarmondia gracilis	Peu mobile	I	NA	Peu fragile	Meuble	0	P	Predateur	Epifaune	Mollusca	Gastropoda	Neogastropoda	Clathurellidae
+Conilera cylindracea	Mobile	I	NA	Peu fragile	Meuble	0	TP	Predateur	Endofaune	Arthropoda	Malacostraca	Isopoda	Cirolanidae
+Copepoda	Mobile	NA	NA	Pas fragile	Indifferent	0	P	Predateur	Epifaune	Arthropoda	Hexanauplia		
+Corophium	Peu mobile	I	III	Peu fragile	Dur	1	P	Detritivore	Interstice	Arthropoda	Malacostraca	Amphipoda	Corophiidae
+Crangon crangon	Mobile	I	I	Peu fragile	Meuble	0	PM	Omnivore	Epifaune	Arthropoda	Malacostraca	Decapoda	Crangonidae
+Crassicorophium bonellii	Peu mobile	III	III	Peu fragile	Dur	1	TP	Detritivore	Interstice	Arthropoda	Malacostraca	Amphipoda	Corophiidae
+Crepidula fornicata	Fixe	I	III	Pas fragile	Meuble	0	P	Suspensivore	Epifaune	Mollusca	Gastropoda	Littorinimorpha	Calyptraeidae
+Cirratulus			NA						Endofaune				
+Crisilla semistriata	Peu mobile	I	I	Pas fragile	Indifferent	0	TP	Detritivore	Epifaune	Mollusca	Gastropoda	Littorinimorpha	Rissoidae
+Ctenolabrus rupestris	Mobile	NA	NA	Peu fragile	Dur	0	M	Predateur	Epifaune	Chordata	Actinopteri	Eupercaria incertae sedis	Labridae
+Cucumariidae	Peu mobile	I	I	Peu fragile	Meuble	0	M	Inconnu	Interstice	Echinodermata	Holothuroidea	Dendrochirotida	Cucumariidae
+Cirripedia			NA						Epifaune				
+Cirrophorus branchiatus			III						Endofaune				
+Cyathura carinata	Peu mobile	III	III	Peu fragile	Meuble	1	P	Detritivore	Epifaune	Arthropoda	Malacostraca	Isopoda	Anthuridae
+Cylichna cylindracea	Peu mobile	I	II	Pas fragile	Meuble	0	P	Predateur	Endofaune	Mollusca	Gastropoda	Cephalaspidea	Cylichnidae
+Claparedepelogenia inclusa			II						Endofaune				
+Cymodoce truncata	Mobile	I	I	Peu fragile	Dur	0	TP	Detritivore	Epifaune	Arthropoda	Malacostraca	Isopoda	Sphaeromatidae
+Cyrillia linearis	Peu mobile	I	NA	Pas fragile	Indifferent	0	P	Predateur	Interstice	Mollusca	Gastropoda	Neogastropoda	Raphitomidae
+Deflexilodes subnudus	Mobile	I	I	Peu fragile	Meuble	0	TP	Predateur	Epifaune	Arthropoda	Malacostraca	Amphipoda	Oedicerotidae
+Demospongiae	Fixe	I	I	Tres fragile	Dur	0	M	Suspensivore	Epifaune	Porifera	Demospongiae		
+Cnidaria			I						NA				
+Dexamine spinosa	Mobile	III	III	Peu fragile	Meuble	0	P	Detritivore	Epifaune	Arthropoda	Malacostraca	Amphipoda	Dexaminidae
+Dialychone dunerificta	Peu mobile	I	II	Tres fragile	Meuble	1	TP	Suspensivore	Epifaune	Annelida	Polychaeta	Sabellida	Sabellidae
+Didemnidae	Fixe	I	NA	Pas fragile	Dur	0	M	Suspensivore	Epifaune	Chordata	Ascidiacea	Aplousobranchia	Didemnidae
+Diodora graeca	Peu mobile	I	II	Pas fragile	Dur	0	P	Predateur	Epifaune	Mollusca	Gastropoda	Lepetellida	Fissurellidae
+Diogenes pugilator	Mobile	I	II	Peu fragile	Meuble	0	P	Predateur	Epifaune	Arthropoda	Malacostraca	Decapoda	Diogenidae
+Dioplosyllis cirrosa	Mobile	I	NA	Tres fragile	Meuble	0	P	Predateur	Endofaune	Annelida	Polychaeta	Phyllodocida	Syllidae
+Crassicorophium crassicorne			III						Interstice				
+Diplecogaster bimaculata bimaculata	Mobile	NA	NA	Peu fragile	Indifferent	0	P	Predateur	Interstice	Chordata	Actinopteri	Gobiesociformes	Gobiesocidae
+Diplocirrus glaucus	Peu mobile	I	I	Tres fragile	Meuble	0	P	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Flabelligeridae
+Diplocirrus stopbowitzi	Peu mobile	I	I	Tres fragile	Meuble	0	P	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Flabelligeridae
+Diplodonta rotundata	Peu mobile	I	II	Pas fragile	Meuble	0	P	Suspensivore	Endofaune	Mollusca	Bivalvia	Venerida	Ungulinidae
+Diplosoma	Fixe	I	NA	Pas fragile	Dur	0	P	Suspensivore	Epifaune	Chordata	Ascidiacea	Aplousobranchia	Didemnidae
+Dipolydora	Peu mobile	IV	IV	Tres fragile	Meuble	1	TP	Deposivore	Endofaune	Annelida	Polychaeta	Spionida	Spionidae
+Dipolydora caulleryi	Peu mobile	IV	IV	Tres fragile	Meuble	1	TP	Deposivore	Endofaune	Annelida	Polychaeta	Spionida	Spionidae
+Dipolydora coeca	Peu mobile	IV	IV	Tres fragile	Dur	1	P	Deposivore	Endofaune	Annelida	Polychaeta	Spionida	Spionidae
+Dipolydora flava	Peu mobile	IV	IV	Tres fragile	Meuble	1	P	Deposivore	Endofaune	Annelida	Polychaeta	Spionida	Spionidae
+Dipolydora giardi	Peu mobile	IV	IV	Tres fragile	Meuble	0	PM	Deposivore	Endofaune	Annelida	Polychaeta	Spionida	Spionidae
+Dipolydora saintjosephi	Peu mobile	IV	IV	Tres fragile	Meuble	1	TP	Deposivore	Endofaune	Annelida	Polychaeta	Spionida	Spionidae
+Doris	Mobile	II	I	Tres fragile	Dur	0	M	Predateur	Epifaune	Mollusca	Gastropoda	Nudibranchia	Dorididae
+Doris pseudoargus	Mobile	II	I	Tres fragile	Dur	0	PM	Predateur	Epifaune	Mollusca	Gastropoda	Nudibranchia	Dorididae
+Doris verrucosa	Mobile	II	I	Tres fragile	Dur	0	PM	Predateur	Epifaune	Mollusca	Gastropoda	Nudibranchia	Dorididae
+Dorvillea erucaeformis	Mobile	II	II	Tres fragile	Meuble	0	P	Predateur	Epifaune	Annelida	Polychaeta	Eunicida	Dorvilleidae
+Diplecogaster			NA						Endofaune				
+Dorvillea rubrovittata	Peu mobile	II	II	Tres fragile	Indifferent	0	PM	Predateur	Endofaune	Annelida	Polychaeta	Eunicida	Dorvilleidae
+Dosinia exoleta	Peu mobile	I	I	Peu fragile	Meuble	0	PM	Suspensivore	Endofaune	Mollusca	Bivalvia	Venerida	Veneridae
+Dosinia lupinus	Peu mobile	I	I	Peu fragile	Meuble	0	PM	Suspensivore	Endofaune	Mollusca	Bivalvia	Venerida	Veneridae
+Drilonereis	Mobile	II	II	Peu fragile	Meuble	0	M	Deposivore	Endofaune	Annelida	Polychaeta	Eunicida	Oenonidae
+Drilonereis filum	Mobile	II	II	Peu fragile	Meuble	0	M	Deposivore	Endofaune	Annelida	Polychaeta	Eunicida	Oenonidae
+Dynamene bidentata	Mobile	I	II	Peu fragile	Dur	0	TP	Detritivore	Epifaune	Arthropoda	Malacostraca	Isopoda	Sphaeromatidae
+Dysidea fragilis	Fixe	I	III	Tres fragile	Dur	0	PM	Suspensivore	Epifaune	Porifera	Demospongiae	Dictyoceratida	Dysideidae
+Ebalia tuberosa	Mobile	I	II	Peu fragile	Meuble	0	P	Predateur	Epifaune	Arthropoda	Malacostraca	Decapoda	Leucosiidae
+Ebalia tumefacta	Mobile	I	II	Peu fragile	Meuble	0	P	Suspensivore	Interstice	Arthropoda	Malacostraca	Decapoda	Leucosiidae
+Echinocardium cordatum	Mobile	I	I	Tres fragile	Meuble	0	PM	Deposivore	Endofaune	Echinodermata	Echinoidea	Spatangoida	Loveniidae
+Echinocyamus pusillus	Mobile	I	I	Tres fragile	Meuble	0	P	Deposivore	Endofaune	Echinodermata	Echinoidea	Clypeasteroida	Fibulariidae
+Discodoris			NA						Epifaune				
+Echinus esculentus	Mobile	I	I	Tres fragile	Dur	0	M	Brouteur	Epifaune	Echinodermata	Echinoidea	Camarodonta	Echinidae
+Edwardsia	Fixe	I	II	Tres fragile	Meuble	0	P	Predateur	Epifaune	Cnidaria	Anthozoa	Actiniaria	Edwardsiidae
+Edwardsia claparedii	Fixe	I	III	Tres fragile	Meuble	0	P	Predateur	Epifaune	Cnidaria	Anthozoa	Actiniaria	Edwardsiidae
+Elasmopus rapax	Peu mobile	III	III	Pas fragile	Dur	0	TP	Deposivore	Epifaune	Arthropoda	Malacostraca	Amphipoda	Maeridae
+Eledone cirrhosa	Mobile	I	NA	Peu fragile	Dur	0	M	Predateur	Epifaune	Mollusca	Cephalopoda	Octopoda	Eledonidae
+Doto			NA						Epifaune				
+Emarginula rosea	Peu mobile	I	I	Peu fragile	Dur	0	TP	Predateur	Epifaune	Mollusca	Gastropoda	Lepetellida	Fissurellidae
+Doto coronata			NA						Epifaune				
+Endeis spinosa	Mobile	I	II	Tres fragile	Indifferent	0	P	Omnivore	Epifaune	Arthropoda	Pycnogonida	Pantopoda	Endeidae
+Enipo kinbergi	Mobile	I	II	Peu fragile	Meuble	0	PM	Predateur	Epifaune	Annelida	Polychaeta	Phyllodocida	Polynoidae
+Ensis	Peu mobile	I	I	Tres fragile	Meuble	0	M	Suspensivore	Endofaune	Mollusca	Bivalvia	Adapedonta	Pharidae
+Ensis ensis	Peu mobile	I	I	Tres fragile	Meuble	0	M	Suspensivore	Endofaune	Mollusca	Bivalvia	Adapedonta	Pharidae
+Ephesiella abyssorum	Mobile	II	I	Tres fragile	Indifferent	0	P	Deposivore	Endofaune	Annelida	Polychaeta	Phyllodocida	Sphaerodoridae
+Dysponetus			NA						Endofaune				
+Ephesiella cantonei	Mobile	II	I	Tres fragile	Indifferent	0	P	Detritivore	Interstice	Annelida	Polychaeta	Phyllodocida	Sphaerodoridae
+Dysponetus joeli			NA						Endofaune				
+Epilepton clarkiae	Fixe	I	I	Tres fragile	Meuble	0	TP	Deposivore	Epifaune	Mollusca	Bivalvia	Galeommatida	Lasaeidae
+Ebalia			II						Epifaune				
+Epitonium clathrus	Peu mobile	I	I	Peu fragile	Meuble	0	P	Predateur	Epifaune	Mollusca	Gastropoda	[unassigned] Caenogastropoda	Epitoniidae
+Ebalia granulosa			II						Epifaune				
+Ericthonius punctatus	Peu mobile	I	I	Peu fragile	Dur	1	TP	Detritivore	Epifaune	Arthropoda	Malacostraca	Amphipoda	Ischyroceridae
+Eteone	Mobile	II	II	Peu fragile	Indifferent	0	MG	Predateur	Endofaune	Annelida	Polychaeta	Phyllodocida	Phyllodocidae
+Eteone flava	Mobile	II	III	Tres fragile	Meuble	0	M	Predateur	Endofaune	Annelida	Polychaeta	Phyllodocida	Phyllodocidae
+Echinocardium mortenseni			I						Endofaune				
+Eteone longa	Mobile	II	II	Peu fragile	Meuble	0	M	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Phyllodocidae
+Echinocardium pennatifidum			NA						Endofaune				
+Eteone suecica	Mobile	II	III	Tres fragile	Meuble	0	P	Predateur	Endofaune	Annelida	Polychaeta	Phyllodocida	Phyllodocidae
+Eualus cranchii	Mobile	I	I	Peu fragile	Indifferent	0	P	Predateur	Epifaune	Arthropoda	Malacostraca	Decapoda	Thoridae
+Echinogammarus			NA						Epifaune				
+Eualus occultus	Mobile	I	I	Peu fragile	Meuble	0	P	Predateur	Interstice	Arthropoda	Malacostraca	Decapoda	Thoridae
+Eualus pusiolus	Mobile	I	I	Peu fragile	Dur	0	PM	Predateur	Interstice	Arthropoda	Malacostraca	Decapoda	Thoridae
+Euchone rosea	Fixe	I	II	Tres fragile	Dur	1	TP	Suspensivore	Epifaune	Annelida	Polychaeta	Sabellida	Sabellidae
+Euchone rubrocincta	Peu mobile	I	II	Tres fragile	Meuble	1	TP	Suspensivore	Epifaune	Annelida	Polychaeta	Sabellida	Sabellidae
+Euchone southerni	Peu mobile	I	II	Tres fragile	Meuble	1	TP	Suspensivore	Epifaune	Annelida	Polychaeta	Sabellida	Sabellidae
+Euclymene	Peu mobile	I	I	Tres fragile	Dur	1	PM	Deposivore	Endofaune	Annelida	Polychaeta		Maldanidae
+Elysia viridis			NA						Epifaune				
+Euclymene droebachiensis	Fixe	I	III	Tres fragile	Indifferent	1	P	Detritivore	Endofaune	Annelida	Polychaeta		Maldanidae
+Euclymene lombricoides	Fixe	I	I	Tres fragile	Indifferent	1	PM	Detritivore	Interstice	Annelida	Polychaeta		Maldanidae
+Euclymene oerstedii	Peu mobile	I	I	Tres fragile	Meuble	1	PM	Deposivore	Endofaune	Annelida	Polychaeta		Maldanidae
+Euclymene palermitana	Peu mobile	I	I	Tres fragile	Meuble	1	M	Deposivore	Endofaune	Annelida	Polychaeta		Maldanidae
+Eulalia	Mobile	II	II	Peu fragile	Dur	0	PM	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Phyllodocidae
+Ensis magnus			I						Endofaune				
+Eulalia aurea	Mobile	II	II	Peu fragile	Dur	0	P	Predateur	Epifaune	Annelida	Polychaeta	Phyllodocida	Phyllodocidae
+Eulalia bilineata	Mobile	II	II	Peu fragile	Indifferent	0	PM	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Phyllodocidae
+Eulalia brunnea	Peu mobile	II	II	Peu fragile	Meuble	0	M	Predateur	Epifaune	Annelida	Polychaeta	Phyllodocida	Phyllodocidae
+Eulalia clavigera	Mobile	II	II	Peu fragile	Dur	0	P	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Phyllodocidae
+Eulalia expusilla	Mobile	II	II	Peu fragile	Dur	0	TP	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Phyllodocidae
+Eulalia mustela	Mobile	I	II	Peu fragile	Indifferent	0	P	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Phyllodocidae
+Erinaceusyllis erinaceus			II						Epifaune				
+Eulalia ornata	Mobile	II	II	Peu fragile	Dur	0	M	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Phyllodocidae
+Esperiopsis			NA						Epifaune				
+Eulalia parva	Mobile	II	II	Peu fragile	Dur	0	P	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Phyllodocidae
+Eulalia viridis	Mobile	II	II	Peu fragile	Dur	0	M	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Phyllodocidae
+Eulima bilineata	Peu mobile	I	I	Pas fragile	Meuble	0	P	Parasitique	Interstice	Mollusca	Gastropoda	Littorinimorpha	Eulimidae
+Eumida	Mobile	II	II	Peu fragile	Indifferent	0	PM	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Phyllodocidae
+Eumida arctica	Mobile	II	NA	Peu fragile	Indifferent	0	PM	Predateur	Endofaune	Annelida	Polychaeta	Phyllodocida	Phyllodocidae
+Eumida bahusiensis	Mobile	II	II	Peu fragile	Meuble	0	P	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Phyllodocidae
+Eumida punctifera	Mobile	II	II	Peu fragile	Meuble	0	PM	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Phyllodocidae
+Eumida sanguinea	Mobile	II	II	Peu fragile	Indifferent	0	PM	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Phyllodocidae
+Eubranchus			NA						Epifaune				
+Eunice	Mobile	II	II	Peu fragile	Indifferent	1	M	Omnivore	Endofaune	Annelida	Polychaeta	Eunicida	Eunicidae
+Euchone			NA						Epifaune				
+Eunice vittata	Mobile	I	II	Peu fragile	Dur	1	PM	Omnivore	Interstice	Annelida	Polychaeta	Eunicida	Eunicidae
+Eunice woodwardi	Mobile	II	II	Peu fragile	Indifferent	1	P	Omnivore	Interstice	Annelida	Polychaeta	Eunicida	Eunicidae
+Eunicidae	Mobile	II	II	Peu fragile	Indifferent	1	M	Predateur	Interstice	Annelida	Polychaeta	Eunicida	Eunicidae
+Euphrosine armadillo	Mobile	II	I	Peu fragile	Indifferent	0	TP	Predateur	Epifaune	Annelida	Polychaeta	Amphinomida	Euphrosinidae
+Euphrosine borealis	Mobile	I	I	Peu fragile	Indifferent	0	P	Predateur	Epifaune	Annelida	Polychaeta	Amphinomida	Euphrosinidae
+Euphrosine foliosa	Mobile	II	I	Peu fragile	Indifferent	0	P	Predateur	Epifaune	Annelida	Polychaeta	Amphinomida	Euphrosinidae
+Eupolymnia	Peu mobile	III	III	Tres fragile	Indifferent	1	M	Deposivore	Interstice	Annelida	Polychaeta	Terebellida	Terebellidae
+Eupolymnia nebulosa	Peu mobile	III	III	Tres fragile	Indifferent	1	M	Deposivore	Interstice	Annelida	Polychaeta	Terebellida	Terebellidae
+Eurydice affinis	Mobile	I	I	Peu fragile	Meuble	0	TP	Predateur	Endofaune	Arthropoda	Malacostraca	Isopoda	Cirolanidae
+Eurydice pulchra	Mobile	I	I	Peu fragile	Meuble	0	TP	Predateur	Endofaune	Arthropoda	Malacostraca	Isopoda	Cirolanidae
+Eurynome	Mobile	I	I	Peu fragile	Indifferent	0	P	Predateur	Interstice	Arthropoda	Malacostraca	Decapoda	Majidae
+Eurynome aspera	Mobile	I	I	Peu fragile	Meuble	0	P	Predateur	Interstice	Arthropoda	Malacostraca	Decapoda	Majidae
+Eurysyllis	Mobile	II	II	Tres fragile	Indifferent	0	TP	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Syllidae
+Eulalia fuscescens			NA						Interstice				
+Eurysyllis tuberculata	Mobile	II	II	Tres fragile	Indifferent	0	TP	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Syllidae
+Euspira nitida	Mobile	II	II	Peu fragile	Meuble	0	P	Predateur	Endofaune	Mollusca	Gastropoda	Littorinimorpha	Naticidae
+Eusyllinae	Mobile	II	NA	Tres fragile	Meuble	0	P	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Syllidae
+Eusyllis	Peu mobile	II	II	Tres fragile	Indifferent	0	P	Predateur	Epifaune	Annelida	Polychaeta	Phyllodocida	Syllidae
+Eulalia tripunctata			II						Interstice				
+Exogone naidina	Mobile	II	II	Tres fragile	Meuble	0	TP	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Syllidae
+Fabulina fabula	Peu mobile	I	I	Tres fragile	Meuble	0	P	Suspensivore	Endofaune	Mollusca	Bivalvia	Cardiida	Tellinidae
+Facelina	Mobile	I	NA	Tres fragile	Dur	0	P	Predateur	Epifaune	Mollusca	Gastropoda	Nudibranchia	Facelinidae
+Facelina annulicornis	Mobile	I	NA	Tres fragile	Dur	0	P	Predateur	Epifaune	Mollusca	Gastropoda	Nudibranchia	Facelinidae
+Fimbriosthenelais minor	Mobile	II	II	Tres fragile	Meuble	0	P	Predateur	Endofaune	Annelida	Polychaeta	Phyllodocida	Sigalionidae
+Fissurellidae	Peu mobile	I	NA	Pas fragile	Dur	0	P	Brouteur	Epifaune	Mollusca	Gastropoda	Lepetellida	Fissurellidae
+Flabelligera affinis	Peu mobile	III	II	Tres fragile	Indifferent	0	P	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Flabelligeridae
+Folinella excavata	Fixe	I	II	Peu fragile	Meuble	0	TP	Parasitique	Epifaune	Mollusca	Gastropoda		Pyramidellidae
+Eunice pennata			II						Epifaune				
+Gaidropsarus vulgaris	Mobile	NA	NA	Peu fragile	Indifferent	0	MG	Predateur	Interstice	Chordata	Actinopteri	Gadiformes	Lotidae
+Galathea intermedia	Mobile	I	I	Peu fragile	Indifferent	0	P	Suspensivore	Epifaune	Arthropoda	Malacostraca	Decapoda	Galatheidae
+Galathea squamifera	Mobile	I	I	Peu fragile	Dur	0	P	Suspensivore	Epifaune	Arthropoda	Malacostraca	Decapoda	Galatheidae
+Galathea strigosa	Mobile	I	I	Peu fragile	Dur	0	PM	Detritivore	Epifaune	Arthropoda	Malacostraca	Decapoda	Galatheidae
+Galathowenia oculata	Peu mobile	I	III	Tres fragile	Meuble	1	P	Deposivore	Endofaune	Annelida	Polychaeta		Oweniidae
+Gammarella fucicola	Mobile	III	III	Peu fragile	Meuble	0	TP	Detritivore	Epifaune	Arthropoda	Malacostraca	Amphipoda	Nuuanuidae
+Gammaropsis	Mobile	I	I	Peu fragile	Dur	0	TP	Detritivore	Epifaune	Arthropoda	Malacostraca	Amphipoda	Photidae
+Gammaropsis lobata	Mobile	I	I	Peu fragile	Dur	0	TP	Detritivore	Epifaune	Arthropoda	Malacostraca	Amphipoda	Photidae
+Gammaropsis maculata	Peu mobile	I	I	Peu fragile	Indifferent	1	P	Deposivore	Epifaune	Arthropoda	Malacostraca	Amphipoda	Photidae
+Gammarus	Mobile	I	I	Peu fragile	Indifferent	0	P	Brouteur	Interstice	Arthropoda	Malacostraca	Amphipoda	Gammaridae
+Gari costulata	Peu mobile	I	I	Tres fragile	Meuble	0	P	Suspensivore	Endofaune	Mollusca	Bivalvia	Cardiida	Psammobiidae
+Gari depressa	Peu mobile	I	I	Pas fragile	Meuble	0	P	Suspensivore	Endofaune	Mollusca	Bivalvia	Cardiida	Psammobiidae
+Gari fervensis	Peu mobile	I	I	Pas fragile	Meuble	0	P	Suspensivore	Endofaune	Mollusca	Bivalvia	Cardiida	Psammobiidae
+Gari tellinella	Peu mobile	I	I	Pas fragile	Meuble	0	P	Suspensivore	Endofaune	Mollusca	Bivalvia	Cardiida	Psammobiidae
+Gastrosaccus	Mobile	I	II	Tres fragile	Meuble	0	P	Omnivore	Epifaune	Arthropoda	Malacostraca	Mysida	Mysidae
+Eusirus longipes			I						Endofaune				
+Gastrosaccus sanctus	Mobile	I	II	Tres fragile	Meuble	0	P	Omnivore	Epifaune	Arthropoda	Malacostraca	Mysida	Mysidae
+Euspira catena			II						Epifaune				
+Gattyana cirrhosa	Peu mobile	II	III	Tres fragile	Meuble	0	PM	Predateur	Epifaune	Annelida	Polychaeta	Phyllodocida	Polynoidae
+Gibbula	Peu mobile	I	I	Pas fragile	Indifferent	0	P	Herbivore	Epifaune	Mollusca	Gastropoda	Trochida	Trochidae
+Gibbula magus	Mobile	I	I	Pas fragile	Indifferent	0	P	Herbivore	Epifaune	Mollusca	Gastropoda	Trochida	Trochidae
+Glycera	Mobile	II	II	Peu fragile	Meuble	0	MG	Predateur	Endofaune	Annelida	Polychaeta	Phyllodocida	Glyceridae
+Eusyllis assimilis			II						Epifaune				
+Glycera alba	Mobile	II	II	Peu fragile	Meuble	0	PM	Predateur	Endofaune	Annelida	Polychaeta	Phyllodocida	Glyceridae
+Eusyllis blomstrandi			II						Epifaune				
+Glycera celtica	Mobile	II	II	Peu fragile	Meuble	0	MG	Predateur	Endofaune	Annelida	Polychaeta	Phyllodocida	Glyceridae
+Euthalenessa oculata			I						Endofaune				
+Glycera fallax	Mobile	II	II	Peu fragile	Meuble	0	MG	Predateur	Endofaune	Annelida	Polychaeta	Phyllodocida	Glyceridae
+Glycera lapidum	Mobile	II	II	Peu fragile	Meuble	0	PM	Predateur	Endofaune	Annelida	Polychaeta	Phyllodocida	Glyceridae
+Glycera tridactyla	Mobile	II	II	Peu fragile	Meuble	0	PM	Predateur	Endofaune	Annelida	Polychaeta	Phyllodocida	Glyceridae
+Glycera unicornis	Mobile	II	II	Peu fragile	Meuble	0	MG	Predateur	Endofaune	Annelida	Polychaeta	Phyllodocida	Glyceridae
+Glycinde nordmanni	Mobile	II	II	Peu fragile	Meuble	0	P	Predateur	Endofaune	Annelida	Polychaeta	Phyllodocida	Goniadidae
+Facelina bostoniensis			NA						Epifaune				
+Glycymeris glycymeris	Peu mobile	I	III	Pas fragile	Meuble	0	PM	Suspensivore	Endofaune	Mollusca	Bivalvia	Arcida	Glycymerididae
+Facelinidae			NA						Epifaune				
+Gnathia	Mobile	I	I	Peu fragile	Dur	0	TP	Predateur	Interstice	Arthropoda	Malacostraca	Isopoda	Gnathiidae
+Fimbriosthenelais zetlandica			II						Epifaune				
+Gnathia oxyuraea	Mobile	I	I	Peu fragile	Indifferent	0	TP	Predateur	Interstice	Arthropoda	Malacostraca	Isopoda	Gnathiidae
+Gnathia vorax	Mobile	I	I	Peu fragile	Dur	0	TP	Predateur	Interstice	Arthropoda	Malacostraca	Isopoda	Gnathiidae
+Flabelligeridae			NA						Endofaune				
+Gnathiidae	Mobile	I	I	Peu fragile	Indifferent	0	TP	Predateur	Interstice	Arthropoda	Malacostraca	Isopoda	Gnathiidae
+Flustra foliacea			NA						Epifaune				
+Gobiidae	Mobile	NA	NA	Peu fragile	Indifferent	0	M	Predateur	Epifaune	Chordata	Actinopteri	Gobiiformes	Gobiidae
+Gobius	Mobile	NA	NA	Peu fragile	Indifferent	0	M	Predateur	Epifaune	Chordata	Actinopteri	Gobiiformes	Gobiidae
+Gaidropsarus			NA						Interstice				
+Gobius niger	Mobile	NA	NA	Peu fragile	Meuble	0	M	Predateur	Epifaune	Chordata	Actinopteri	Gobiiformes	Gobiidae
+Golfingia	Peu mobile	I	I	Tres fragile	Meuble	0	M	Detritivore	Endofaune	Sipuncula	Sipunculidea	Golfingiida	Golfingiidae
+Golfingia (Golfingia) elongata	Peu mobile	I	II	Tres fragile	Meuble	0	M	Detritivore	Endofaune	Sipuncula	Sipunculidea	Golfingiida	Golfingiidae
+Galathea nexa			I						Epifaune				
+Golfingia (Golfingia) vulgaris vulgaris	Peu mobile	I	I	Tres fragile	Meuble	0	M	Detritivore	Endofaune	Sipuncula	Sipunculidea	Golfingiida	Golfingiidae
+Goniada maculata	Mobile	II	II	Peu fragile	Meuble	0	M	Predateur	Endofaune	Annelida	Polychaeta	Phyllodocida	Goniadidae
+Goniadella bobrezkii	Mobile	II	II	Peu fragile	Meuble	0	P	Predateur	Endofaune	Annelida	Polychaeta	Phyllodocida	Goniadidae
+Goniadella gracilis	Mobile	II	II	Peu fragile	Meuble	0	P	Predateur	Endofaune	Annelida	Polychaeta	Phyllodocida	Goniadidae
+Goodallia triangularis	Peu mobile	I	II	Pas fragile	Meuble	0	TP	Suspensivore	Endofaune	Mollusca	Bivalvia	Carditida	Astartidae
+Gammarellus angulosus			I						Epifaune				
+Gouldia minima	Peu mobile	II	I	Pas fragile	Meuble	0	P	Suspensivore	Endofaune	Mollusca	Bivalvia	Venerida	Veneridae
+Grania	Peu mobile	I	V	Tres fragile	Meuble	0	P	Deposivore	Endofaune	Annelida	Clitellata	Enchytraeida	Enchytraeidae
+Gymnammodytes cicerelus	Mobile	NA	NA	Peu fragile	Meuble	0	M	Predateur	Epifaune	Chordata	Actinopteri	Perciformes	Ammodytidae
+Gymnammodytes semisquamatus	Mobile	NA	NA	Peu fragile	Meuble	0	MG	Predateur	Epifaune	Chordata	Actinopteri	Perciformes	Ammodytidae
+Gammaropsis sophiae			I						Epifaune				
+Gyptis propinqua	Mobile	II	II	Tres fragile	Meuble	0	TP	Predateur	Endofaune	Annelida	Polychaeta	Phyllodocida	Hesionidae
+Haedropleura septangularis	Peu mobile	I	I	Pas fragile	Meuble	0	P	Predateur	Epifaune	Mollusca	Gastropoda	Neogastropoda	Horaiclavidae
+Halcampa	Peu mobile	I	I	Tres fragile	Meuble	0	PM	Predateur	Interstice	Cnidaria	Anthozoa	Actiniaria	Halcampidae
+Halcampa chrysanthellum	Fixe	I	I	Tres fragile	Meuble	0	PM	Predateur	Endofaune	Cnidaria	Anthozoa	Actiniaria	Halcampidae
+Halcampidae	Peu mobile	I	I	Tres fragile	Meuble	0	PM	Predateur	Epifaune	Cnidaria	Anthozoa	Actiniaria	Halcampidae
+Halichondria	Fixe	I	I	Tres fragile	Dur	0	M	Suspensivore	Epifaune	Porifera	Demospongiae	Suberitida	Halichondriidae
+Halichondria (Halichondria) bowerbanki	Fixe	I	I	Tres fragile	Dur	0	M	Suspensivore	Epifaune	Porifera	Demospongiae	Suberitida	Halichondriidae
+Halichondria (Halichondria) panicea	Fixe	I	I	Tres fragile	Dur	0	M	Suspensivore	Epifaune	Porifera	Demospongiae	Suberitida	Halichondriidae
+Haliclona	Fixe	I	I	Tres fragile	Dur	0	M	Suspensivore	Epifaune	Porifera	Demospongiae	Haplosclerida	Chalinidae
+Haliclona (Haliclona) oculata	Fixe	I	II	Tres fragile	Dur	0	MG	Suspensivore	Epifaune	Porifera	Demospongiae	Haplosclerida	Chalinidae
+Haliclona (Haliclona) simulans	Fixe	I	I	Tres fragile	Dur	0	M	Suspensivore	Epifaune	Porifera	Demospongiae	Haplosclerida	Chalinidae
+Gitana sarsi			II						Epifaune				
+Haliclona (Reniera) cinerea	Fixe	I	I	Tres fragile	Dur	0	PM	Suspensivore	Epifaune	Porifera	Demospongiae	Haplosclerida	Chalinidae
+Haminoea hydatis	Peu mobile	II	II	Tres fragile	Meuble	0	P	Herbivore	Epifaune	Mollusca	Gastropoda	Cephalaspidea	Haminoeidae
+Glycera capitata			II						Endofaune				
+Hanleya hanleyi	Fixe	I	I	Peu fragile	Dur	0	P	Brouteur	Epifaune	Mollusca	Polyplacophora	Lepidopleurida	Hanleyidae
+Haploops	Peu mobile	I	III	Peu fragile	Meuble	1	TP	Suspensivore	Interstice	Arthropoda	Malacostraca	Amphipoda	Ampeliscidae
+Haploops antennata	Peu mobile	I	III	Peu fragile	Meuble	1	TP	Suspensivore	Endofaune	Arthropoda	Malacostraca	Amphipoda	Ampeliscidae
+Haploops gascogni	Peu mobile	I	III	Peu fragile	Meuble	1	TP	Suspensivore	Endofaune	Arthropoda	Malacostraca	Amphipoda	Ampeliscidae
+Glycera oxycephala			II						Endofaune				
+Haplostylus lobatus	Mobile	I	II	Tres fragile	Meuble	0	TP	Omnivore	Epifaune	Arthropoda	Malacostraca	Mysida	Mysidae
+Glycera tesselata			II						Endofaune				
+Haplostylus normani	Mobile	I	II	Tres fragile	Meuble	0	TP	Omnivore	Epifaune	Arthropoda	Malacostraca	Mysida	Mysidae
+Haplosyllis spongicola	Mobile	II	II	Peu fragile	Dur	0	PM	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Syllidae
+Harmothoe	Mobile	II	II	Peu fragile	Dur	0	PM	Predateur	Epifaune	Annelida	Polychaeta	Phyllodocida	Polynoidae
+Glyceridae			II						Endofaune				
+Harmothoe areolata	Peu mobile	II	II	Peu fragile	Dur	0	P	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Polynoidae
+Harmothoe aspera	Peu mobile	II	II	Peu fragile	Indifferent	0	P	Predateur	Epifaune	Annelida	Polychaeta	Phyllodocida	Polynoidae
+Harmothoe bellani	Peu mobile	II	II	Peu fragile	Indifferent	0	P	Predateur	Epifaune	Annelida	Polychaeta	Phyllodocida	Polynoidae
+Harmothoe extenuata	Mobile	II	II	Peu fragile	Indifferent	0	PM	Predateur	Epifaune	Annelida	Polychaeta	Phyllodocida	Polynoidae
+Harmothoe fernandi	Peu mobile	II	II	Peu fragile	Indifferent	0	TP	Predateur	Epifaune	Annelida	Polychaeta	Phyllodocida	Polynoidae
+Harmothoe fragilis	Peu mobile	II	II	Peu fragile	Indifferent	0	P	Predateur	Epifaune	Annelida	Polychaeta	Phyllodocida	Polynoidae
+Harmothoe glabra	Peu mobile	II	II	Peu fragile	Indifferent	0	P	Predateur	Epifaune	Annelida	Polychaeta	Phyllodocida	Polynoidae
+Harmothoe imbricata	Mobile	II	II	Peu fragile	Indifferent	0	PM	Predateur	Epifaune	Annelida	Polychaeta	Phyllodocida	Polynoidae
+Harmothoe impar	Mobile	II	II	Tres fragile	Dur	0	P	Predateur	Epifaune	Annelida	Polychaeta	Phyllodocida	Polynoidae
+Harmothoe mariannae	Mobile	I	II	Peu fragile	Dur	0	PM	Predateur	Epifaune	Annelida	Polychaeta	Phyllodocida	Polynoidae
+Harmothoe spinifera	Mobile	II	II	Peu fragile	Dur	0	P	Predateur	Epifaune	Annelida	Polychaeta	Phyllodocida	Polynoidae
+Harmothoe viridis	Peu mobile	II	II	Peu fragile	Indifferent	0	P	Predateur	Epifaune	Annelida	Polychaeta	Phyllodocida	Polynoidae
+Harpinia	Mobile	I	I	Peu fragile	Meuble	0	TP	Deposivore	Endofaune	Arthropoda	Malacostraca	Amphipoda	Phoxocephalidae
+Goniada			NA						Endofaune				
+Harpinia crenulata	Peu mobile	I	I	Peu fragile	Meuble	0	TP	Deposivore	Endofaune	Arthropoda	Malacostraca	Amphipoda	Phoxocephalidae
+Goniada emerita			II						Endofaune				
+Harpinia pectinata	Peu mobile	I	I	Peu fragile	Meuble	0	TP	Deposivore	Endofaune	Arthropoda	Malacostraca	Amphipoda	Phoxocephalidae
+Goniada norvegica			II						Endofaune				
+Hermania scabra	Peu mobile	I	II	Tres fragile	Meuble	0	P	Predateur	Endofaune	Mollusca	Gastropoda	Cephalaspidea	Philinidae
+Goniadella			II						Endofaune				
+Hesione splendida	Mobile	II	II	Peu fragile	Dur	0	PM	Predateur	Epifaune	Annelida	Polychaeta	Phyllodocida	Hesionidae
+Hesionidae	Mobile	II	II	Tres fragile	Indifferent	0	PM	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Hesionidae
+Hesiospina aurantiaca	Mobile	II	II	Tres fragile	Meuble	0	P	Inconnu	Interstice	Annelida	Polychaeta	Phyllodocida	Hesionidae
+Heteranomia squamula	Fixe	I	I	Peu fragile	Dur	0	P	Suspensivore	Epifaune	Mollusca	Bivalvia	Pectinida	Anomiidae
+Heteroclymene robusta	Peu mobile	I	V	Peu fragile	Meuble	1	M	Deposivore	Endofaune	Annelida	Polychaeta		Maldanidae
+Heteromastus filiformis	Peu mobile	III	III	Tres fragile	Meuble	1	MG	Deposivore	Endofaune	Annelida	Polychaeta		Capitellidae
+Gregariella semigranata			I						Epifaune				
+Heteromysis	Mobile	I	II	Tres fragile	Meuble	0	TP	Omnivore	Epifaune	Arthropoda	Malacostraca	Mysida	Mysidae
+Heteromysis (Heteromysis) armoricana	Mobile	I	II	Tres fragile	Meuble	0	TP	Omnivore	Interstice	Arthropoda	Malacostraca	Mysida	Mysidae
+Heteromysis (Heteromysis) norvegica	Mobile	I	II	Tres fragile	Meuble	0	TP	Suspensivore	Interstice	Arthropoda	Malacostraca	Mysida	Mysidae
+Hiatella arctica	Fixe	I	III	Pas fragile	Dur	0	PM	Suspensivore	Epifaune	Mollusca	Bivalvia	Adapedonta	Hiatellidae
+Hiatella rugosa	Peu mobile	III	I	Pas fragile	Dur	0	P	Suspensivore	Interstice	Mollusca	Bivalvia	Adapedonta	Hiatellidae
+Hilbigneris gracilis	Mobile	II	II	Peu fragile	Indifferent	0	PM	Inconnu	Endofaune	Annelida	Polychaeta	Eunicida	Lumbrineridae
+Hippolyte inermis	Mobile	I	I	Peu fragile	Dur	0	P	Predateur	Epifaune	Arthropoda	Malacostraca	Decapoda	Hippolytidae
+Hippolyte varians	Mobile	I	I	Peu fragile	Indifferent	0	P	Detritivore	Epifaune	Arthropoda	Malacostraca	Decapoda	Hippolytidae
+Hippolytidae	Mobile	I	I	Peu fragile	Indifferent	0	PM	Predateur	Epifaune	Arthropoda	Malacostraca	Decapoda	Hippolytidae
+Hippomedon denticulatus	Peu mobile	I	I	Peu fragile	Meuble	0	P	Necrophage	Interstice	Arthropoda	Malacostraca	Amphipoda	Tryphosidae
+Holothuriidae	Peu mobile	I	I	Tres fragile	Indifferent	0	M	Suspensivore	Endofaune	Echinodermata	Holothuroidea	Holothuriida	Holothuridae
+Haliclona (Gellius) rava			NA						Epifaune				
+Hormathia	Fixe	I	I	Tres fragile	Dur	0	PM	Predateur	Epifaune	Cnidaria	Anthozoa	Actiniaria	Hormathiidae
+Hormathiidae	Fixe	I	I	Tres fragile	Dur	0	PM	Predateur	Epifaune	Cnidaria	Anthozoa	Actiniaria	Hormathiidae
+Hydroides norvegica	Fixe	I	II	Tres fragile	Indifferent	1	P	Suspensivore	Epifaune	Annelida	Polychaeta	Sabellida	Serpulidae
+Haliotis tuberculata			I						Epifaune				
+Hymeniacidon	Fixe	I	II	Tres fragile	Dur	0	M	Suspensivore	Epifaune	Porifera	Demospongiae	Suberitida	Halichondriidae
+Hymeniacidon kitchingi	Fixe	I	I	Tres fragile	Dur	0	M	Suspensivore	Epifaune	Porifera	Demospongiae	Suberitida	Halichondriidae
+Hymeniacidon perlevis	Fixe	I	I	Tres fragile	Dur	0	M	Suspensivore	Epifaune	Porifera	Demospongiae	Suberitida	Halichondriidae
+Hypereteone foliosa	Mobile	II	II	Peu fragile	Meuble	0	P	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Phyllodocidae
+Hyperoplus lanceolatus	Mobile	NA	NA	Peu fragile	Meuble	0	M	Predateur	Epifaune	Chordata	Actinopteri	Perciformes	Ammodytidae
+Hypsicomus stichophthalmos	Peu mobile	I	II	Tres fragile	Meuble	1	P	Suspensivore	Epifaune	Annelida	Polychaeta	Sabellida	Sabellidae
+Ianiropsis breviremis	Mobile	I	NA	Tres fragile	Dur	0	TP	Herbivore	Epifaune	Arthropoda	Malacostraca	Isopoda	Janiridae
+Idotea balthica	Mobile	I	II	Peu fragile	Meuble	0	P	Herbivore	Epifaune	Arthropoda	Malacostraca	Isopoda	Idoteidae
+Idotea pelagica	Mobile	I	II	Peu fragile	Dur	0	P	Omnivore	Epifaune	Arthropoda	Malacostraca	Isopoda	Idoteidae
+Idunella	Peu mobile	I	I	Peu fragile	Meuble	0	TP	Predateur	Endofaune	Arthropoda	Malacostraca	Amphipoda	Liljeborgiidae
+Harmothoe antilopes			II						Epifaune				
+Idunella dentipalma	Peu mobile	I	I	Peu fragile	Meuble	0	TP	Predateur	Endofaune	Arthropoda	Malacostraca	Amphipoda	Liljeborgiidae
+Idunella excavata	Peu mobile	I	I	Peu fragile	Meuble	0	TP	Predateur	Endofaune	Arthropoda	Malacostraca	Amphipoda	Liljeborgiidae
+Idunella picta	Mobile	I	I	Peu fragile	Meuble	0	TP	Predateur	Interstice	Arthropoda	Malacostraca	Amphipoda	Liljeborgiidae
+Idunella spinifera	Peu mobile	I	I	Peu fragile	Meuble	0	TP	Predateur	Endofaune	Arthropoda	Malacostraca	Amphipoda	Liljeborgiidae
+Inachus dorsettensis	Mobile	I	I	Tres fragile	Meuble	0	P	Omnivore	Epifaune	Arthropoda	Malacostraca	Decapoda	Inachidae
+Inachus leptochirus	Mobile	I	I	Tres fragile	Meuble	0	P	Omnivore	Epifaune	Arthropoda	Malacostraca	Decapoda	Inachidae
+Harmothoe fraserthomsoni			II						Epifaune				
+Inachus phalangium	Peu mobile	I	I	Peu fragile	Dur	0	P	Detritivore	Epifaune	Arthropoda	Malacostraca	Decapoda	Inachidae
+Incatella cingulata	Peu mobile	I	NA	Peu fragile	Meuble	0	P	Suspensivore	Interstice	Mollusca	Gastropoda	[unassigned] Caenogastropoda	Turritellidae
+Iphimedia minuta	Mobile	I	I	Peu fragile	Meuble	0	TP	Detritivore	Interstice	Arthropoda	Malacostraca	Amphipoda	Iphimediidae
+Iphimedia nexa	Mobile	I	I	Peu fragile	Dur	0	TP	Detritivore	Interstice	Arthropoda	Malacostraca	Amphipoda	Iphimediidae
+Harmothoe pagenstecheri			II						Epifaune				
+Iphimedia obesa	Mobile	I	I	Peu fragile	Dur	0	P	Detritivore	Interstice	Arthropoda	Malacostraca	Amphipoda	Iphimediidae
+Iphimedia spatula	Mobile	I	I	Peu fragile	Dur	0	TP	Detritivore	Interstice	Arthropoda	Malacostraca	Amphipoda	Iphimediidae
+Iphinoe trispinosa	Mobile	III	I	Peu fragile	Meuble	0	P	Deposivore	Endofaune	Arthropoda	Malacostraca	Cumacea	Bodotriidae
+Irus irus	Fixe	I	I	Tres fragile	Dur	0	P	Suspensivore	Interstice	Mollusca	Bivalvia	Venerida	Veneridae
+Isaeidae	Mobile	I	I	Peu fragile	Indifferent	0	TP	Deposivore	Epifaune	Arthropoda	Malacostraca	Amphipoda	Isaeidae
+Ischyroceridae	Mobile	I	II	Peu fragile	Indifferent	0	TP	Detritivore	Epifaune	Arthropoda	Malacostraca	Amphipoda	Ischyroceridae
+Hedylopsis			NA						Epifaune				
+Hemilepton nitidum			II						Endofaune				
+Janira maculosa	Mobile	III	I	Tres fragile	Meuble	0	TP	Detritivore	Epifaune	Arthropoda	Malacostraca	Isopoda	Janiridae
+Jasmineira	Fixe	I	II	Tres fragile	Indifferent	1	P	Suspensivore	Epifaune	Annelida	Polychaeta	Sabellida	Sabellidae
+Jasmineira caudata	Peu mobile	I	II	Tres fragile	Meuble	1	TP	Suspensivore	Epifaune	Annelida	Polychaeta	Sabellida	Sabellidae
+Jasmineira elegans	Peu mobile	I	II	Tres fragile	Meuble	1	P	Suspensivore	Endofaune	Annelida	Polychaeta	Sabellida	Sabellidae
+Hesionura			NA						Epifaune				
+Hesionura elongata			II						Epifaune				
+Jorunna tomentosa	Mobile	I	NA	Tres fragile	Indifferent	0	PM	Predateur	Epifaune	Mollusca	Gastropoda	Nudibranchia	Discodorididae
+Jujubinus exasperatus	Peu mobile	I	I	Pas fragile	Indifferent	0	P	Brouteur	Epifaune	Mollusca	Gastropoda	Trochida	Trochidae
+Jujubinus montagui	Peu mobile	I	I	Pas fragile	Dur	0	TP	Brouteur	Epifaune	Mollusca	Gastropoda	Trochida	Trochidae
+Jujubinus striatus	Peu mobile	I	I	Pas fragile	Dur	0	TP	Brouteur	Epifaune	Mollusca	Gastropoda	Trochida	Trochidae
+Kellia suborbicularis	Peu mobile	I	I	Pas fragile	Dur	0	P	Suspensivore	Interstice	Mollusca	Bivalvia	Galeommatida	Lasaeidae
+Kirkegaardia	Peu mobile	I	IV	Tres fragile	Meuble	1	P	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Cirratulidae
+Kirkegaardia dorsobranchialis	Peu mobile	I	IV	Tres fragile	Meuble	1	P	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Cirratulidae
+Heteromysis (Heteromysis) formosa			II						Interstice				
+Kirkegaardia heterochaeta	Peu mobile	I	IV	Tres fragile	Meuble	1	P	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Cirratulidae
+Kroyera carinata	Mobile	I	I	Pas fragile	Meuble	0	P	Predateur	Endofaune	Arthropoda	Malacostraca	Amphipoda	Oedicerotidae
+Hexacorallia			NA						NA				
+Kurtiella bidentata	Peu mobile	I	III	Tres fragile	Meuble	0	TP	Suspensivore	Epifaune	Mollusca	Bivalvia	Galeommatida	Lasaeidae
+Hiatella			NA						Epifaune				
+Lacydonia miranda	Mobile	I	II	Peu fragile	Meuble	0	TP	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Lacydoniidae
+Laetmonice hystrix	Mobile	II	II	Pas fragile	Meuble	0	PM	Predateur	Epifaune	Annelida	Polychaeta	Phyllodocida	Aphroditidae
+Laevicardium crassum	Peu mobile	I	I	Pas fragile	Meuble	0	PM	Suspensivore	Endofaune	Mollusca	Bivalvia	Cardiida	Cardiidae
+Lagis koreni	Peu mobile	I	IV	Tres fragile	Meuble	1	P	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Pectinariidae
+Lamellaria latens	Peu mobile	I	NA	Tres fragile	Dur	0	TP	Predateur	Epifaune	Mollusca	Gastropoda	Littorinimorpha	Velutinidae
+Lanice conchilega	Peu mobile	I	II	Tres fragile	Meuble	1	MG	Suspensivore	Interstice	Annelida	Polychaeta	Terebellida	Terebellidae
+Laonice bahusiensis	Peu mobile	III	II	Tres fragile	Meuble	1	PM	Deposivore	Endofaune	Annelida	Polychaeta	Spionida	Spionidae
+Laonice cirrata	Peu mobile	I	II	Tres fragile	Meuble	1	M	Deposivore	Endofaune	Annelida	Polychaeta	Spionida	Spionidae
+Holothuroidea			I						NA				
+Laonice irinae	Peu mobile	III	NA	Tres fragile	Meuble	1	P	Deposivore	Endofaune	Annelida	Polychaeta	Spionida	Spionidae
+Lebetus guilleti	Mobile	NA	NA	Peu fragile	Meuble	0	P	Predateur	Epifaune	Chordata	Actinopteri	Gobiiformes	Gobiidae
+Leiochone leiopygos	Peu mobile	I	III	Tres fragile	Meuble	1	M	Deposivore	Endofaune	Annelida	Polychaeta		Maldanidae
+Hyas coarctatus			I						Epifaune				
+Lekanesphaera rugicauda	Mobile	III	III	Peu fragile	Meuble	0	TP	Omnivore	Interstice	Arthropoda	Malacostraca	Isopoda	Sphaeromatidae
+Lembos websteri	Peu mobile	I	I	Tres fragile	Indifferent	1	TP	Deposivore	Epifaune	Arthropoda	Malacostraca	Amphipoda	Aoridae
+Leodice harassii	Mobile	II	II	Peu fragile	Indifferent	1	MG	Predateur	Interstice	Annelida	Polychaeta	Eunicida	Eunicidae
+Leodora laevis	Fixe	I	NA	Tres fragile	Dur	1	P	Suspensivore	Epifaune	Annelida	Polychaeta	Sabellida	Serpulidae
+Lepadogaster	Peu mobile	NA	NA	Tres fragile	Dur	0	PM	Predateur	Interstice	Chordata	Actinopteri	Gobiesociformes	Gobiesocidae
+Lepadogaster lepadogaster	Peu mobile	NA	NA	Tres fragile	Dur	0	PM	Predateur	Interstice	Chordata	Actinopteri	Gobiesociformes	Gobiesocidae
+Lepidepecreum longicorne	Peu mobile	I	I	Pas fragile	Dur	0	TP	Deposivore	Epifaune	Arthropoda	Malacostraca	Amphipoda	Tryphosidae
+Lepidochitona cinerea	Peu mobile	I	II	Peu fragile	Meuble	0	P	Brouteur	Epifaune	Mollusca	Polyplacophora	Chitonida	Tonicellidae
+Lepidonotus	Mobile	II	II	Peu fragile	Indifferent	0	PM	Predateur	Epifaune	Annelida	Polychaeta	Phyllodocida	Polynoidae
+Lepidonotus clava	Mobile	II	II	Peu fragile	Dur	0	P	Predateur	Epifaune	Annelida	Polychaeta	Phyllodocida	Polynoidae
+Idotea granulosa			II						Epifaune				
+Lepidonotus squamatus	Mobile	II	II	Peu fragile	Dur	0	MG	Predateur	Epifaune	Annelida	Polychaeta	Phyllodocida	Polynoidae
+Idotea neglecta			II						Epifaune				
+Leptocheirus hirsutimanus	Mobile	III	II	Peu fragile	Meuble	0	TP	Detritivore	Epifaune	Arthropoda	Malacostraca	Amphipoda	Corophiidae
+Leptocheirus pectinatus	Mobile	III	III	Peu fragile	Meuble	0	TP	Detritivore	Epifaune	Arthropoda	Malacostraca	Amphipoda	Corophiidae
+Leptocheirus pilosus	Peu mobile	III	III	Peu fragile	Dur	1	TP	Detritivore	Epifaune	Arthropoda	Malacostraca	Amphipoda	Corophiidae
+Leptocheirus tricristatus	Mobile	III	III	Peu fragile	Meuble	0	TP	Detritivore	Epifaune	Arthropoda	Malacostraca	Amphipoda	Corophiidae
+Leptocheliidae	Peu mobile	I	NA	Peu fragile	Meuble	0	TP	Detritivore	Epifaune	Arthropoda	Malacostraca	Tanaidacea	Leptocheliidae
+Idunella mollis			I						Endofaune				
+Leptochiton	Peu mobile	I	I	Pas fragile	Dur	0	P	Brouteur	Epifaune	Mollusca	Polyplacophora	Lepidopleurida	Leptochitonidae
+Leptochiton asellus	Peu mobile	I	I	Pas fragile	Dur	0	P	Brouteur	Epifaune	Mollusca	Polyplacophora	Lepidopleurida	Leptochitonidae
+Leptochiton cancellatus	Peu mobile	I	I	Peu fragile	Meuble	0	TP	Brouteur	Epifaune	Mollusca	Polyplacophora	Lepidopleurida	Leptochitonidae
+Leptochiton scabridus	Peu mobile	I	I	Pas fragile	Dur	0	P	Brouteur	Epifaune	Mollusca	Polyplacophora	Lepidopleurida	Leptochitonidae
+Leptognathiidae	Peu mobile	I	NA	Peu fragile	Meuble	0	TP	Detritivore	Epifaune	Arthropoda	Malacostraca	Tanaidacea	Leptognathiidae
+Inermonephtys inermis			II						Endofaune				
+Leptoplana	Mobile	I	II	Tres fragile	Indifferent	0	P	Predateur	Epifaune	Platyhelminthes		Polycladida	Leptoplanidae
+Iphimedia eblanae			NA						Interstice				
+Leptoplana tremellaris	Mobile	II	I	Tres fragile	Dur	0	P	Predateur	Epifaune	Platyhelminthes		Polycladida	Leptoplanidae
+Leptoplanidae	Mobile	I	II	Tres fragile	Indifferent	0	P	Predateur	Epifaune	Platyhelminthes		Polycladida	Leptoplanidae
+Leptosynapta	Peu mobile	I	I	Tres fragile	Meuble	0	PM	Detritivore	Endofaune	Echinodermata	Holothuroidea	Apodida	Synaptidae
+Leptosynapta cruenta	Peu mobile	I	I	Tres fragile	Meuble	0	M	Detritivore	Endofaune	Echinodermata	Holothuroidea	Apodida	Synaptidae
+Iphimedia perplexa			NA						Interstice				
+Leptosynapta galliennii	Peu mobile	I	I	Tres fragile	Meuble	0	M	Detritivore	Endofaune	Echinodermata	Holothuroidea	Apodida	Synaptidae
+Leptosynapta inhaerens	Peu mobile	I	I	Tres fragile	Meuble	1	M	Detritivore	Endofaune	Echinodermata	Holothuroidea	Apodida	Synaptidae
+Iphinoe tenella			I						Endofaune				
+Leptosynapta minuta	Peu mobile	I	I	Tres fragile	Meuble	0	P	Detritivore	Interstice	Echinodermata	Holothuroidea	Apodida	Synaptidae
+Leuconia	Fixe	I	NA	Tres fragile	Dur	0	PM	Suspensivore	Epifaune	Porifera	Calcarea	Baerida	Baeriidae
+Leucosolenia complicata	Fixe	I	NA	Tres fragile	Dur	0	P	Suspensivore	Epifaune	Porifera	Calcarea	Leucosolenida	Leucosoleniidae
+Leucothoe	Mobile	I	I	Tres fragile	Indifferent	0	TP	Suspensivore	Epifaune	Arthropoda	Malacostraca	Amphipoda	Leucothoidae
+Isopoda			NA						NA				
+Leucothoe incisa	Mobile	I	I	Tres fragile	Meuble	0	TP	Suspensivore	Epifaune	Arthropoda	Malacostraca	Amphipoda	Leucothoidae
+Leucothoe richiardii	Mobile	I	I	Tres fragile	Meuble	0	TP	Suspensivore	Epifaune	Arthropoda	Malacostraca	Amphipoda	Leucothoidae
+Leucothoe spinicarpa	Mobile	I	I	Tres fragile	Dur	0	P	Suspensivore	Epifaune	Arthropoda	Malacostraca	Amphipoda	Leucothoidae
+Jassa falcata			V						Epifaune				
+Lichenoporidae	Fixe	I	NA	Peu fragile	Dur	0	TP	Suspensivore	Epifaune	Bryozoa	Stenolaemata	Cyclostomatida	Lichenoporidae
+Jassa marmorata			V						Epifaune				
+Liljeborgia kinahani	Mobile	I	I	Tres fragile	Meuble	0	TP	Predateur	Epifaune	Arthropoda	Malacostraca	Amphipoda	Liljeborgiidae
+Jassa pusilla			V						Epifaune				
+Liljeborgia pallida	Mobile	I	I	Tres fragile	Dur	0	TP	Predateur	Epifaune	Arthropoda	Malacostraca	Amphipoda	Liljeborgiidae
+Limacia clavigera	Mobile	I	NA	Tres fragile	Dur	0	P	Predateur	Epifaune	Mollusca	Gastropoda	Nudibranchia	Polyceridae
+Limaria loscombi	Peu mobile	I	I	Tres fragile	Meuble	0	P	Suspensivore	Epifaune	Mollusca	Bivalvia	Limida	Limidae
+Limatula subauriculata	Peu mobile	I	I	Peu fragile	Indifferent	0	TP	Suspensivore	Epifaune	Mollusca	Bivalvia	Limida	Limidae
+Lineus	Mobile	II	I	Tres fragile	Indifferent	1	G	Predateur	Epifaune	Nemertea	Pilidiophora	Heteronemertea	Lineidae
+Liocarcinus	Mobile	I	I	Pas fragile	Meuble	0	P	Predateur	Epifaune	Arthropoda	Malacostraca	Decapoda	Polybiidae
+Liocarcinus corrugatus	Mobile	I	I	Pas fragile	Meuble	0	PM	Omnivore	Epifaune	Arthropoda	Malacostraca	Decapoda	Polybiidae
+Liocarcinus depurator	Mobile	I	I	Tres fragile	Meuble	0	PM	Predateur	Epifaune	Arthropoda	Malacostraca	Decapoda	Polybiidae
+Liocarcinus holsatus	Mobile	I	I	Tres fragile	Dur	0	PM	Predateur	Interstice	Arthropoda	Malacostraca	Decapoda	Polybiidae
+Liocarcinus marmoreus	Mobile	I	I	Pas fragile	Meuble	0	PM	Predateur	Epifaune	Arthropoda	Malacostraca	Decapoda	Polybiidae
+Liocarcinus navigator	Mobile	I	I	Pas fragile	Indifferent	0	P	Predateur	Epifaune	Arthropoda	Malacostraca	Decapoda	Polybiidae
+Liocarcinus pusillus	Mobile	I	I	Pas fragile	Meuble	0	P	Predateur	Epifaune	Arthropoda	Malacostraca	Decapoda	Polybiidae
+Loimia ramzega	Peu mobile	I	I	Tres fragile	Meuble	1	G	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Terebellidae
+Loripes orbiculatus	Fixe	I	I	Tres fragile	Meuble	0	P	Chemosymbiotique	Endofaune	Mollusca	Bivalvia	Lucinida	Lucinidae
+Loxosomella	Fixe	I	NA	Tres fragile	Dur	0	TP	Suspensivore	Epifaune	Entoprocta			Loxosomatidae
+Lagotia viridis			NA						Epifaune				
+Loxosomella phascolosomata	Fixe	I	NA	Tres fragile	Dur	0	TP	Suspensivore	Epifaune	Entoprocta			Loxosomatidae
+Lucinella divaricata	Peu mobile	I	I	Pas fragile	Meuble	0	P	Suspensivore	Endofaune	Mollusca	Bivalvia	Lucinida	Lucinidae
+Lucinoma borealis	Peu mobile	I	I	Pas fragile	Meuble	0	PM	Suspensivore	Endofaune	Mollusca	Bivalvia	Lucinida	Lucinidae
+Laonice			NA						Endofaune				
+Lumbrineridae	Peu mobile	II	II	Peu fragile	Indifferent	0	M	Predateur	Endofaune	Annelida	Polychaeta	Eunicida	Lumbrineridae
+Lumbrinerides amoureuxi	Mobile	I	II	Peu fragile	Meuble	0	P	Predateur	Endofaune	Annelida	Polychaeta	Eunicida	Lumbrineridae
+Lumbrineriopsis paradoxa	Mobile	II	II	Peu fragile	Meuble	0	TP	Omnivore	Endofaune	Annelida	Polychaeta	Eunicida	Lumbrineridae
+Lumbrineris	Mobile	II	II	Peu fragile	Indifferent	0	MG	Omnivore	Endofaune	Annelida	Polychaeta	Eunicida	Lumbrineridae
+Lasaea rubra			II						Epifaune				
+Lumbrineris aniara	Mobile	II	II	Peu fragile	Meuble	0	M	Predateur	Interstice	Annelida	Polychaeta	Eunicida	Lumbrineridae
+Lumbrineris cingulata	Mobile	II	I	Peu fragile	Indifferent	0	MG	Omnivore	Endofaune	Annelida	Polychaeta	Eunicida	Lumbrineridae
+Leiochone johnstoni			NA						Endofaune				
+Lumbrineris coccinea	Mobile	II	II	Peu fragile	Indifferent	0	M	Predateur	Interstice	Annelida	Polychaeta	Eunicida	Lumbrineridae
+Lumbrineris latreilli	Mobile	II	I	Peu fragile	Indifferent	0	MG	Predateur	Endofaune	Annelida	Polychaeta	Eunicida	Lumbrineridae
+Lumbrineris luciliae	Mobile	II	II	Peu fragile	Meuble	0	P	Predateur	Endofaune	Annelida	Polychaeta	Eunicida	Lumbrineridae
+Lumbrineris lusitanica	Mobile	II	II	Peu fragile	Indifferent	0	MG	Omnivore	Endofaune	Annelida	Polychaeta	Eunicida	Lumbrineridae
+Leodice torquata			II						Interstice				
+Lutraria angustior	Peu mobile	I	I	Pas fragile	Meuble	0	M	Suspensivore	Endofaune	Mollusca	Bivalvia	Venerida	Mactridae
+Lutraria lutraria	Peu mobile	I	I	Peu fragile	Meuble	0	PM	Suspensivore	Endofaune	Mollusca	Bivalvia	Venerida	Mactridae
+Lutraria oblonga	Peu mobile	I	I	Pas fragile	Meuble	0	M	Suspensivore	Endofaune	Mollusca	Bivalvia	Venerida	Mactridae
+Lyonsia norwegica	Peu mobile	I	II	Tres fragile	Meuble	0	P	Suspensivore	Endofaune	Mollusca	Bivalvia		Lyonsiidae
+Lysianassa	Mobile	I	I	Peu fragile	Meuble	0	TP	Necrophage	Epifaune	Arthropoda	Malacostraca	Amphipoda	Lysianassidae
+Lysianassa ceratina	Mobile	I	II	Peu fragile	Indifferent	0	TP	Necrophage	Epifaune	Arthropoda	Malacostraca	Amphipoda	Lysianassidae
+Lysianassa insperata	Mobile	I	I	Peu fragile	Meuble	0	TP	Necrophage	Epifaune	Arthropoda	Malacostraca	Amphipoda	Lysianassidae
+Lysianassa plumosa	Mobile	I	I	Peu fragile	Meuble	0	TP	Necrophage	Epifaune	Arthropoda	Malacostraca	Amphipoda	Lysianassidae
+Lysidice ninetta	Mobile	II	II	Peu fragile	Indifferent	0	PM	Omnivore	Endofaune	Annelida	Polychaeta	Eunicida	Eunicidae
+Leptocheirus			NA						Epifaune				
+Lysidice unicornis	Mobile	III	I	Peu fragile	Indifferent	0	M	Omnivore	Interstice	Annelida	Polychaeta	Eunicida	Eunicidae
+Lysilla loveni	Peu mobile	I	II	Tres fragile	Meuble	1	PM	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Terebellidae
+Lysmata seticaudata	Mobile	I	NA	Peu fragile	Dur	0	P	Predateur	Interstice	Arthropoda	Malacostraca	Decapoda	Lysmatidae
+Macrochaeta clavicornis	Peu mobile	I	II	Tres fragile	Meuble	0	TP	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Acrocirridae
+Macroclymene santanderensis	Peu mobile	I	I	Tres fragile	Meuble	1	M	Detritivore	Endofaune	Annelida	Polychaeta		Maldanidae
+Macropodia	Mobile	I	I	Tres fragile	Indifferent	0	P	Predateur	Epifaune	Arthropoda	Malacostraca	Decapoda	Inachidae
+Macropodia deflexa	Mobile	I	I	Tres fragile	Indifferent	0	P	Predateur	Epifaune	Arthropoda	Malacostraca	Decapoda	Inachidae
+Macropodia rostrata	Mobile	I	I	Tres fragile	Indifferent	0	P	Predateur	Epifaune	Arthropoda	Malacostraca	Decapoda	Inachidae
+Maera grossimana	Mobile	I	II	Peu fragile	Indifferent	0	P	Deposivore	Epifaune	Arthropoda	Malacostraca	Amphipoda	Maeridae
+Maeridae	Peu mobile	I	I	Peu fragile	Indifferent	0	P	Deposivore	Interstice	Arthropoda	Malacostraca	Amphipoda	Maeridae
+Leptomysis			NA						Epifaune				
+Magelona alleni	Peu mobile	I	I	Tres fragile	Meuble	1	PM	Deposivore	Endofaune	Annelida	Polychaeta		Magelonidae
+Lepton			NA						Endofaune				
+Magelona minuta	Peu mobile	I	I	Tres fragile	Meuble	0	TP	Deposivore	Endofaune	Annelida	Polychaeta		Magelonidae
+Maja brachydactyla	Mobile	I	NA	Tres fragile	Indifferent	0	MG	Predateur	Epifaune	Arthropoda	Malacostraca	Decapoda	Majidae
+Malacoceros	Mobile	IV	III	Tres fragile	Meuble	0	M	Deposivore	Endofaune	Annelida	Polychaeta	Spionida	Spionidae
+Malacoceros fuliginosus	Mobile	IV	V	Tres fragile	Meuble	0	PM	Deposivore	Endofaune	Annelida	Polychaeta	Spionida	Spionidae
+Malacoceros girardi	Mobile	IV	III	Tres fragile	Meuble	0	M	Deposivore	Endofaune	Annelida	Polychaeta	Spionida	Spionidae
+Malacoceros vulgaris	Mobile	IV	V	Tres fragile	Meuble	0	M	Deposivore	Endofaune	Annelida	Polychaeta	Spionida	Spionidae
+Maldanidae	Peu mobile	I	I	Tres fragile	Meuble	1	M	Deposivore	Endofaune	Annelida	Polychaeta		Maldanidae
+Malmgrenia	Mobile	II	I	Peu fragile	Indifferent	0	P	Predateur	Epifaune	Annelida	Polychaeta	Phyllodocida	Polynoidae
+Malmgrenia andreapolis	Mobile	II	II	Peu fragile	Meuble	0	P	Commensalisme	Epifaune	Annelida	Polychaeta	Phyllodocida	Polynoidae
+Malmgrenia arenicolae	Mobile	II	I	Peu fragile	Meuble	0	P	Predateur	Epifaune	Annelida	Polychaeta	Phyllodocida	Polynoidae
+Leucothoe denticulata			NA						Epifaune				
+Malmgrenia castanea	Mobile	II	II	Peu fragile	Meuble	0	PM	Predateur	Epifaune	Annelida	Polychaeta	Phyllodocida	Polynoidae
+Malmgrenia darbouxi	Mobile	II	II	Peu fragile	Meuble	0	P	Predateur	Epifaune	Annelida	Polychaeta	Phyllodocida	Polynoidae
+Malmgrenia ljungmani	Mobile	II	II	Peu fragile	Dur	0	P	Predateur	Epifaune	Annelida	Polychaeta	Phyllodocida	Polynoidae
+Malmgrenia lunulata	Mobile	II	II	Peu fragile	Dur	0	P	Predateur	Epifaune	Annelida	Polychaeta	Phyllodocida	Polynoidae
+Leufroyia leufroyi			NA						Epifaune				
+Malmgrenia marphysae	Mobile	II	II	Peu fragile	Meuble	0	PM	Predateur	Epifaune	Annelida	Polychaeta	Phyllodocida	Polynoidae
+Malmgrenia mcintoshi	Mobile	II	II	Peu fragile	Dur	0	P	Predateur	Epifaune	Annelida	Polychaeta	Phyllodocida	Polynoidae
+Ligia oceanica			NA						Epifaune				
+Malmgrenia polypapillata	Mobile	II	II	Peu fragile	Meuble	0	TP	Predateur	Epifaune	Annelida	Polychaeta	Phyllodocida	Polynoidae
+Mangelia attenuata	Peu mobile	I	II	Pas fragile	Meuble	0	P	Predateur	Epifaune	Mollusca	Gastropoda	Neogastropoda	Mangeliidae
+Mangelia costata	Peu mobile	I	II	Pas fragile	Meuble	0	P	Predateur	Epifaune	Mollusca	Gastropoda	Neogastropoda	Mangeliidae
+Mangelia costulata	Peu mobile	I	I	Pas fragile	Meuble	0	P	Predateur	Epifaune	Mollusca	Gastropoda	Neogastropoda	Mangeliidae
+Manzonia crassa	Peu mobile	I	I	Tres fragile	Meuble	0	TP	Deposivore	Epifaune	Mollusca	Gastropoda	Littorinimorpha	Rissoidae
+Limatula			NA						Epifaune				
+Marphysa	Mobile	II	II	Tres fragile	Indifferent	0	MG	Omnivore	Interstice	Annelida	Polychaeta	Eunicida	Eunicidae
+Marphysa sanguinea	Mobile	II	I	Tres fragile	Indifferent	0	G	Predateur	Interstice	Annelida	Polychaeta	Eunicida	Eunicidae
+Marshallora adversa	Fixe	I	I	Pas fragile	Dur	0	TP	Predateur	Interstice	Mollusca	Gastropoda	[unassigned] Caenogastropoda	Triphoridae
+Marthasterias glacialis	Mobile	II	I	Peu fragile	Indifferent	0	M	Predateur	Epifaune	Echinodermata	Asteroidea	Forcipulatida	Asteriidae
+Maxmuelleria	Peu mobile	I	NA	Tres fragile	Meuble	0	M	Detritivore	Endofaune	Annelida	Polychaeta	Echiuroidea	Bonelliidae
+Maxmuelleria lankesteri	Peu mobile	I	NA	Tres fragile	Meuble	0	M	Detritivore	Endofaune	Annelida	Polychaeta	Echiuroidea	Bonelliidae
+Mediomastus	Peu mobile	I	NA	Tres fragile	Meuble	0	PM	Deposivore	Endofaune	Annelida	Polychaeta		Capitellidae
+Mediomastus fragilis	Peu mobile	I	III	Tres fragile	Dur	1	PM	Deposivore	Endofaune	Annelida	Polychaeta		Capitellidae
+Megamoera dentata	Peu mobile	III	II	Peu fragile	Indifferent	0	TP	Deposivore	Epifaune	Arthropoda	Malacostraca	Amphipoda	Melitidae
+Megamphopus cornutus	Mobile	I	I	Peu fragile	Indifferent	0	TP	Detritivore	Endofaune	Arthropoda	Malacostraca	Amphipoda	Photidae
+Melanella	Peu mobile	I	I	Pas fragile	Meuble	0	P	Parasitique	Epifaune	Mollusca	Gastropoda	Littorinimorpha	Eulimidae
+Melanella alba	Peu mobile	I	II	Pas fragile	Meuble	0	P	Parasitique	Endofaune	Mollusca	Gastropoda	Littorinimorpha	Eulimidae
+Melinna palmata	Peu mobile	III	II	Tres fragile	Meuble	1	P	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Melinnidae
+Melita palmata	Mobile	I	I	Peu fragile	Meuble	0	TP	Deposivore	Epifaune	Arthropoda	Malacostraca	Amphipoda	Melitidae
+Melitidae	Mobile	I	III	Peu fragile	Indifferent	0	P	Detritivore	Epifaune	Arthropoda	Malacostraca	Amphipoda	Melitidae
+Mesacmaea mitchellii	Fixe	I	I	Tres fragile	Meuble	0	PM	Predateur	Interstice	Cnidaria	Anthozoa	Actiniaria	Haloclavidae
+Luidia ciliaris			NA						Epifaune				
+Metaphoxus fultoni	Mobile	I	I	Peu fragile	Meuble	0	TP	Necrophage	Endofaune	Arthropoda	Malacostraca	Amphipoda	Phoxocephalidae
+Metaphoxus simplex	Mobile	I	III	Peu fragile	Meuble	0	TP	Necrophage	Endofaune	Arthropoda	Malacostraca	Amphipoda	Phoxocephalidae
+Microchirus variegatus	Mobile	NA	NA	Tres fragile	Meuble	0	M	Predateur	Epifaune	Chordata	Actinopteri	Pleuronectiformes	Soleidae
+Microdeutopus	Mobile	I	I	Peu fragile	Dur	0	TP	Deposivore	Endofaune	Arthropoda	Malacostraca	Amphipoda	Aoridae
+Microdeutopus anomalus	Mobile	I	I	Peu fragile	Meuble	0	TP	Deposivore	Endofaune	Arthropoda	Malacostraca	Amphipoda	Aoridae
+Microdeutopus versiculatus	Mobile	I	I	Peu fragile	Meuble	0	TP	Deposivore	Endofaune	Arthropoda	Malacostraca	Amphipoda	Aoridae
+Micronereis variegata	Mobile	III	NA	Peu fragile	Indifferent	0	TP	Omnivore	Interstice	Annelida	Polychaeta	Phyllodocida	Nereididae
+Lumbrineris futilis			II						Endofaune				
+Microphthalmus	Peu mobile	I	II	Tres fragile	Meuble	0	TP	Deposivore	Endofaune	Annelida	Polychaeta	Phyllodocida	Microphthalmidae
+Micropodarke	Mobile	II	III	Tres fragile	Meuble	0	P	Predateur	Epifaune	Annelida	Polychaeta	Phyllodocida	Hesionidae
+Microprotopus maculatus	Mobile	I	I	Pas fragile	Meuble	0	TP	Detritivore	Endofaune	Arthropoda	Malacostraca	Amphipoda	Microprotopidae
+Microspio mecznikowiana	Peu mobile	III	II	Tres fragile	Meuble	1	P	Deposivore	Endofaune	Annelida	Polychaeta	Spionida	Spionidae
+Mimachlamys varia	Peu mobile	I	I	Pas fragile	Dur	0	M	Suspensivore	Epifaune	Mollusca	Bivalvia	Pectinida	Pectinidae
+Modiolula phaseolina	Fixe	I	I	Pas fragile	Dur	0	P	Suspensivore	Epifaune	Mollusca	Bivalvia	Mytilida	Mytilidae
+Modiolus	Fixe	I	I	Tres fragile	Indifferent	0	PM	Suspensivore	Epifaune	Mollusca	Bivalvia	Mytilida	Mytilidae
+Modiolus adriaticus	Fixe	I	I	Tres fragile	Meuble	0	P	Suspensivore	Epifaune	Mollusca	Bivalvia	Mytilida	Mytilidae
+Modiolus barbatus	Fixe	I	I	Tres fragile	Dur	0	PM	Suspensivore	Epifaune	Mollusca	Bivalvia	Mytilida	Mytilidae
+Modiolus modiolus	Fixe	I	II	Peu fragile	Indifferent	0	M	Suspensivore	Epifaune	Mollusca	Bivalvia	Mytilida	Mytilidae
+Moerella donacina	Peu mobile	I	I	Peu fragile	Meuble	0	P	Suspensivore	Endofaune	Mollusca	Bivalvia	Cardiida	Tellinidae
+Molgula	Fixe	I	I	Pas fragile	Indifferent	0	P	Suspensivore	Epifaune	Chordata	Ascidiacea	Stolidobranchia	Molgulidae
+Monocorophium	Mobile	III	III	Peu fragile	Dur	1	TP	Detritivore	Interstice	Arthropoda	Malacostraca	Amphipoda	Corophiidae
+Monocorophium sextonae	Mobile	III	I	Peu fragile	Dur	1	TP	Detritivore	Interstice	Arthropoda	Malacostraca	Amphipoda	Corophiidae
+Monodaeus couchii	Mobile	I	I	Pas fragile	Indifferent	0	P	Predateur	Epifaune	Arthropoda	Malacostraca	Decapoda	Xanthidae
+Macrochaeta			II						Endofaune				
+Musculus costulatus	Fixe	I	I	Peu fragile	Dur	0	P	Suspensivore	Epifaune	Mollusca	Bivalvia	Mytilida	Mytilidae
+Musculus subpictus	Fixe	I	I	Pas fragile	Dur	0	P	Suspensivore	Epifaune	Mollusca	Bivalvia	Mytilida	Mytilidae
+Mycale	Fixe	I	II	Tres fragile	Dur	0	MG	Suspensivore	Epifaune	Porifera	Demospongiae	Poecilosclerida	Mycalidae
+Mycale (Aegogropila) contarenii	Fixe	II	NA	Tres fragile	Dur	0	PM	Suspensivore	Epifaune	Porifera	Demospongiae	Poecilosclerida	Mycalidae
+Mycale (Carmia) macilenta	Fixe	II	NA	Tres fragile	Dur	0	PM	Suspensivore	Epifaune	Porifera	Demospongiae	Poecilosclerida	Mycalidae
+Myrianida	Peu mobile	II	II	Tres fragile	Dur	0	P	Predateur	Epifaune	Annelida	Polychaeta	Phyllodocida	Syllidae
+Myrianida pinnigera	Mobile	II	II	Tres fragile	Dur	0	P	Predateur	Epifaune	Annelida	Polychaeta	Phyllodocida	Syllidae
+Myrtea spinifera	Peu mobile	I	II	Pas fragile	Meuble	0	P	Suspensivore	Endofaune	Mollusca	Bivalvia	Lucinida	Lucinidae
+Magelona equilamellae			I						Endofaune				
+Mysida	Mobile	NA	NA	Tres fragile	Indifferent	0	PM	Omnivore	Epifaune	Arthropoda	Malacostraca	Mysida	
+Mysidae	Mobile	I	NA	Tres fragile	Indifferent	0	PM	Omnivore	Epifaune	Arthropoda	Malacostraca	Mysida	Mysidae
+Magelona mirabilis			I						Endofaune				
+Mysta picta	Mobile	II	III	Peu fragile	Dur	0	P	Predateur	Epifaune	Annelida	Polychaeta	Phyllodocida	Phyllodocidae
+Mytilus	Fixe	I	III	Peu fragile	Dur	0	M	Suspensivore	Epifaune	Mollusca	Bivalvia	Mytilida	Mytilidae
+Mytilus edulis	Fixe	I	III	Peu fragile	Dur	0	M	Suspensivore	Epifaune	Mollusca	Bivalvia	Mytilida	Mytilidae
+Mytilus galloprovincialis	Fixe	I	III	Pas fragile	Dur	0	M	Suspensivore	Epifaune	Mollusca	Bivalvia	Mytilida	Mytilidae
+Myxicola aesthetica	Peu mobile	I	II	Tres fragile	Dur	1	P	Suspensivore	Endofaune	Annelida	Polychaeta	Sabellida	Sabellidae
+Malacoceros tetracerus			III						Endofaune				
+Myxicola infundibulum	Peu mobile	I	I	Tres fragile	Meuble	1	M	Suspensivore	Endofaune	Annelida	Polychaeta	Sabellida	Sabellidae
+Myxilla	Fixe	I	NA	Tres fragile	Dur	0	M	Suspensivore	Epifaune	Porifera	Demospongiae	Poecilosclerida	Myxillidae
+Maldane			I						Endofaune				
+Myxilla (Myxilla) rosacea	Fixe	I	NA	Tres fragile	Dur	0	M	Suspensivore	Epifaune	Porifera	Demospongiae	Poecilosclerida	Myxillidae
+Maldane glebifex			I						Endofaune				
+Maldane sarsi			II						Endofaune				
+Natatolana borealis	Mobile	I	II	Peu fragile	Meuble	0	TP	Necrophage	Interstice	Arthropoda	Malacostraca	Isopoda	Cirolanidae
+Neanthes acuminata	Mobile	III	III	Peu fragile	Meuble	1	PM	Omnivore	Interstice	Annelida	Polychaeta	Phyllodocida	Nereididae
+Neanthes nubila	Peu mobile	III	III	Peu fragile	Meuble	1	PM	Omnivore	Interstice	Annelida	Polychaeta	Phyllodocida	Nereididae
+Nebalia	Mobile	I	V	Peu fragile	Meuble	0	P	Suspensivore	Interstice	Arthropoda	Malacostraca	Leptostraca	Nebaliidae
+Nebalia bipes	Mobile	I	V	Peu fragile	Dur	0	P	Suspensivore	Epifaune	Arthropoda	Malacostraca	Leptostraca	Nebaliidae
+Nebalia herbstii	Mobile	I	V	Peu fragile	Dur	0	TP	Suspensivore	Epifaune	Arthropoda	Malacostraca	Leptostraca	Nebaliidae
+Nebalia kocatasi	Mobile	I	V	Peu fragile	Meuble	0	TP	Suspensivore	Epifaune	Arthropoda	Malacostraca	Leptostraca	Nebaliidae
+Nebalia strausi	Mobile	I	V	Peu fragile	Meuble	0	TP	Suspensivore	Epifaune	Arthropoda	Malacostraca	Leptostraca	Nebaliidae
+Necora puber	Mobile	I	I	Pas fragile	Indifferent	0	PM	Predateur	Epifaune	Arthropoda	Malacostraca	Decapoda	Polybiidae
+Nematoda	Peu mobile	NA	NA	Peu fragile	Indifferent	0	P	Parasitique	Endofaune	Nematoda			
+Nemertea	Mobile	II	I	Tres fragile	Indifferent	0	G	Predateur	Interstice	Nemertea			
+Neoamphitrite	Peu mobile	I	I	Peu fragile	Meuble	1	MG	Deposivore	Interstice	Annelida	Polychaeta	Terebellida	Terebellidae
+Neoamphitrite edwardsii	Peu mobile	I	I	Peu fragile	Meuble	1	MG	Deposivore	Interstice	Annelida	Polychaeta	Terebellida	Terebellidae
+Neoamphitrite figulus	Peu mobile	I	I	Peu fragile	Meuble	1	MG	Deposivore	Interstice	Annelida	Polychaeta	Terebellida	Terebellidae
+Neomysis integer	Mobile	I	II	Tres fragile	Indifferent	0	P	Suspensivore	Epifaune	Arthropoda	Malacostraca	Mysida	Mysidae
+Nephtyidae	Mobile	II	II	Peu fragile	Meuble	0	M	Predateur	Endofaune	Annelida	Polychaeta	Phyllodocida	Nephtyidae
+Nephtys assimilis	Mobile	I	II	Peu fragile	Meuble	0	PM	Predateur	Endofaune	Annelida	Polychaeta	Phyllodocida	Nephtyidae
+Nephtys caeca	Mobile	II	II	Peu fragile	Indifferent	0	M	Predateur	Endofaune	Annelida	Polychaeta	Phyllodocida	Nephtyidae
+Nephtys cirrosa	Mobile	I	II	Peu fragile	Meuble	0	PM	Predateur	Endofaune	Annelida	Polychaeta	Phyllodocida	Nephtyidae
+Nephtys hombergii	Mobile	I	II	Peu fragile	Meuble	0	M	Predateur	Endofaune	Annelida	Polychaeta	Phyllodocida	Nephtyidae
+Nephtys kersivalensis	Mobile	II	II	Peu fragile	Meuble	0	P	Predateur	Endofaune	Annelida	Polychaeta	Phyllodocida	Nephtyidae
+Nereididae	Mobile	III	NA	Peu fragile	Meuble	0	PM	Detritivore	Endofaune	Annelida	Polychaeta	Phyllodocida	Nereididae
+Nereimyra punctata	Mobile	II	III	Tres fragile	Indifferent	0	P	Predateur	Epifaune	Annelida	Polychaeta	Phyllodocida	Hesionidae
+Megaluropus agilis			I						Epifaune				
+Nereiphylla	Mobile	I	II	Peu fragile	Indifferent	0	PM	Predateur	Endofaune	Annelida	Polychaeta	Phyllodocida	Phyllodocidae
+Nereiphylla rubiginosa	Mobile	I	II	Peu fragile	Indifferent	0	TP	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Phyllodocidae
+Nereis zonata	Peu mobile	III	II	Tres fragile	Meuble	1	PM	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Nereididae
+Nerophis lumbriciformis	Mobile	NA	NA	Peu fragile	Dur	0	M	Predateur	Interstice	Chordata	Actinopteri	Syngnathiformes	Syngnathidae
+Nicolea venustula	Peu mobile	I	II	Tres fragile	Meuble	1	PM	Deposivore	Interstice	Annelida	Polychaeta	Terebellida	Terebellidae
+Melanella polita			I						Endofaune				
+Normanion chevreuxi	Peu mobile	I	NA	Peu fragile	Meuble	0	TP	Parasitique	Epifaune	Arthropoda	Malacostraca	Amphipoda	Opisidae
+Normanion quadrimanus	Peu mobile	I	NA	Peu fragile	Meuble	0	TP	Parasitique	Epifaune	Arthropoda	Malacostraca	Amphipoda	Opisidae
+Melita hergensis			I						Epifaune				
+Nothria britannica	Peu mobile	I	II	Tres fragile	Meuble	1	P	Predateur	Epifaune	Annelida	Polychaeta	Eunicida	Onuphidae
+Nothria conchylega	Peu mobile	I	II	Tres fragile	Meuble	1	M	Predateur	Epifaune	Annelida	Polychaeta	Eunicida	Onuphidae
+Notomastus	Peu mobile	III	III	Tres fragile	Meuble	0	M	Deposivore	Endofaune	Annelida	Polychaeta		Capitellidae
+Notomastus latericeus	Peu mobile	III	III	Tres fragile	Meuble	0	MG	Deposivore	Endofaune	Annelida	Polychaeta		Capitellidae
+Notophyllum	Mobile	II	II	Peu fragile	Indifferent	0	PM	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Phyllodocidae
+Notophyllum foliosum	Mobile	II	II	Peu fragile	Indifferent	0	PM	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Phyllodocidae
+Notoplana atomata	Mobile	I	II	Tres fragile	Indifferent	0	P	Predateur	Epifaune	Platyhelminthes		Polycladida	Notoplanidae
+Nototropis guttatus	Mobile	I	II	Peu fragile	Meuble	0	TP	Detritivore	Epifaune	Arthropoda	Malacostraca	Amphipoda	Atylidae
+Nototropis swammerdamei	Mobile	I	I	Peu fragile	Meuble	0	TP	Detritivore	Epifaune	Arthropoda	Malacostraca	Amphipoda	Atylidae
+Nototropis vedlomensis	Mobile	III	I	Peu fragile	Meuble	0	TP	Detritivore	Epifaune	Arthropoda	Malacostraca	Amphipoda	Atylidae
+Microjassa cumbrensis			I						Epifaune				
+Nucula hanleyi	Peu mobile	I	I	Pas fragile	Indifferent	0	TP	Suspensivore	Endofaune	Mollusca	Bivalvia	Nuculida	Nuculidae
+Nucula nitidosa	Mobile	I	I	Pas fragile	Meuble	0	TP	Deposivore	Endofaune	Mollusca	Bivalvia	Nuculida	Nuculidae
+Nucula nucleus	Fixe	I	II	Pas fragile	Meuble	0	TP	Detritivore	Endofaune	Mollusca	Bivalvia	Nuculida	Nuculidae
+Microprotopus longimanus			I						Endofaune				
+Nudibranchia	Mobile	I	III	Tres fragile	Dur	0	M	Predateur	Epifaune	Mollusca	Gastropoda	Nudibranchia	
+Microspio			NA						Endofaune				
+Obelia geniculata	Fixe	I	II	Tres fragile	Dur	0	P	Predateur	Epifaune	Cnidaria	Hydrozoa	Leptothecata	Campanulariidae
+Ocenebra erinaceus	Mobile	I	II	Peu fragile	Dur	0	P	Predateur	Epifaune	Mollusca	Gastropoda	Neogastropoda	Muricidae
+Ocinebrina aciculata	Peu mobile	I	II	Peu fragile	Dur	0	P	Predateur	Interstice	Mollusca	Gastropoda	Neogastropoda	Muricidae
+Ocnus brunneus	Peu mobile	I	I	Peu fragile	Meuble	0	P	Suspensivore	Interstice	Echinodermata	Holothuroidea	Dendrochirotida	Cucumariidae
+Ocnus lacteus	Peu mobile	I	I	Peu fragile	Dur	0	P	Suspensivore	Interstice	Echinodermata	Holothuroidea	Dendrochirotida	Cucumariidae
+Ocnus planci	Peu mobile	I	I	Pas fragile	Meuble	0	M	Suspensivore	Epifaune	Echinodermata	Holothuroidea	Dendrochirotida	Cucumariidae
+Octobranchus	Peu mobile	I	II	Peu fragile	Meuble	1	P	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Trichobranchidae
+Octobranchus lingulatus	Peu mobile	I	II	Peu fragile	Meuble	1	P	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Trichobranchidae
+Odontosyllis ctenostoma	Mobile	II	II	Pas fragile	Indifferent	0	P	Predateur	Epifaune	Annelida	Polychaeta	Phyllodocida	Syllidae
+Odontosyllis fulgurans	Mobile	II	II	Tres fragile	Dur	0	P	Omnivore	Epifaune	Annelida	Polychaeta	Phyllodocida	Syllidae
+Odontosyllis gibba	Mobile	II	II	Tres fragile	Dur	0	P	Omnivore	Epifaune	Annelida	Polychaeta	Phyllodocida	Syllidae
+Odostomia plicata	Fixe	I	II	Peu fragile	Dur	0	TP	Parasitique	Interstice	Mollusca	Gastropoda		Pyramidellidae
+Munida rugosa			NA						Epifaune				
+Oerstedia dorsalis	Peu mobile	II	III	Tres fragile	Indifferent	0	P	Predateur	Interstice	Nemertea	Hoplonemertea	Monostilifera	Oerstediidae
+Oligochaeta	Peu mobile	V	V	Tres fragile	Meuble	0	TP	Deposivore	Endofaune	Annelida	Clitellata		
+Onchidoris	Mobile	I	I	Tres fragile	Dur	0	PM	Brouteur	Epifaune	Mollusca	Gastropoda	Nudibranchia	Onchidorididae
+Onchidoris muricata	Mobile	I	I	Tres fragile	Dur	0	P	Predateur	Epifaune	Mollusca	Gastropoda	Nudibranchia	Onchidorididae
+Onoba semicostata	Peu mobile	I	I	Pas fragile	Dur	0	TP	Detritivore	Epifaune	Mollusca	Gastropoda	Littorinimorpha	Rissoidae
+Ophelia bicornis	Peu mobile	I	I	Peu fragile	Meuble	0	P	Deposivore	Endofaune	Annelida	Polychaeta		Opheliidae
+Ophelia borealis	Peu mobile	I	I	Peu fragile	Meuble	0	PM	Deposivore	Endofaune	Annelida	Polychaeta		Opheliidae
+Ophelia roscoffensis	Peu mobile	I	I	Peu fragile	Meuble	0	P	Deposivore	Endofaune	Annelida	Polychaeta		Opheliidae
+Myrianida prolifera			II						Epifaune				
+Ophiocomina nigra	Peu mobile	I	I	Tres fragile	Indifferent	0	PM	Omnivore	Epifaune	Echinodermata	Ophiuroidea	Ophiacanthida	Ophiotomidae
+Myrianida quindecimdentata			NA						Epifaune				
+Ophiocten affinis	Peu mobile	I	II	Tres fragile	Indifferent	0	P	Predateur	Epifaune	Echinodermata	Ophiuroidea	Ophiurida	Ophiuridae
+Myriochele danielsseni			III						Endofaune				
+Ophiothrix fragilis	Mobile	I	I	Tres fragile	Dur	0	M	Suspensivore	Epifaune	Echinodermata	Ophiuroidea	Amphilepidida	Ophiotrichidae
+Ophiura	Mobile	I	II	Tres fragile	Meuble	0	P	Predateur	Epifaune	Echinodermata	Ophiuroidea	Ophiurida	Ophiuridae
+Ophiura albida	Mobile	I	II	Tres fragile	Meuble	0	P	Suspensivore	Epifaune	Echinodermata	Ophiuroidea	Ophiurida	Ophiuridae
+Ophiura ophiura	Mobile	I	II	Tres fragile	Meuble	0	P	Predateur	Interstice	Echinodermata	Ophiuroidea	Ophiurida	Ophiuridae
+Opisthobranchia	Peu mobile	I	NA	Tres fragile	Indifferent	0	PM	Predateur	Epifaune	Mollusca	Gastropoda		
+Mystides caeca			II						Epifaune				
+Opisthodonta longocirrata	Mobile	II	III	Tres fragile	Dur	0	TP	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Syllidae
+Opisthodonta serratisetosa	Mobile	II	NA	Tres fragile	Indifferent	0	TP	Predateur	Epifaune	Annelida	Polychaeta	Phyllodocida	Syllidae
+Orbinia	Mobile	I	I	Tres fragile	Meuble	0	MG	Deposivore	Endofaune	Annelida	Polychaeta		Orbiniidae
+Orbinia latreillii	Peu mobile	I	I	Tres fragile	Meuble	0	MG	Deposivore	Endofaune	Annelida	Polychaeta		Orbiniidae
+Orbinia sertulata	Peu mobile	I	I	Tres fragile	Meuble	0	MG	Deposivore	Endofaune	Annelida	Polychaeta		Orbiniidae
+Orchomene humilis	Mobile	I	II	Peu fragile	Meuble	0	TP	Necrophage	Endofaune	Arthropoda	Malacostraca	Amphipoda	Tryphosidae
+Orchomene similis	Mobile	I	II	Peu fragile	Meuble	0	TP	Necrophage	Endofaune	Arthropoda	Malacostraca	Amphipoda	Tryphosidae
+Ostracoda	Peu mobile	I	NA	Peu fragile	Meuble	0	TP	Omnivore	Epifaune	Arthropoda	Ostracoda		
+Nannonyx spinimanus			NA						Endofaune				
+Ostrea edulis	Fixe	I	I	Pas fragile	Dur	0	PM	Suspensivore	Epifaune	Mollusca	Bivalvia	Ostreida	Ostreidae
+Othomaera othonis	Peu mobile	III	I	Peu fragile	Meuble	0	P	Deposivore	Epifaune	Arthropoda	Malacostraca	Amphipoda	Maeridae
+Owenia fusiformis	Peu mobile	I	II	Tres fragile	Meuble	1	PM	Deposivore	Interstice	Annelida	Polychaeta		Oweniidae
+Oxydromus flexuosus	Mobile	II	II	Tres fragile	Meuble	0	P	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Hesionidae
+Oxydromus pallidus	Mobile	II	II	Tres fragile	Meuble	0	TP	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Hesionidae
+Pachymatisma johnstonia	Fixe	I	NA	Tres fragile	Dur	0	M	Suspensivore	Epifaune	Porifera	Demospongiae	Tetractinellida	Geodiidae
+Pagurus	Mobile	I	II	Peu fragile	Indifferent	0	PM	Necrophage	Epifaune	Arthropoda	Malacostraca	Decapoda	Paguridae
+Pagurus alatus	Mobile	I	II	Peu fragile	Meuble	0	P	Predateur	Epifaune	Arthropoda	Malacostraca	Decapoda	Paguridae
+Pagurus bernhardus	Mobile	I	II	Peu fragile	Dur	0	PM	Predateur	Epifaune	Arthropoda	Malacostraca	Decapoda	Paguridae
+Nebalia troncosoi			V						Epifaune				
+Pagurus carneus	Mobile	I	II	Peu fragile	Indifferent	0	PM	Predateur	Epifaune	Arthropoda	Malacostraca	Decapoda	Paguridae
+Pagurus cuanensis	Mobile	I	II	Peu fragile	Indifferent	0	PM	Necrophage	Epifaune	Arthropoda	Malacostraca	Decapoda	Paguridae
+Pagurus prideaux	Mobile	I	II	Peu fragile	Meuble	0	P	Predateur	Epifaune	Arthropoda	Malacostraca	Decapoda	Paguridae
+Palaemon	Mobile	I	I	Tres fragile	Indifferent	0	PM	Omnivore	Epifaune	Arthropoda	Malacostraca	Decapoda	Palaemonidae
+Palaemon longirostris	Mobile	I	I	Tres fragile	Meuble	0	PM	Omnivore	Epifaune	Arthropoda	Malacostraca	Decapoda	Palaemonidae
+Neoamphitrite affinis			I						Interstice				
+Palaemon serratus	Mobile	I	I	Tres fragile	Indifferent	0	PM	Omnivore	Epifaune	Arthropoda	Malacostraca	Decapoda	Palaemonidae
+Pandalina brevirostris	Mobile	I	II	Tres fragile	Meuble	0	P	Predateur	Interstice	Arthropoda	Malacostraca	Decapoda	Pandalidae
+Neogyptis rosea			I						Epifaune				
+Papillicardium minimum	Peu mobile	I	I	Pas fragile	Meuble	0	P	Suspensivore	Endofaune	Mollusca	Bivalvia	Cardiida	Cardiidae
+Papillicardium papillosum	Peu mobile	I	I	Pas fragile	Meuble	0	P	Suspensivore	Endofaune	Mollusca	Bivalvia	Cardiida	Cardiidae
+Nephasoma (Nephasoma) minutum			I						Endofaune				
+Paracentrotus lividus	Mobile	I	I	Tres fragile	Indifferent	0	PM	Herbivore	Epifaune	Echinodermata	Echinoidea	Camarodonta	Parechinidae
+Paradoneis	Peu mobile	III	III	Tres fragile	Meuble	0	P	Deposivore	Endofaune	Annelida	Polychaeta		Paraonidae
+Nephtys			II						Endofaune				
+Paradoneis armata	Peu mobile	III	III	Peu fragile	Meuble	1	P	Detritivore	Endofaune	Annelida	Polychaeta		Paraonidae
+Paradoneis ilvana	Peu mobile	III	III	Tres fragile	Meuble	0	P	Deposivore	Endofaune	Annelida	Polychaeta		Paraonidae
+Paradoneis lyra	Mobile	III	III	Tres fragile	Meuble	0	P	Deposivore	Endofaune	Annelida	Polychaeta		Paraonidae
+Paragattyana	Mobile	II	NA	Peu fragile	Dur	0	PM	Predateur	Epifaune	Annelida	Polychaeta	Phyllodocida	Polynoidae
+Paragnathia formica	Peu mobile	I	III	Peu fragile	Meuble	0	TP	Predateur	Endofaune	Arthropoda	Malacostraca	Isopoda	Gnathiidae
+Nephtys hystricis			II						Endofaune				
+Paraleptopentacta elongata	Peu mobile	I	I	Tres fragile	Meuble	0	M	Suspensivore	Endofaune	Echinodermata	Holothuroidea	Dendrochirotida	Cucumariidae
+Nephtys incisa			II						Endofaune				
+Paramphitrite birulai	Peu mobile	I	I	Tres fragile	Meuble	1	P	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Terebellidae
+Paramysis	Mobile	I	II	Tres fragile	Meuble	0	TP	Omnivore	Endofaune	Arthropoda	Malacostraca	Mysida	Mysidae
+Nephtys longosetosa			II						Endofaune				
+Paranaitis kosteriensis	Peu mobile	II	II	Peu fragile	Meuble	0	PM	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Phyllodocidae
+Paranthura nigropunctata	Mobile	I	I	Tres fragile	Indifferent	0	P	Detritivore	Epifaune	Arthropoda	Malacostraca	Isopoda	Paranthuridae
+Paraonidae	Peu mobile	III	III	Tres fragile	Meuble	0	P	Deposivore	Endofaune	Annelida	Polychaeta		Paraonidae
+Parasabella	Peu mobile	I	I	Tres fragile	Dur	1	M	Suspensivore	Epifaune	Annelida	Polychaeta	Sabellida	Sabellidae
+Nereis			III						Endofaune				
+Parathelepus collaris	Peu mobile	II	I	Tres fragile	Meuble	1	P	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Terebellidae
+Nereis pelagica			III						Endofaune				
+Pareurythoe borealis	Mobile	II	II	Peu fragile	Meuble	0	P	Deposivore	Epifaune	Annelida	Polychaeta	Amphinomida	Amphinomidae
+Nereis rava			III						Endofaune				
+Parexogone hebes	Peu mobile	II	III	Tres fragile	Meuble	0	TP	Deposivore	Interstice	Annelida	Polychaeta	Phyllodocida	Syllidae
+Parougia caeca	Mobile	II	IV	Tres fragile	Meuble	0	P	Inconnu	Interstice	Annelida	Polychaeta	Eunicida	Dorvilleidae
+Parthenina decussata	Fixe	I	II	Peu fragile	Meuble	0	TP	Parasitique	Epifaune	Mollusca	Gastropoda		Pyramidellidae
+Parvicardium exiguum	Peu mobile	III	I	Pas fragile	Meuble	0	P	Suspensivore	Endofaune	Mollusca	Bivalvia	Cardiida	Cardiidae
+Nicomache			II						Endofaune				
+Parvicardium pinnulatum	Peu mobile	III	I	Pas fragile	Meuble	0	TP	Suspensivore	Endofaune	Mollusca	Bivalvia	Cardiida	Cardiidae
+Nicomache lumbricalis			II						Endofaune				
+Parvicardium scabrum	Peu mobile	III	I	Peu fragile	Indifferent	0	P	Suspensivore	Endofaune	Mollusca	Bivalvia	Cardiida	Cardiidae
+Patella pellucida	Peu mobile	I	I	Tres fragile	Dur	0	P	Herbivore	Epifaune	Mollusca	Gastropoda		Patellidae
+Paucibranchia bellii	Mobile	II	II	Peu fragile	Indifferent	1	M	Predateur	Interstice	Annelida	Polychaeta	Eunicida	Eunicidae
+Pawsonia saxicola	Peu mobile	I	NA	Peu fragile	Dur	0	PM	Suspensivore	Interstice	Echinodermata	Holothuroidea	Dendrochirotida	Cucumariidae
+Pecten maximus	Mobile	I	I	Peu fragile	Meuble	0	M	Suspensivore	Interstice	Mollusca	Bivalvia	Pectinida	Pectinidae
+Notomastus exsertilis			III						Endofaune				
+Pelogenia arenosa	Mobile	II	II	Peu fragile	Meuble	0	M	Predateur	Endofaune	Annelida	Polychaeta	Phyllodocida	Sigalionidae
+Periclimenes sagittifer	Mobile	I	I	Tres fragile	Dur	0	P	Omnivore	Epifaune	Arthropoda	Malacostraca	Decapoda	Palaemonidae
+Perinereis cultrifera	Mobile	III	III	Peu fragile	Indifferent	0	M	Brouteur	Endofaune	Annelida	Polychaeta	Phyllodocida	Nereididae
+Perioculodes longimanus	Mobile	I	II	Peu fragile	Meuble	0	TP	Predateur	Endofaune	Arthropoda	Malacostraca	Amphipoda	Oedicerotidae
+Perkinsiana socialis	Peu mobile	I	II	Tres fragile	Indifferent	1	TP	Suspensivore	Interstice	Annelida	Polychaeta	Sabellida	Sabellidae
+Perrierella audouiniana	Mobile	I	I	Peu fragile	Meuble	0	TP	Deposivore	Endofaune	Arthropoda	Malacostraca	Amphipoda	Aristiidae
+Petaloproctus	Peu mobile	I	II	Tres fragile	Meuble	1	PM	Deposivore	Endofaune	Annelida	Polychaeta		Maldanidae
+Petta pusilla	Peu mobile	I	I	Peu fragile	Meuble	1	P	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Pectinariidae
+Phallusia mammillata	Fixe	III	NA	Pas fragile	Dur	0	M	Suspensivore	Epifaune	Chordata	Ascidiacea	Phlebobranchia	Ascidiidae
+Nudisyllis pulligera			III						Epifaune				
+Phascolion (Phascolion) strombus strombus	Peu mobile	I	II	Tres fragile	Dur	0	P	Detritivore	Endofaune	Sipuncula	Sipunculidea	Golfingiida	Golfingiidae
+Phascolosoma (Phascolosoma) granulatum	Peu mobile	I	II	Tres fragile	Indifferent	0	PM	Detritivore	Endofaune	Animalia	Sipuncula	Phascolosomatida	Phascolosomatidae
+Oceanobdella			NA						Epifaune				
+Phaxas pellucidus	Fixe	I	I	Tres fragile	Meuble	0	PM	Suspensivore	Endofaune	Mollusca	Bivalvia	Adapedonta	Pharidae
+Pherusa plumosa	Peu mobile	I	III	Tres fragile	Meuble	0	PM	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Flabelligeridae
+Philine	Peu mobile	I	II	Tres fragile	Meuble	0	PM	Predateur	Interstice	Mollusca	Gastropoda	Cephalaspidea	Philinidae
+Philine aperta	Mobile	I	II	Tres fragile	Meuble	0	PM	Predateur	Endofaune	Mollusca	Gastropoda	Cephalaspidea	Philinidae
+Philine punctata	Mobile	I	II	Tres fragile	Meuble	0	TP	Predateur	Epifaune	Mollusca	Gastropoda	Cephalaspidea	Philinidae
+Philocheras fasciatus	Mobile	I	I	Peu fragile	Meuble	0	P	Predateur	Epifaune	Arthropoda	Malacostraca	Decapoda	Crangonidae
+Philocheras sculptus	Mobile	I	I	Peu fragile	Meuble	0	P	Predateur	Endofaune	Arthropoda	Malacostraca	Decapoda	Crangonidae
+Odontosyllis			II						Epifaune				
+Pholis gunnellus	Mobile	NA	NA	Peu fragile	Dur	0	M	Predateur	Epifaune	Chordata	Actinopteri	Perciformes	Pholidae
+Pholoe	Mobile	I	II	Tres fragile	Dur	0	P	Predateur	Endofaune	Annelida	Polychaeta	Phyllodocida	Sigalionidae
+Pholoe baltica	Mobile	II	I	Peu fragile	Meuble	0	P	Deposivore	Epifaune	Annelida	Polychaeta	Phyllodocida	Sigalionidae
+Pholoe inornata	Mobile	II	II	Peu fragile	Meuble	0	TP	Deposivore	Epifaune	Annelida	Polychaeta	Phyllodocida	Sigalionidae
+Odostomia			II						Interstice				
+Phorbas	Fixe	I	NA	Tres fragile	Dur	0	M	Suspensivore	Epifaune	Porifera	Demospongiae	Poecilosclerida	Hymedesmiidae
+Oerstedia			III						Interstice				
+Phoronis	Fixe	I	II	Tres fragile	Dur	1	TP	Suspensivore	Interstice	Phoronida			Phoronidae
+Phoronis muelleri	Fixe	I	II	Tres fragile	Meuble	1	PM	Suspensivore	Endofaune	Phoronida			Phoronidae
+Oestergrenia digitata			I						Endofaune				
+Photis longicaudata	Peu mobile	I	I	Peu fragile	Meuble	1	TP	Suspensivore	Epifaune	Arthropoda	Malacostraca	Amphipoda	Photidae
+Phoxocephalus holbolli	Peu mobile	I	I	Pas fragile	Meuble	0	TP	Predateur	Endofaune	Arthropoda	Malacostraca	Amphipoda	Phoxocephalidae
+Phtisica marina	Mobile	I	I	Peu fragile	Dur	0	P	Predateur	Epifaune	Arthropoda	Malacostraca	Amphipoda	Caprellidae
+Phyllodoce	Mobile	II	II	Peu fragile	Indifferent	0	M	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Phyllodocidae
+Onuphidae			NA						Endofaune				
+Phyllodoce citrina	Peu mobile	II	II	Peu fragile	Indifferent	0	M	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Phyllodocidae
+Phyllodoce laminosa	Mobile	I	II	Peu fragile	Indifferent	0	G	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Phyllodocidae
+Phyllodoce lineata	Mobile	II	II	Peu fragile	Meuble	0	M	Predateur	Endofaune	Annelida	Polychaeta	Phyllodocida	Phyllodocidae
+Ophelia limacina			I						Endofaune				
+Phyllodoce longipes	Peu mobile	II	II	Peu fragile	Indifferent	0	P	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Phyllodocidae
+Ophelia neglecta			I						Endofaune				
+Phyllodoce maculata	Peu mobile	II	II	Peu fragile	Indifferent	0	PM	Predateur	Endofaune	Annelida	Polychaeta	Phyllodocida	Phyllodocidae
+Phyllodoce mucosa	Mobile	II	III	Peu fragile	Meuble	0	MG	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Phyllodocidae
+Ophelina			I						Endofaune				
+Phyllodocidae	Peu mobile	II	II	Peu fragile	Indifferent	0	M	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Phyllodocidae
+Ophelina cylindricaudata			I						Endofaune				
+Pilargis verrucosa	Mobile	I	I	Tres fragile	Meuble	0	M	Inconnu	Endofaune	Annelida	Polychaeta	Phyllodocida	Pilargidae
+Ophelina modesta			III						Endofaune				
+Pilumnus hirtellus	Mobile	I	I	Pas fragile	Dur	0	P	Predateur	Interstice	Arthropoda	Malacostraca	Decapoda	Pilumnidae
+Pinnotheres pectunculi	Peu mobile	I	III	Pas fragile	Indifferent	0	TP	Commensalisme	Endofaune	Arthropoda	Malacostraca	Decapoda	Pinnotheridae
+Pionosyllis	Peu mobile	II	II	Tres fragile	Indifferent	0	P	Predateur	Endofaune	Annelida	Polychaeta	Phyllodocida	Syllidae
+Pirimela denticulata	Mobile	I	I	Tres fragile	Meuble	0	P	Omnivore	Epifaune	Arthropoda	Malacostraca	Decapoda	Carcinidae
+Piromis eruca	Peu mobile	I	II	Tres fragile	Meuble	0	PM	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Flabelligeridae
+Pisa armata	Mobile	I	I	Pas fragile	Indifferent	0	PM	Omnivore	Epifaune	Arthropoda	Malacostraca	Decapoda	Epialtidae
+Pisa nodipes	Mobile	I	III	Pas fragile	Indifferent	0	P	Predateur	Epifaune	Arthropoda	Malacostraca	Decapoda	Epialtidae
+Ophiura robusta			II						Interstice				
+Pisidia longicornis	Mobile	I	I	Tres fragile	Indifferent	0	P	Suspensivore	Epifaune	Arthropoda	Malacostraca	Decapoda	Porcellanidae
+Pisione remota	Peu mobile	I	I	Peu fragile	Meuble	0	P	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Sigalionidae
+Pista	Peu mobile	I	I	Tres fragile	Meuble	1	PM	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Terebellidae
+Opisthosyllis brunnea			II						Epifaune				
+Pista cristata	Peu mobile	I	I	Tres fragile	Meuble	1	PM	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Terebellidae
+Pista mediterranea	Peu mobile	I	I	Tres fragile	Meuble	1	PM	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Terebellidae
+Pista sauriaui	Peu mobile	I	I	Tres fragile	Meuble	1	PM	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Terebellidae
+Planaria	Peu mobile	I	NA	Tres fragile	Indifferent	0	PM	Predateur	Interstice	Nemertea	Nemertea incertae sedis		
+Platyhelminthes	Peu mobile	I	II	Tres fragile	Indifferent	0	M	Inconnu	Epifaune	Platyhelminthes			
+Platynereis dumerilii	Mobile	III	I	Peu fragile	Dur	1	M	Brouteur	Epifaune	Annelida	Polychaeta	Phyllodocida	Nereididae
+Pleonexes gammaroides	Mobile	III	NA	Peu fragile	Dur	1	TP	Herbivore	Epifaune	Arthropoda	Malacostraca	Amphipoda	Ampithoidae
+Pleonexes helleri	Mobile	III	NA	Peu fragile	Dur	0	TP	Herbivore	Epifaune	Arthropoda	Malacostraca	Amphipoda	Ampithoidae
+Pleurobranchus membranaceus	Peu mobile	I	NA	Tres fragile	Dur	0	PM	Predateur	Epifaune	Mollusca	Gastropoda	Pleurobranchida	Pleurobranchidae
+Pododesmus patelliformis	Fixe	I	I	Tres fragile	Indifferent	0	P	Suspensivore	Epifaune	Mollusca	Bivalvia	Pectinida	Anomiidae
+Pododesmus squama	Fixe	I	I	Tres fragile	Dur	0	P	Suspensivore	Epifaune	Mollusca	Bivalvia	Pectinida	Anomiidae
+Poecilochaetus serpens	Peu mobile	II	I	Tres fragile	Meuble	1	P	Suspensivore	Endofaune	Annelida	Polychaeta	Spionida	Poecilochaetidae
+Polititapes aureus	Fixe	II	I	Pas fragile	Meuble	0	PM	Suspensivore	Endofaune	Mollusca	Bivalvia	Venerida	Veneridae
+Polititapes rhomboides	Fixe	I	I	Pas fragile	Meuble	0	PM	Suspensivore	Endofaune	Mollusca	Bivalvia	Venerida	Veneridae
+Polycera faeroensis	Mobile	I	NA	Tres fragile	Dur	0	P	Predateur	Epifaune	Mollusca	Gastropoda	Nudibranchia	Polyceridae
+Polycirrus	Peu mobile	I	IV	Tres fragile	Meuble	1	P	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Terebellidae
+Pagurus forbesii			II						Epifaune				
+Polycirrus aurantiacus	Peu mobile	I	IV	Tres fragile	Meuble	1	P	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Terebellidae
+Pagurus pubescentulus			II						Epifaune				
+Polycirrus catalanensis	Peu mobile	I	IV	Tres fragile	Meuble	1	P	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Terebellidae
+Polycirrus denticulatus	Peu mobile	I	IV	Tres fragile	Meuble	1	P	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Terebellidae
+Palaemon elegans			I						Epifaune				
+Polycirrus medusa	Peu mobile	I	IV	Tres fragile	Meuble	1	P	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Terebellidae
+Polyclinidae	Fixe	I	IV	Tres fragile	Dur	0	P	Suspensivore	Epifaune	Chordata	Ascidiacea	Aplousobranchia	Polyclinidae
+Polyclinum aurantium	Fixe	I	NA	Tres fragile	Dur	0	P	Suspensivore	Epifaune	Chordata	Ascidiacea	Aplousobranchia	Polyclinidae
+Palliolum tigerinum			I						Epifaune				
+Polydora	Peu mobile	IV	IV	Tres fragile	Indifferent	1	PM	Deposivore	Endofaune	Annelida	Polychaeta	Spionida	Spionidae
+Pandalidae			I						Interstice				
+Polydora ciliata	Peu mobile	IV	IV	Tres fragile	Dur	1	P	Deposivore	Epifaune	Annelida	Polychaeta	Spionida	Spionidae
+Polydora colonia	Peu mobile	IV	IV	Tres fragile	Meuble	1	PM	Deposivore	Endofaune	Annelida	Polychaeta	Spionida	Spionidae
+Polydora hoplura	Peu mobile	IV	IV	Tres fragile	Dur	1	PM	Deposivore	Endofaune	Annelida	Polychaeta	Spionida	Spionidae
+Polygordius	Peu mobile	I	I	Tres fragile	Meuble	0	PM	Deposivore	Interstice	Annelida	Polychaeta		Polygordiidae
+Polygordius lacteus	Mobile	I	I	Tres fragile	Meuble	0	TP	Deposivore	Interstice	Annelida	Polychaeta		Polygordiidae
+Polynoe scolopendrina	Mobile	II	II	Peu fragile	Dur	1	PM	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Polynoidae
+Polynoidae	Mobile	II	NA	Peu fragile	Indifferent	0	M	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Polynoidae
+Paraehlersia ferrugina			II						Endofaune				
+Pomatoschistus flavescens	Mobile	NA	NA	Peu fragile	Dur	0	P	Predateur	Interstice	Chordata	Actinopteri	Gobiiformes	Gobiidae
+Pomatoschistus pictus	Mobile	NA	NA	Peu fragile	Meuble	0	P	Predateur	Epifaune	Chordata	Actinopteri	Gobiiformes	Gobiidae
+Pontocrates arenarius	Mobile	I	II	Pas fragile	Meuble	0	TP	Predateur	Endofaune	Arthropoda	Malacostraca	Amphipoda	Oedicerotidae
+Porifera	Fixe	I	NA	Tres fragile	Dur	0	MG	Suspensivore	Epifaune	Porifera			
+Praunus flexuosus	Mobile	I	I	Tres fragile	Meuble	0	P	Predateur	Epifaune	Arthropoda	Malacostraca	Mysida	Mysidae
+Paramysis (Longidentia) nouveli			NA						Interstice				
+Praxillella affinis	Peu mobile	III	III	Tres fragile	Meuble	1	PM	Deposivore	Endofaune	Annelida	Polychaeta		Maldanidae
+Praxillella praetermissa	Peu mobile	III	III	Tres fragile	Meuble	1	PM	Deposivore	Endofaune	Annelida	Polychaeta		Maldanidae
+Prionospio	Peu mobile	IV	IV	Tres fragile	Meuble	1	P	Deposivore	Endofaune	Annelida	Polychaeta	Spionida	Spionidae
+Prionospio cirrifera	Peu mobile	IV	IV	Tres fragile	Meuble	1	P	Deposivore	Endofaune	Annelida	Polychaeta	Spionida	Spionidae
+Paraonis			I						Endofaune				
+Prionospio fallax	Peu mobile	IV	IV	Tres fragile	Meuble	1	P	Deposivore	Endofaune	Annelida	Polychaeta	Spionida	Spionidae
+Prionospio malmgreni	Peu mobile	IV	IV	Tres fragile	Meuble	1	P	Deposivore	Endofaune	Annelida	Polychaeta	Spionida	Spionidae
+Prionospio multibranchiata	Peu mobile	IV	III	Tres fragile	Indifferent	1	P	Deposivore	Endofaune	Annelida	Polychaeta	Spionida	Spionidae
+Prionospio pulchra	Peu mobile	IV	IV	Tres fragile	Meuble	1	P	Deposivore	Endofaune	Annelida	Polychaeta	Spionida	Spionidae
+Pareurythoe chilensis			II						Epifaune				
+Prionospio steenstrupi	Peu mobile	IV	IV	Tres fragile	Indifferent	1	P	Deposivore	Endofaune	Annelida	Polychaeta	Spionida	Spionidae
+Processa edulis crassipes	Mobile	I	I	Tres fragile	Meuble	0	P	Predateur	Epifaune	Arthropoda	Malacostraca	Decapoda	Processidae
+Prosthiostomum siphunculus	Mobile	I	NA	Tres fragile	Dur	0	P	Predateur	Epifaune	Platyhelminthes		Polycladida	Prosthiostomidae
+Protocirrineris chrysoderma	Peu mobile	I	IV	Tres fragile	Meuble	1	P	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Cirratulidae
+Protodorvillea kefersteini	Mobile	IV	IV	Tres fragile	Meuble	0	P	Predateur	Endofaune	Annelida	Polychaeta	Eunicida	Dorvilleidae
+Protomystides bidentata	Mobile	II	II	Peu fragile	Meuble	0	P	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Phyllodocidae
+Psamathe fusca	Mobile	II	II	Tres fragile	Indifferent	0	PM	Predateur	Endofaune	Annelida	Polychaeta	Phyllodocida	Hesionidae
+Psammechinus miliaris	Mobile	I	I	Tres fragile	Dur	0	PM	Brouteur	Interstice	Echinodermata	Echinoidea	Camarodonta	Parechinidae
+Pseudopolydora antennata	Peu mobile	IV	IV	Tres fragile	Meuble	1	P	Deposivore	Endofaune	Annelida	Polychaeta	Spionida	Spionidae
+Pseudopolydora pulchra	Peu mobile	IV	IV	Tres fragile	Meuble	1	TP	Deposivore	Endofaune	Annelida	Polychaeta	Spionida	Spionidae
+Peltocoxa brevirostris			NA						Endofaune				
+Pseudopotamilla saxicava	Peu mobile	I	II	Tres fragile	Dur	1	P	Suspensivore	Endofaune	Annelida	Polychaeta	Sabellida	Sabellidae
+Peltocoxa damnoniensis			NA						Endofaune				
+Pseudosuberites sulphureus	Fixe	I	NA	Peu fragile	Dur	0	M	Suspensivore	Epifaune	Porifera	Demospongiae	Suberitida	Suberitidae
+Perforatus perforatus			NA						Endofaune				
+Pseudosyllis brevipennis	Mobile	II	II	Tres fragile	Dur	0	P	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Syllidae
+Pterocirrus macroceros	Mobile	II	II	Peu fragile	Indifferent	0	P	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Phyllodocidae
+Perinereis marionii			III						Endofaune				
+Puncturella noachina	Peu mobile	I	I	Tres fragile	Dur	0	TP	Predateur	Epifaune	Mollusca	Gastropoda	Lepetellida	Fissurellidae
+Punnettia splendida	Peu mobile	II	NA	Tres fragile	Indifferent	0	P	Predateur	Interstice	Nemertea	Hoplonemertea	Polystilifera	Drepanophoridae
+Pygospio elegans	Fixe	IV	III	Tres fragile	Meuble	1	P	Deposivore	Endofaune	Annelida	Polychaeta	Spionida	Spionidae
+Pyrgiscus crenatus	Fixe	I	I	Peu fragile	Meuble	0	TP	Parasitique	Epifaune	Mollusca	Gastropoda		Pyramidellidae
+Pyura	Fixe	I	I	Pas fragile	Dur	0	PM	Suspensivore	Epifaune	Chordata	Ascidiacea	Stolidobranchia	Pyuridae
+Pyura squamulosa	Fixe	I	I	Pas fragile	Dur	0	P	Suspensivore	Epifaune	Chordata	Ascidiacea	Stolidobranchia	Pyuridae
+Pyura tessellata	Fixe	I	IV	Pas fragile	Dur	0	TP	Suspensivore	Epifaune	Chordata	Ascidiacea	Stolidobranchia	Pyuridae
+Phascoliophila phascolionis			NA						Endofaune				
+Pyuridae	Fixe	I	I	Pas fragile	Dur	0	PM	Suspensivore	Epifaune	Chordata	Ascidiacea	Stolidobranchia	Pyuridae
+Raphitoma purpurea	Peu mobile	I	I	Peu fragile	Dur	0	P	Predateur	Epifaune	Mollusca	Gastropoda	Neogastropoda	Raphitomidae
+Raspailia (Clathriodendron) hispida	Fixe	I	NA	Tres fragile	Dur	0	M	Suspensivore	Epifaune	Porifera	Demospongiae	Axinellida	Raspailiidae
+Retusa obtusa	Peu mobile	I	II	Tres fragile	Meuble	0	P	Predateur	Interstice	Mollusca	Gastropoda	Cephalaspidea	Retusidae
+Rissoa guerinii	Peu mobile	I	I	Pas fragile	Dur	0	TP	Detritivore	Epifaune	Mollusca	Gastropoda	Littorinimorpha	Rissoidae
+Rissoa lilacina	Peu mobile	I	I	Pas fragile	Meuble	0	TP	Deposivore	Epifaune	Mollusca	Gastropoda	Littorinimorpha	Rissoidae
+Rissoa parva	Peu mobile	I	I	Peu fragile	Dur	0	TP	Deposivore	Epifaune	Mollusca	Gastropoda	Littorinimorpha	Rissoidae
+Pholoe assimilis			I						Endofaune				
+Rissoides desmaresti	Mobile	I	I	Peu fragile	Meuble	1	PM	Inconnu	Interstice	Arthropoda	Malacostraca	Stomatopoda	Squillidae
+Ruditapes philippinarum	Peu mobile	III	III	Pas fragile	Meuble	0	PM	Suspensivore	Endofaune	Mollusca	Bivalvia	Venerida	Veneridae
+Sabella	Peu mobile	I	I	Peu fragile	Dur	1	M	Suspensivore	Epifaune	Annelida	Polychaeta	Sabellida	Sabellidae
+Sabella pavonina	Peu mobile	I	I	Tres fragile	Dur	1	M	Suspensivore	Epifaune	Annelida	Polychaeta	Sabellida	Sabellidae
+Sabellaria alveolata	Fixe	I	I	Tres fragile	Dur	1	PM	Suspensivore	Epifaune	Annelida	Polychaeta		Sabellariidae
+Phoronis ovalis			NA						Endofaune				
+Sabellaria spinulosa	Peu mobile	I	I	Peu fragile	Dur	1	P	Suspensivore	Epifaune	Annelida	Polychaeta		Sabellariidae
+Sabellidae	Peu mobile	I	I	Tres fragile	Indifferent	1	M	Suspensivore	Epifaune	Annelida	Polychaeta	Sabellida	Sabellidae
+Sagitta	Mobile	I	I	Pas fragile	Indifferent	0	TP	Predateur	Epifaune	Chaetognatha	Sagittoidea	Aphragmophora	Sagittidae
+Sarsinebalia urgorrii	Mobile	I	I	Peu fragile	Meuble	0	TP	Suspensivore	Epifaune	Arthropoda	Malacostraca	Leptostraca	Nebaliidae
+Phyllochaetopterus			I						Endofaune				
+Scalibregma celticum	Peu mobile	III	III	Peu fragile	Meuble	0	P	Deposivore	Endofaune	Annelida	Polychaeta		Scalibregmatidae
+Scalibregma inflatum	Peu mobile	III	III	Peu fragile	Meuble	0	P	Deposivore	Endofaune	Annelida	Polychaeta		Scalibregmatidae
+Schistomeringos neglecta	Mobile	IV	II	Tres fragile	Meuble	0	P	Predateur	Endofaune	Annelida	Polychaeta	Eunicida	Dorvilleidae
+Schistomeringos rudolphi	Mobile	IV	I	Tres fragile	Meuble	0	TP	Predateur	Endofaune	Annelida	Polychaeta	Eunicida	Dorvilleidae
+Schizoporella	Fixe	I	I	Peu fragile	Dur	0	PM	Suspensivore	Epifaune	Bryozoa	Gymnolaemata	Cheilostomatida	Schizoporellidae
+Sclerocheilus minutus	Peu mobile	I	III	Peu fragile	Meuble	0	P	Deposivore	Endofaune	Annelida	Polychaeta		Scalibregmatidae
+Phyllodoce rosea			II						Interstice				
+Scolanthus callimorphus	Fixe	I	II	Tres fragile	Meuble	0	P	Predateur	Interstice	Cnidaria	Anthozoa	Actiniaria	Edwardsiidae
+Scolelepis	Peu mobile	III	III	Tres fragile	Meuble	0	PM	Deposivore	Endofaune	Annelida	Polychaeta	Spionida	Spionidae
+Phylo foetida			I						Endofaune				
+Scolelepis (Parascolelepis) tridentata	Peu mobile	I	III	Tres fragile	Meuble	0	P	Deposivore	Endofaune	Annelida	Polychaeta	Spionida	Spionidae
+Scolelepis (Scolelepis) squamata	Peu mobile	III	III	Tres fragile	Meuble	0	PM	Predateur	Endofaune	Annelida	Polychaeta	Spionida	Spionidae
+Scoletoma fragilis	Peu mobile	II	II	Tres fragile	Indifferent	0	M	Predateur	Endofaune	Annelida	Polychaeta	Eunicida	Lumbrineridae
+Scoletoma funchalensis	Peu mobile	II	II	Tres fragile	Indifferent	0	PM	Predateur	Epifaune	Annelida	Polychaeta	Eunicida	Lumbrineridae
+Scoletoma laurentiana	Peu mobile	II	II	Tres fragile	Meuble	0	M	Predateur	Endofaune	Annelida	Polychaeta	Eunicida	Lumbrineridae
+Scoletoma magnidentata	Peu mobile	II	II	Tres fragile	Indifferent	0	MG	Predateur	Endofaune	Annelida	Polychaeta	Eunicida	Lumbrineridae
+Scoloplos armiger	Peu mobile	I	I	Tres fragile	Meuble	0	PM	Deposivore	Endofaune	Annelida	Polychaeta		Orbiniidae
+Serpula	Peu mobile	III	I	Tres fragile	Dur	1	PM	Suspensivore	Epifaune	Annelida	Polychaeta	Sabellida	Serpulidae
+Serpula vermicularis	Peu mobile	I	I	Tres fragile	Dur	1	PM	Suspensivore	Epifaune	Annelida	Polychaeta	Sabellida	Serpulidae
+Serpulidae	Peu mobile	I	IV	Tres fragile	Dur	1	PM	Suspensivore	Epifaune	Annelida	Polychaeta	Sabellida	Serpulidae
+Serratina serrata	Peu mobile	I	I	Pas fragile	Meuble	0	P	Suspensivore	Endofaune	Mollusca	Bivalvia	Cardiida	Tellinidae
+Sigalion mathildae	Mobile	I	II	Peu fragile	Meuble	0	M	Predateur	Endofaune	Annelida	Polychaeta	Phyllodocida	Sigalionidae
+Pista bansei			NA						Endofaune				
+Sige fusigera	Mobile	II	III	Peu fragile	Meuble	0	P	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Phyllodocidae
+Sipunculus (Sipunculus) nudus	Fixe	I	I	Tres fragile	Meuble	0	MG	Detritivore	Endofaune	Sipuncula	Sipunculidea	Golfingiida	Sipunculidae
+Siriella clausii	Mobile	NA	II	Tres fragile	Indifferent	0	TP	Detritivore	Epifaune	Arthropoda	Malacostraca	Mysida	Mysidae
+Platynereis coccinea			NA						Epifaune				
+Socarnes erythrophthalmus	Mobile	III	II	Peu fragile	Meuble	0	TP	Necrophage	Endofaune	Arthropoda	Malacostraca	Amphipoda	Lysianassidae
+Spatangus purpureus	Mobile	I	I	Tres fragile	Meuble	0	M	Deposivore	Endofaune	Echinodermata	Echinoidea	Spatangoida	Spatangidae
+Sphaerechinus granularis	Mobile	I	I	Tres fragile	Indifferent	0	PM	Herbivore	Epifaune	Echinodermata	Echinoidea	Camarodonta	Toxopneustidae
+Sphaerodoridium minutum	Peu mobile	II	II	Tres fragile	Meuble	0	TP	Predateur	Endofaune	Annelida	Polychaeta	Phyllodocida	Sphaerodoridae
+Podocerus variegatus			III						Endofaune				
+Sphaerodorum	Mobile	II	II	Tres fragile	Meuble	0	TP	Predateur	Endofaune	Annelida	Polychaeta	Phyllodocida	Sphaerodoridae
+Sphaerodorum gracilis	Mobile	II	II	Tres fragile	Meuble	0	P	Predateur	Endofaune	Annelida	Polychaeta	Phyllodocida	Sphaerodoridae
+Sphaeroma serratum	Mobile	I	III	Peu fragile	Dur	0	P	Detritivore	Epifaune	Arthropoda	Malacostraca	Isopoda	Sphaeromatidae
+Sphaerosyllis	Mobile	II	II	Tres fragile	Meuble	0	TP	Deposivore	Endofaune	Annelida	Polychaeta	Phyllodocida	Syllidae
+Sphaerosyllis bulbosa	Mobile	II	II	Tres fragile	Meuble	0	TP	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Syllidae
+Sphaerosyllis hystrix	Mobile	II	II	Tres fragile	Meuble	0	TP	Predateur	Endofaune	Annelida	Polychaeta	Phyllodocida	Syllidae
+Sphaerosyllis ovigera	Mobile	II	II	Tres fragile	Indifferent	0	TP	Deposivore	Epifaune	Annelida	Polychaeta	Phyllodocida	Syllidae
+Polychaeta			NA						NA				
+Sphaerosyllis taylori	Mobile	II	III	Tres fragile	Meuble	0	TP	Deposivore	Endofaune	Annelida	Polychaeta	Phyllodocida	Syllidae
+Spio	Peu mobile	IV	III	Tres fragile	Meuble	1	P	Deposivore	Endofaune	Annelida	Polychaeta	Spionida	Spionidae
+Spio arndti	Peu mobile	IV	III	Tres fragile	Dur	1	P	Deposivore	Endofaune	Annelida	Polychaeta	Spionida	Spionidae
+Spio martinensis	Peu mobile	IV	III	Tres fragile	Dur	1	P	Deposivore	Endofaune	Annelida	Polychaeta	Spionida	Spionidae
+Spiochaetopterus	Peu mobile	I	III	Tres fragile	Meuble	1	PM	Suspensivore	Endofaune	Annelida	Polychaeta		Chaetopteridae
+Polycirrus nogueirai			NA						Endofaune				
+Spiochaetopterus solitarius	Peu mobile	I	III	Tres fragile	Meuble	1	P	Suspensivore	Endofaune	Annelida	Polychaeta		Chaetopteridae
+Polycirrus readi			NA						Endofaune				
+Spionidae	Peu mobile	III	III	Tres fragile	Meuble	1	P	Deposivore	Endofaune	Annelida	Polychaeta	Spionida	Spionidae
+Polycirrus tenuisetis			IV						Endofaune				
+Spiophanes bombyx	Peu mobile	I	III	Tres fragile	Meuble	1	PM	Suspensivore	Endofaune	Annelida	Polychaeta	Spionida	Spionidae
+Spirobranchus	Fixe	III	II	Tres fragile	Dur	1	PM	Suspensivore	Epifaune	Annelida	Polychaeta	Sabellida	Serpulidae
+Spirobranchus lamarcki	Fixe	III	II	Peu fragile	Dur	1	PM	Suspensivore	Epifaune	Annelida	Polychaeta	Sabellida	Serpulidae
+Spirobranchus triqueter	Fixe	III	II	Peu fragile	Dur	1	P	Suspensivore	Epifaune	Annelida	Polychaeta	Sabellida	Serpulidae
+Spisula elliptica	Peu mobile	I	I	Peu fragile	Meuble	0	P	Suspensivore	Endofaune	Mollusca	Bivalvia	Venerida	Mactridae
+Spisula solida	Peu mobile	I	I	Pas fragile	Meuble	0	P	Suspensivore	Endofaune	Mollusca	Bivalvia	Venerida	Mactridae
+Spisula subtruncata	Peu mobile	I	I	Pas fragile	Meuble	0	P	Suspensivore	Endofaune	Mollusca	Bivalvia	Venerida	Mactridae
+Steromphala cineraria	Peu mobile	I	III	Pas fragile	Dur	0	TP	Brouteur	Epifaune	Mollusca	Gastropoda	Trochida	Trochidae
+Steromphala pennanti	Peu mobile	I	NA	Peu fragile	Dur	0	P	Herbivore	Epifaune	Mollusca	Gastropoda	Trochida	Trochidae
+Steromphala tumida	Peu mobile	I	I	Pas fragile	Dur	0	P	Herbivore	Epifaune	Mollusca	Gastropoda	Trochida	Trochidae
+Pomatoschistus			NA						Epifaune				
+Steromphala umbilicalis	Peu mobile	I	NA	Peu fragile	Dur	0	P	Herbivore	Epifaune	Mollusca	Gastropoda	Trochida	Trochidae
+Sthenelais boa	Mobile	II	II	Peu fragile	Meuble	0	M	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Sigalionidae
+Sthenelais limicola	Mobile	II	II	Peu fragile	Meuble	0	PM	Predateur	Endofaune	Annelida	Polychaeta	Phyllodocida	Sigalionidae
+Pontobdella			NA						Epifaune				
+Streblosoma bairdi	Peu mobile	I	I	Tres fragile	Meuble	1	PM	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Terebellidae
+Pontocrates altamarinus			II						Endofaune				
+Streptodonta pterochaeta	Peu mobile	I	II	Tres fragile	Meuble	0	P	Predateur	Endofaune	Annelida	Polychaeta	Phyllodocida	Syllidae
+Striarca lactea	Fixe	I	I	Pas fragile	Dur	0	P	Suspensivore	Endofaune	Mollusca	Bivalvia	Arcida	Noetiidae
+Styela clava	Fixe	I	II	Pas fragile	Dur	0	M	Suspensivore	Epifaune	Chordata	Ascidiacea	Stolidobranchia	Styelidae
+Praxillella gracilis			III						Endofaune				
+Proceraea aurantiaca			II						Epifaune				
+Proceraea cornuta			II						Epifaune				
+Processa			I						Epifaune				
+Prostheceraeus vittatus			NA						Endofaune				
+Protodrilus			NA						Endofaune				
+Pseudomystides limbata			II						Epifaune				
+Pseudopotamilla reniformis			II						Endofaune				
+Rissoella diaphana			NA						Epifaune				
+Scolelepis (Scolelepis) cantabra			NA						Endofaune				
+Scolelepis (Scolelepis) foliosa			III						Endofaune				
+Sepiola atlantica			NA						Epifaune				
+Sigalion squamosus			II						Endofaune				
+Sipunculidae			NA						Endofaune				
+Siriella jaltensis			II						Epifaune				
+Socarnes filicornis			II						Endofaune				
+Solecurtus scopula			I						Endofaune				
+Solen marginatus			I						Endofaune				
+Spanioplon armaturum			NA						Epifaune				
+Sphaerosyllis glandulata			I						Epifaune				
+Sphenia binghami			I						Endofaune				
+Spio decorata			III						Endofaune				
+Spio filicornis			III						Endofaune				
+Spio symphyta			NA						Endofaune				
+Spiochaetopterus costarum			I						Endofaune				
+Spiophanes			III						Endofaune				
+Streptosyllis varians			NA						Epifaune				
+Stylarioides moniliferus			I						Endofaune				
+Stylochoplana maculata			NA						Epifaune				
+Subadyte pellucida	Mobile	I	II	Tres fragile	Indifferent	0	P	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Polynoidae
+Suberites ficus	Fixe	I	II	Peu fragile	Dur	0	MG	Suspensivore	Epifaune	Porifera	Demospongiae	Suberitida	Suberitidae
+Suberitidae			NA						Epifaune				
+Sunamphitoe pelagica	Mobile	I	NA	Peu fragile	Dur	1	TP	Herbivore	Epifaune	Arthropoda	Malacostraca	Amphipoda	Ampithoidae
+Sycon ciliatum	Fixe	I	I	Tres fragile	Dur	0	P	Suspensivore	Epifaune	Porifera	Calcarea	Leucosolenida	Sycettidae
+Sycon ciliatum	Fixe		I		Dur			Suspensivore	Epifaune	Porifera	Calcarea	Leucosolenida	Syconidae
+Syllidae	Mobile	II	II	Tres fragile	Indifferent	0	P	Predateur	Epifaune	Annelida	Polychaeta	Phyllodocida	Syllidae
+Syllides	Mobile	II	II	Tres fragile	Indifferent	0	TP	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Syllidae
+Syllides benedicti	Peu mobile	II	II	Tres fragile	Meuble	0	TP	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Syllidae
+Syllidia armata	Mobile	II	II	Tres fragile	Indifferent	0	TP	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Hesionidae
+Syllidia armata			II						Interstice	Annelida	Polychaeta	Phyllodocida	Hesionidae
+Syllis	Mobile	II	II	Peu fragile	Dur	0	P	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Syllidae
+Syllis alternata			II						Interstice				
+Syllis amica	Mobile	II	II	Pas fragile	Dur	0	P	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Syllidae
+Syllis armillaris	Peu mobile	II	II	Peu fragile	Indifferent	0	P	Predateur	Epifaune	Annelida	Polychaeta	Phyllodocida	Syllidae
+Syllis columbretensis	Mobile	II	I	Peu fragile	Dur	0	P	Herbivore	Interstice	Annelida	Polychaeta	Phyllodocida	Syllidae
+Syllis cornuta	Mobile	II	II	Peu fragile	Indifferent	0	P	Predateur	Epifaune	Annelida	Polychaeta	Phyllodocida	Syllidae
+Syllis cruzi	Mobile	II	I	Peu fragile	Dur	0	TP	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Syllidae
+Syllis fasciata			II						Endofaune				
+Syllis garciai	Mobile	II	II	Peu fragile	Indifferent	0	P	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Syllidae
+Syllis gracilis	Mobile	II	III	Peu fragile	Dur	0	P	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Syllidae
+Syllis hyalina	Peu mobile	II	II	Peu fragile	Indifferent	0	P	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Syllidae
+Syllis krohnii	Mobile	II	II	Peu fragile	Dur	0	P	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Syllidae
+Syllis licheri	Mobile	II	II	Peu fragile	Meuble	0	P	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Syllidae
+Syllis parapari	Mobile	II	II	Peu fragile	Meuble	0	P	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Syllidae
+Syllis pontxioi			II						Endofaune				
+Syllis prolifera	Mobile	II	II	Peu fragile	Indifferent	0	TP	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Syllidae
+Syllis torquata			II						Interstice				
+Syllis variegata	Mobile	II	II	Peu fragile	Dur	0	P	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Syllidae
+Syllis vittata	Mobile	II	II	Pas fragile	Dur	0	P	Predateur	Epifaune	Annelida	Polychaeta	Phyllodocida	Syllidae
+Symphodus melops	Mobile	NA	NA	Peu fragile	Dur	0	M	Predateur	Interstice	Chordata	Actinopteri	Eupercaria incertae sedis	Labridae
+Synchelidium			I						Epifaune				
+Synchelidium maculatum	Mobile	I	I	Peu fragile	Meuble	0	TP	Predateur	Epifaune	Arthropoda	Malacostraca	Amphipoda	Oedicerotidae
+Synmerosyllis lamelligera	Mobile	II	II	Tres fragile	Meuble	0	TP	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Syllidae
+Tanaidacea	Peu mobile	I	NA	Peu fragile	Indifferent	0	PM	Detritivore	Epifaune	Arthropoda	Malacostraca	Tanaidacea	
+Tanaissus lilljeborgi			III						Epifaune				
+Tanaopsis graciloides	Mobile	I	II	Peu fragile	Meuble	0	TP	Detritivore	Epifaune	Arthropoda	Malacostraca	Tanaidacea	Tanaopsidae
+Tectura virginea	Fixe	I	I	Tres fragile	Dur	0	TP	Brouteur	Epifaune	Mollusca	Gastropoda		Lottiidae
+Tellimya ferruginosa	Fixe	I	II	Tres fragile	Meuble	0	TP	Commensalisme/Parasitisme	Endofaune	Mollusca	Bivalvia	Galeommatida	Lasaeidae
+Tellina			I						Endofaune				
+Tellinidae			I						Endofaune				
+Terebellidae	Peu mobile	I	II	Tres fragile	Indifferent	1	P	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Terebellidae
+Terebellides	Peu mobile	I	I	Peu fragile	Meuble	1	P	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Trichobranchidae
+Terebellides gentili	Peu mobile	I	I	Tres fragile	Meuble	1	P	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Trichobranchidae
+Terebellides gralli	Peu mobile	I	I	Tres fragile	Meuble	1	P	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Trichobranchidae
+Terebellides resomari	Peu mobile	I	I	Tres fragile	Meuble	1	P	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Trichobranchidae
+Terebellides stroemii	Fixe	I	II	Tres fragile	Meuble	0	PM	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Trichobranchidae
+Tergipedidae			NA						Epifaune				
+Tergipes tergipes			NA						Epifaune				
+Testudinalia testudinalis	Fixe	I	I	Peu fragile	Dur	0	P	Deposivore	Epifaune	Mollusca	Gastropoda		Lottiidae
+Tethya aurantium	Fixe	I	I	Tres fragile	Dur	0	PM	Suspensivore	Epifaune	Porifera	Demospongiae	Tethyida	Tethyidae
+Tethya citrina	Fixe	I	I	Tres fragile	Dur	0	PM	Suspensivore	Epifaune	Porifera	Demospongiae	Tethyida	Tethyidae
+Tetrastemma	Peu mobile	I	III	Tres fragile	Indifferent	0	TP	Predateur	Interstice	Nemertea	Hoplonemertea	Monostilifera	Tetrastemmatidae
+Tetrastemma melanocephalum	Peu mobile	II	III	Tres fragile	Indifferent	0	P	Predateur	Interstice	Nemertea	Hoplonemertea	Monostilifera	Tetrastemmatidae
+Thalassema	Fixe	I	I	Tres fragile	Indifferent	0	PM	Detritivore	Endofaune	Annelida	Polychaeta	Echiuroidea	Thalassematidae
+Thalassema thalassema	Fixe	I	I	Tres fragile	Indifferent	0	PM	Deposivore	Endofaune	Annelida	Polychaeta	Echiuroidea	Thalassematidae
+Tharyx	Peu mobile	IV	IV	Tres fragile	Meuble	0	PM	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Cirratulidae
+Thelepus cincinnatus			II						Endofaune				
+Thia scutellata	Mobile	I	II	Tres fragile	Meuble	0	P	Predateur	Endofaune	Arthropoda	Malacostraca	Decapoda	Thiidae
+Thracia	Fixe	I	I	Tres fragile	Meuble	0	P	Deposivore	Endofaune	Mollusca	Bivalvia		Thraciidae
+Thracia distorta			I						Endofaune				
+Thracia phaseolina	Peu mobile	I	I	Tres fragile	Meuble	0	TP	Suspensivore	Endofaune	Mollusca	Bivalvia		Thraciidae
+Thracia pubescens			I						Endofaune				
+Thracia villosiuscula	Peu mobile	I	I	Tres fragile	Meuble	0	P	Suspensivore	Endofaune	Mollusca	Bivalvia		Thraciidae
+Thyasira flexuosa	Mobile	I	III	Peu fragile	Meuble	0	P	Deposivore	Endofaune	Mollusca	Bivalvia	Lucinida	Thyasiridae
+Thyone	Fixe	I	I	Tres fragile	Indifferent	0	M	Suspensivore	Interstice	Echinodermata	Holothuroidea	Dendrochirotida	Phyllophoridae
+Thyone fusus	Fixe	I	I	Tres fragile	Dur	0	M	Deposivore	Interstice	Echinodermata	Holothuroidea	Dendrochirotida	Phyllophoridae
+Thyone inermis	Peu mobile	I	I	Tres fragile	Meuble	0	M	Suspensivore	Interstice	Echinodermata	Holothuroidea	Dendrochirotida	Phyllophoridae
+Thyone roscovita	Fixe	I	I	Tres fragile	Meuble	0	PM	Suspensivore	Interstice	Echinodermata	Holothuroidea	Dendrochirotida	Phyllophoridae
+Timarete filigera	Peu mobile	IV	IV	Tres fragile	Meuble	0	P	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Cirratulidae
+Timoclea ovata	Peu mobile	I	I	Pas fragile	Meuble	0	P	Suspensivore	Endofaune	Mollusca	Bivalvia	Venerida	Veneridae
+Tmetonyx cicada			I						Endofaune				
+Trichobranchus glacialis	Peu mobile	I	I	Peu fragile	Meuble	1	P	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Trichobranchidae
+Tricolia pullus	Peu mobile	I	I	Pas fragile	Dur	0	TP	Herbivore	Epifaune	Mollusca	Gastropoda	Trochida	Phasianellidae
+Tritaeta gibbosa			NA						Epifaune				
+Tritia incrassata	Peu mobile	II	III	Pas fragile	Dur	0	P	Necrophage	Epifaune	Mollusca	Gastropoda	Neogastropoda	Nassariidae
+Tritia reticulata	Peu mobile	II	I	Pas fragile	Indifferent	0	P	Necrophage	Epifaune	Mollusca	Gastropoda	Neogastropoda	Nassariidae
+Tritia varicosa	Peu mobile	II	II	Pas fragile	Meuble	0	TP	Necrophage	Epifaune	Mollusca	Gastropoda	Neogastropoda	Nassariidae
+Trivia	Peu mobile	I	I	Pas fragile	Dur	0	P	Predateur	Epifaune	Mollusca	Gastropoda	Littorinimorpha	Triviidae
+Trivia arctica	Peu mobile	I	I	Pas fragile	Dur	0	P	Predateur	Epifaune	Mollusca	Gastropoda	Littorinimorpha	Triviidae
+Trivia monacha	Peu mobile	I	I	Pas fragile	Dur	0	P	Predateur	Epifaune	Mollusca	Gastropoda	Littorinimorpha	Triviidae
+Trypanosyllis			II						Interstice				
+Trypanosyllis zebra	Mobile	II	II	Tres fragile	Dur	0	P	Predateur	Interstice	Annelida	Polychaeta	Phyllodocida	Syllidae
+Tryphosa nana	Mobile	I	II	Peu fragile	Meuble	0	TP	Necrophage	Epifaune	Arthropoda	Malacostraca	Amphipoda	Tryphosidae
+Tryphosella	Mobile	I	I	Peu fragile	Meuble	0	TP	Necrophage	Epifaune	Arthropoda	Malacostraca	Amphipoda	Tryphosidae
+Tryphosella minima	Mobile	I	I	Peu fragile	Meuble	0	TP	Necrophage	Epifaune	Arthropoda	Malacostraca	Amphipoda	Tryphosidae
+Tryphosella nanoides	Mobile	I	I	Peu fragile	Meuble	0	TP	Necrophage	Epifaune	Arthropoda	Malacostraca	Amphipoda	Tryphosidae
+Tryphosella sarsi	Mobile	I	I	Peu fragile	Meuble	0	TP	Necrophage	Epifaune	Arthropoda	Malacostraca	Amphipoda	Tryphosidae
+Tubificoides			V						Endofaune				
+Tubificoides benedii	Peu mobile	II	V	Tres fragile	Meuble	0	P	Deposivore	Endofaune	Annelida	Clitellata	Haplotaxida	Naididae
+Tubificoides pseudogaster	Peu mobile	I	I	Tres fragile	Meuble	0	P	Deposivore	Endofaune	Annelida	Clitellata	Haplotaxida	Naididae
+Tubulanus			II						Endofaune				
+Tubulanus polymorphus	Mobile	II	I	Tres fragile	Meuble	0	G	Predateur	Endofaune	Nemertea	Palaeonemertea		Tubulanidae
+Tubulanus superbus	Peu mobile	II	II	Tres fragile	Meuble	0	PM	Predateur	Interstice	Nemertea	Palaeonemertea	Tubulaniformes	Tubulanidae
+Tubulariidae	Fixe	I	I	Tres fragile	Dur	0	P	Predateur	Epifaune	Cnidaria	Hydrozoa	Anthoathecata	Tubulariidae
+Tubuliporidae	Fixe	I	NA	Peu fragile	Dur	0	TP	Suspensivore	Epifaune	Bryozoa	Stenolaemata	Cyclostomatida	Tubuliporidae
+Turbonilla lactea	Fixe	I	I	Peu fragile	Meuble	0	TP	Parasitique	Epifaune	Mollusca	Gastropoda		Pyramidellidae
+Turritella terebra	Peu mobile	I	I	Peu fragile	Meuble	0	P	Suspensivore	Interstice	Mollusca	Gastropoda	[unassigned] Caenogastropoda	Turritellidae
+Upogebia	Mobile	I	I	Tres fragile	Meuble	0	M	Suspensivore	Endofaune	Arthropoda	Malacostraca	Decapoda	Upogebiidae
+Upogebia deltaura	Mobile	I	I	Tres fragile	Meuble	0	M	Suspensivore	Interstice	Arthropoda	Malacostraca	Decapoda	Upogebiidae
+Upogebia pusilla	Mobile	I	I	Tres fragile	Meuble	0	P	Suspensivore	Endofaune	Arthropoda	Malacostraca	Decapoda	Upogebiidae
+Upogebia stellata			I						Endofaune				
+Urothoe	Mobile	I	I	Peu fragile	Meuble	0	TP	Deposivore	Endofaune	Arthropoda	Malacostraca	Amphipoda	Urothoidae
+Urothoe brevicornis	Mobile	I	I	Peu fragile	Meuble	0	TP	Deposivore	Endofaune	Arthropoda	Malacostraca	Amphipoda	Urothoidae
+Urothoe elegans	Mobile	I	I	Tres fragile	Meuble	0	TP	Deposivore	Endofaune	Arthropoda	Malacostraca	Amphipoda	Urothoidae
+Urothoe grimaldii	Mobile	I	I	Pas fragile	Meuble	0	TP	Deposivore	Endofaune	Arthropoda	Malacostraca	Amphipoda	Urothoidae
+Urothoe marina	Mobile	I	I	Peu fragile	Meuble	0	TP	Deposivore	Endofaune	Arthropoda	Malacostraca	Amphipoda	Urothoidae
+Urothoe poseidonis			I						Endofaune				
+Urothoe pulchella	Mobile	I	I	Pas fragile	Meuble	0	TP	Deposivore	Endofaune	Arthropoda	Malacostraca	Amphipoda	Urothoidae
+Urticina eques	Fixe	I	I	Tres fragile	Indifferent	0	MG	Predateur	Epifaune	Cnidaria	Anthozoa	Actiniaria	Actiniidae
+Urticina felina	Fixe	I	I	Peu fragile	Dur	0	M	Predateur	Epifaune	Cnidaria	Anthozoa	Actiniaria	Actiniidae
+Varicorbula gibba	Peu mobile	III	IV	Pas fragile	Meuble	0	P	Suspensivore	Endofaune	Mollusca	Bivalvia	Myida	Corbulidae
+Vaunthompsonia cristata	Mobile	I	II	Tres fragile	Meuble	0	TP	Deposivore	Endofaune	Arthropoda	Malacostraca	Cumacea	Bodotriidae
+Veneridae	Peu mobile	I	I	Peu fragile	Meuble	0	PM	Suspensivore	Endofaune	Mollusca	Bivalvia	Venerida	Veneridae
+Venerupis corrugata	Fixe	I	I	Pas fragile	Meuble	0	P	Suspensivore	Endofaune	Mollusca	Bivalvia	Venerida	Veneridae
+Venus casina	Fixe	I	I	Pas fragile	Meuble	0	P	Suspensivore	Endofaune	Mollusca	Bivalvia	Venerida	Veneridae
+Venus verrucosa	Peu mobile	I	I	Pas fragile	Meuble	0	PM	Suspensivore	Endofaune	Mollusca	Bivalvia	Venerida	Veneridae
+Vitreolina philippi			I						Epifaune				
+Websterinereis glauca	Peu mobile	I	III	Peu fragile	Dur	1	P	Omnivore	Epifaune	Annelida	Polychaeta	Phyllodocida	Nereididae
+Xantho hydrophilus	Mobile	I	I	Pas fragile	Dur	0	PM	Predateur	Interstice	Arthropoda	Malacostraca	Decapoda	Xanthidae
+Xantho pilipes	Mobile	I	I	Pas fragile	Meuble	0	P	Predateur	Interstice	Arthropoda	Malacostraca	Decapoda	Xanthidae
+Zeuxo holdichi	Peu mobile	III	I	Peu fragile	Indifferent	1	TP	Detritivore	Epifaune	Arthropoda	Malacostraca	Tanaidacea	Tanaididae
+Amphitholina cuniculus			NA							Arthropoda	Malacostraca	Amphipoda	Ampithoidae
+Calliostoma granulatum			I					Predateur		Mollusca	Gastropoda	Trochida	Calliostomatidae
+Chaetozone setosa	Peu mobile	IV	IV	Tres fragile	Meuble	0	P	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Cirratulidae
+Chaetozone setosa	Peu mobile		IV	Tres fragile	Meuble	0	P	Deposivore	Endofaune	Annelida	Polychaeta	Terebellida	Cirratulidae
+Corophium volutator		Mobile	III	Peu fragile	Meuble	0	P	Suspensivore	Endofaune	Crustacea	Eumalacostraca	Amphipoda	Corophiidae
+Cumacea	Mobile	I	II	Tres fragile	Meuble	0	P	Deposivore	Endofaune	Arthropoda	Malacostraca	Cumacea	
+Gammaropsis nitida			I				TP			Arthropoda	Malacostraca	Amphipoda	Isaeidae
+Harmothoe longisetis			II							Annelida	Polychaeta	Phyllodocida	Polynoidae
+Hippolyte			I						Epifaune	Arthropoda	Malacostraca	Decapoda	Hippolytidae
+Jaera (Jaera) albifrons	Peu mobile	I	I	Tres fragile	Dur	0	TP	Herbivore		Arthropoda	Malacostraca	Isopoda	Janiridae
+Jaera (Jaera) albifrons			I							Arthropoda	Malacostraca	Isopoda	Janiridae
+Leucothoe lilljeborgi	Peu mobile	I	I	Tres fragile	Dur	0	TP	Commensalisme/Parasitisme		Arthropoda	Malacostraca	Amphipoda	Leucothoidae
+Leucothoe lilljeborgi			I				TP	Suspensivore		Arthropoda	Malacostraca	Amphipoda	Leucothoidae
+Lutraria	Peu mobile	I	NA	Pas fragile	Meuble	0	PM	Suspensivore		Mollusca	Bivalvia	Venerida	Mactridae
+Lutraria			NA							Mollusca	Bivalvia	Venerida	Mactridae
+Magelona papillicornis	Peu mobile	I	I	Tres fragile	Meuble	0	PM	Deposivore	Endofaune	Annelida	Polychaeta		Magelonidae
+Magelona papillicornis	Peu mobile		I	Tres fragile	Meuble	0	M	Deposivore	Endofaune	Annelida	Polychaeta	Spionida	Magelonidae
+Microdeutopus damnoniensis	Mobile	I	I	Peu fragile	Dur	0	TP	Deposivore	Endofaune	Arthropoda	Malacostraca	Amphipoda	Aoridae
+Myoxocephalus scorpius			NA							Chordata	Actinopteri	Perciformes	Cottidae
+Myrianida rubropunctata			II							Annelida	Polychaeta	Phyllodocida	Syllidae
+Parvipalpus capillaceus	Mobile	I	II	Peu fragile	Meuble	0	TP	Detritivore		Arthropoda	Malacostraca	Amphipoda	Caprellidae
+Parvipalpus capillaceus			II							Arthropoda	Malacostraca	Amphipoda	Caprellidae
+Phascolosoma			I						Interstice	Annelida		Sipuncula	Phascolosomatidae
+Phoronis psammophila	Fixe	I	II	Tres fragile	Meuble	1	PM	Suspensivore		Phoronida			Phoronidae
+Phoronis psammophila			II							Phoronida			Phoronidae
+Phoxichilidiidae	Mobile		NA					Parasitique	Epifaune	Arthropoda	Pycnogonida	Pantopoda	Phoxichilidiidae
+Phorbas plumosus		I	NA	Tres fragile	Dur	0	M	Suspensivore	Epifaune	Porifera	Demospongiae	Poecilosclerida	Hymedesmiidae
+Sphaerodoridae			NA				TP			Annelida	Polychaeta	Phyllodocida	Sphaerodoridae
+Stenosemus albus	Peu mobile		I	Pas fragile	Dur			Brouteur	Epifaune	Mollusca	Polyplacophora	Chitonida	Ischnochitonidae
+Stenothoe marina			II			0	TP	Predateur		Arthropoda	Malacostraca	Amphipoda	Stenothoidae
+Sycon			I						Epifaune				
+Syllidia			II						Interstice				
+Tanais dulongii			II							Arthropoda	Malacostraca	Tanaidacea	Tanaididae
+Terebella lapidaria			I							Annelida	Polychaeta	Terebellida	Terebellidae

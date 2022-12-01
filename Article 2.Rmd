@@ -1,0 +1,3833 @@
+---
+title: "Article 2"
+author: "Victor L. Jardim"
+date: '2022-06-13'
+output:
+  rmdformats::readthedown:
+  code_folding: "show"
+highlight: "tango"
+lightbox: TRUE
+gallery: TRUE
+thumbnails: FALSE
+toc_depth: 6
+editor_options: 
+  chunk_output_type: console
+---
+
+# Set up
+
+```{r setup}
+knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning=FALSE, error = FALSE, eval = TRUE, cache = FALSE, tidy.opts = list(width.cutoff = 60), tidy = TRUE)
+
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+
+```
+
+## Packages
+
+```{r packages}
+# Manipulating data
+library(dplyr)
+library(tidyverse)
+library(magrittr)
+library(reshape2)
+library(stringi)
+
+#Worms
+library(taxize)
+
+#Visualization
+library(ggplot2)
+library(extrafont)
+library(ggrepel)
+library(ggpointdensity)
+library(ggridges)
+library(ggalt)
+library(readr)
+library(viridis)
+library(ggthemes)
+library(ggcorrplot)
+library(ggpubr)
+library(RColorBrewer)
+library(compositions)
+library(plotly)
+library(ggtern)
+
+#Maps
+library(PBSmapping)
+library(ggsn)
+library(ggspatial)
+
+# Modelling/Ecology
+library(ade4)
+library(lme4)
+library(nlme)
+# devtools::install_github("jacob-long/jtools")
+library(jtools)
+library(mgcv)
+library(gratia)
+# remotes::install_github("gavinsimpson/ggvegan")
+library(ggvegan)
+library(vegan)
+library(rdacca.hp)
+library(iNEXT)
+library(adespatial)
+
+# remotes::install_github("cran/mvpart", force = TRUE)
+# remotes::install_github("cran/MVPARTwrap", force = TRUE)
+library(mvpart)
+library(EnvStats)
+library(partR2)
+
+#Permanova
+# remotes::install_github("pmartinezarbizu/pairwiseAdonis/pairwiseAdonis")
+library(pairwiseAdonis)
+
+# Markdown
+library(knitr)
+library(kableExtra)
+
+```
+
+## Functions
+
+```{r functions, echo = TRUE}
+setwd("Functions/")
+source("pca_victor.R")
+source("box.cox.chord.R")
+source("triplot.rda.R")
+source("utils.victor.R") #pour le plot rda
+source("autoplot.rda.victor.R") #plot rda
+source("upset_vp_Victor.R")
+
+pairwise.adonis <- function(x,factors, sim.function = 'vegdist', sim.method = 'eucl', p.adjust.m ='bonferroni')
+{
+  
+  co = combn(unique(as.character(factors)),2)
+  pairs = c()
+  F.Model =c()
+  R2 = c()
+  p.value = c()
+  
+  
+  for(elem in 1:ncol(co)){
+    if(sim.function == 'daisy'){
+      library(cluster); x1 = daisy(x[factors %in% c(co[1,elem],co[2,elem]),],metric=sim.method)
+    } else{x1 = vegdist(x[factors %in% c(co[1,elem],co[2,elem]),],method=sim.method)}
+    
+    ad = adonis(x1 ~ factors[factors %in% c(co[1,elem],co[2,elem])], permutations = 9999 );
+    pairs = c(pairs,paste(co[1,elem],'vs',co[2,elem]));
+    F.Model =c(F.Model,ad$aov.tab[1,4]);
+    R2 = c(R2,ad$aov.tab[1,5]);
+    p.value = c(p.value,ad$aov.tab[1,6])
+  }
+  p.adjusted = p.adjust(p.value,method=p.adjust.m)
+  sig = c(rep('',length(p.adjusted)))
+  sig[p.adjusted <= 0.05] <-'.'
+  sig[p.adjusted <= 0.01] <-'*'
+  sig[p.adjusted <= 0.001] <-'**'
+  sig[p.adjusted <= 0.0001] <-'***'
+  
+  pairw.res = data.frame(pairs,F.Model,R2,p.value)
+  print("Signif. codes:  0 ???***??? 0.001 ???**??? 0.01 ???*??? 0.05 ???.??? 0.1 ??? ??? 1")
+  return(pairw.res)
+  
+}
+
+theme_set(theme_light())
+setwd("..")
+```
+
+## Data
+
+```{r data}
+#Set working directory
+setwd("Data/")
+
+load("Complexity_data.RData")
+data_complesc <- read.csv("fauna_complesc.csv")
+traits_adeline <- read.csv("traits_homo.csv")
+classif <- read.csv("Classification_06_2022.csv")
+classif_adeline <- read.csv("classif_adel.csv")
+new_dens <- read.csv2("Maerl_density_2022.csv", check.names = FALSE) 
+pal <- c("#4477AA", "#8ECDDE", "#44AA99", "#858c64", "#e8bb5a",  "#EE8866", "#d44e65", "#FFAABB", "#7b538c", "#80898f" )
+
+
+#Environmental Data
+load("Granulo_imputed_point_21_04_2021.Rdata") #granulometry
+load("MA_hydrology_point.Rdata") #hidrology
+load("Depth_27_11_2020.Rdata") #bathy
+load("fetchDCE.Rdata") #fetch
+
+setwd("..")
+
+```
+
+# Sample availability
+
+```{r sample availability}
+samples <- data_complesc %>% 
+  mutate(Date=as.factor(format.Date(data_complesc$Date,"%Y"))) %>% 
+  distinct(Habitat ,Site, Year, Method, Season, Point,Replicate) %>%
+  group_by(Habitat, Site, Year, Season, Method) %>%
+  mutate(Year = as.factor(Year)) %>% 
+  mutate(Year =  factor(Year, levels = c(2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022))) %>% 
+  summarise(count = n()) %>%
+  ungroup() %>%  
+  mutate(State = factor(case_when(count==9 ~ "Good", count < 12 ~ "Sample(s) missing", count > 12 ~ "Too much samples")))
+
+ggplot(samples,aes(x=Year,y=Site,fill=State)) +
+  facet_wrap(~Habitat+Method+Season,scales="free") +
+  geom_tile(alpha=0.5) +
+  scale_fill_manual(values=c("green","blue", "red")) +
+  geom_text(aes(label=count)) +
+  theme(text=element_text(size=22), axis.text.x = element_text(angle = 90, size = 15))
+
+
+ggplot(samples %>% filter(Habitat == "Maerl"), aes(x=Year,y=Site,fill=State)) +
+  facet_wrap(~Habitat+Season,scales="free") +
+  geom_tile(alpha=0.5) +
+  scale_fill_manual(values=c("green","blue", "red")) +
+  geom_text(aes(label=count)) +
+  theme(text=element_text(size=22), axis.text.x = element_text(angle = 90, size = 15))
+
+samplespoint <- data_complesc %>% 
+  mutate(Date=as.factor(format.Date(data_complesc$Date,"%Y"))) %>% 
+  distinct(Habitat ,Site, Year, Method, Season, Point,Replicate) %>%
+  group_by(Habitat, Site, Year, Point, Season, Method) %>%
+  mutate(Year = as.factor(Year)) %>% 
+  mutate(Year =  factor(Year, levels = c(2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022))) %>% 
+  summarise(count = n()) %>%
+  ungroup() %>%  
+  mutate(State = factor(case_when(count==3 ~ "Good", count < 12 ~ "Sample(s) missing", count > 12 ~ "Too much samples")))
+
+ggplot(samplespoint %>% filter(Habitat == "Maerl", Season == "Spring", Site != "Rhuys"), aes(x=Year,y=Point,fill=State)) +
+  facet_wrap(~Habitat,scales="free") +
+  geom_tile(alpha=0.5) +
+  scale_fill_manual(values=c("green","blue", "red")) +
+  geom_text(aes(label=count)) +
+  theme(text=element_text(size =15), axis.text.x = element_text(angle = 90, size = 15), legend.position = "bottom")
+```
+
+# Data selection
+
+```{r select data}
+#Select the 3 methods with the most years and sites possible
+data_all <- data_complesc %>% 
+  filter(Site != "Rhuys") %>%
+  filter(Year %in% c(2007:2018))
+
+
+ggplot(samplespoint %>% filter(Habitat == "Maerl", Season == "Spring", Site != "Rhuys",Year %in% c(2007:2018)), aes(x=Year,y=Point,fill=State)) +
+  facet_wrap(~Habitat,scales="free") +
+  geom_tile(alpha=0.5) +
+  scale_fill_manual(values=c("green","blue", "red")) +
+  geom_text(aes(label=count)) +
+  theme(text=element_text(size =15), axis.text.x = element_text(angle = 90, size = 15), legend.position = "bottom")
+```
+
+# Environment
+
+## Granulometry
+
+```{r granulometry data}
+granulo <-  point_imp %>% 
+  filter(site!= "Rhuys") %>%     #remove rows on Rhuys site, not analysed in this project, only spring data
+  filter(annee %in% c(2007:2018)) %>% 
+  mutate(point_name = gsub("Belle-Ile", "Belle-ile", point_name)) %>% 
+  mutate(point_name = gsub("Rade de Brest - ", "", point_name)) %>%
+  mutate(point_name = gsub("Rade de Brest-", "", point_name)) %>%
+  mutate(point_name = gsub("è", "e", point_name)) %>% 
+  mutate(point_name = gsub("é", "e", point_name)) %>% 
+  mutate(site = gsub("Rade de Brest - ", "", site)) %>%
+  mutate(site = gsub("Baie de ", "", site)) %>%
+  rename(Point = point_name, Site = site, Year = annee, Season = saison) %>% 
+  mutate(Site = factor(Site, levels = c("Belle-ile", "Meaban", "Glenan", "Trevignon", "Camaret", "Keraliou", "Rozegat", "Molene", "Morlaix", "Saint-Brieuc"))) %>% 
+  mutate(Point = factor(Point, levels = c("Belle-ile 1","Belle-ile 2", "Belle-ile 3", "Meaban 1", "Meaban 2", "Meaban 3", "Glenan 1", "Glenan 2", "Glenan 3", "Trevignon 1", "Trevignon 2", "Trevignon 3", "Camaret 1", "Camaret 2", "Camaret 3", "Keraliou 1", "Keraliou 2", "Keraliou 3", "Rozegat 1", "Rozegat 2", "Rozegat 3", "Molene 1", "Molene 2", "Molene 3", "Morlaix 1", "Morlaix 2", "Morlaix 3", "Saint-Brieuc 1", "Saint-Brieuc 2", "Saint-Brieuc 3"))) %>%
+  select(mini, everything()) %>%
+  as.data.frame() %>%
+  set_rownames(paste( .$Point, .$Year, sep = "_")) %>% 
+  rename(OM = pourcentage_MO) %>% 
+  mutate_if(is.character, as.factor)
+
+granulo <- droplevels(granulo)
+
+# GGally::ggpairs(granulo %>% select_if(is.numeric) %>%  select(-Year, - boulder))
+
+granulo_sel <- granulo %>% 
+  select(-boulder, -Sand, -`D50(um)`) %>% 
+  rename(Mud = mud, Grain_size = Mean.fw.um)
+```
+
+## Hydrology
+
+```{r hydro data}
+hydro <- MA_hydro_int_six_month %>% 
+  select(-c(theme, method_echant))%>% #remove useless info
+  filter(site!= "Rhuys",saison == "Printemps") %>%   #remove rows on Rhuys site, not analysed in this project, only spring data
+  filter(annee %in% c(2007:2018)) %>% 
+  mutate(point_name = gsub("Belle-Ile", "Belle-ile", point_name)) %>% 
+  mutate(point_name = gsub("Rade de Brest - ", "", point_name)) %>%
+  mutate(point_name = gsub("Rade de Brest-", "", point_name)) %>%
+  mutate(point_name = gsub("è", "e", point_name)) %>% 
+  mutate(point_name = gsub("é", "e", point_name)) %>% #remove special ch.
+  mutate(site = gsub("Rade de Brest - ", "", .$site)) %>% 
+  mutate(site = gsub("Baie de ", "", .$site)) %>% 
+  mutate(annee = as.numeric(levels(.$annee)[.$annee])) %>% 
+  rename(Point = point_name, Site = site, Year = annee, Season = saison) %>% 
+  mutate(Site = factor(Site, levels = c("Belle-ile", "Meaban", "Glenan", "Trevignon", "Camaret", "Keraliou", "Rozegat", "Molene", "Morlaix", "Saint-Brieuc"))) %>% 
+  mutate(Point = factor(Point, levels = c("Belle-ile 1","Belle-ile 2", "Belle-ile 3", "Meaban 1", "Meaban 2", "Meaban 3", "Glenan 1", "Glenan 2", "Glenan 3", "Trevignon 1", "Trevignon 2", "Trevignon 3", "Camaret 1", "Camaret 2", "Camaret 3", "Keraliou 1", "Keraliou 2", "Keraliou 3", "Rozegat 1", "Rozegat 2", "Rozegat 3", "Molene 1", "Molene 2", "Molene 3", "Morlaix 1", "Morlaix 2", "Morlaix 3", "Saint-Brieuc 1", "Saint-Brieuc 2", "Saint-Brieuc 3"))) %>% 
+  as.data.frame() %>%
+  mutate_if(is.character, as.factor) %>% 
+  set_rownames(paste(.$Point, .$Year, sep = "_"))
+
+hydro <- droplevels(hydro)
+
+# ggplot(data = hydro, aes(x = point_name, y = bottomT_mean, colour = site))+
+#   geom_boxplot()+
+#   scale_color_manual(values = pal)+
+#   theme(axis.text.x = element_text(angle = 90))
+# 
+# ggplot(data = hydro, aes(x = point_name, y = current_mean, colour = site))+
+#   geom_boxplot()+
+#   scale_color_manual(values = pal)+
+#   theme(axis.text.x = element_text(angle = 90))
+
+
+#let's get the mean for now
+
+hydro_mean <- hydro %>% 
+  select(bottomT_min:current_sd) %>% 
+  aggregate(., by = list(hydro$Point, hydro$Site), FUN = median) %>% 
+  rename(., Point = Group.1, Site = Group.2) %>% 
+  set_rownames(paste( .$Point))
+
+# ggplot(data = hydro_mean, aes(x = point_name, y = current_mean, colour = site))+
+#   geom_point()+
+#   scale_color_manual(values = pal)+
+#   theme(axis.text.x = element_text(angle = 90))
+# ggplot(data = hydro_mean, aes(x = point_name, y = bottomT_mean, colour = site))+
+#   geom_point()+
+#   scale_color_manual(values = pal)+
+#   theme(axis.text.x = element_text(angle = 90))
+# ggplot(data =hydro_mean, aes(x = current_max))+
+#   stat_density(col = "red")
+
+#let's get the sd 
+hydro_sd <- hydro %>% 
+  select(bottomT_min:current_sd) %>% 
+  aggregate(., by = list(hydro$Point, hydro$Site), FUN = sd) 
+colnames(hydro_sd) <- paste(colnames(hydro_sd), "sd", sep = "_")
+hydro_sd <- hydro_sd %>% 
+  rename(.,  Point = Group.1_sd, Site = Group.2_sd) %>% 
+  mutate_if(is.character, as.numeric)
+
+# ggplot(data = hydro_sd, aes(x = point_name, y = current_mean_sd, colour = site))+
+#   geom_point()+
+#   scale_color_manual(values = pal)+
+#   theme(axis.text.x = element_text(angle = 90))
+# ggplot(data = hydro_sd, aes(x = point_name, y = bottomT_mean_sd, colour = site))+
+#   geom_point()+
+#   scale_color_manual(values = pal)+
+#   theme(axis.text.x = element_text(angle = 90))
+
+GGally::ggpairs(hydro %>% select(bottomT_min, bottomT_Q25, bottomT_mean, bottomT_Q75, bottomT_max, bottomT_sd)) 
+GGally::ggpairs(hydro %>% select(current_min, current_Q25, current_mean, current_Q75, current_max, current_sd)) #all super correlated
+
+hydro_sel <- hydro %>% 
+  select(Site:Year, bottomT_mean, bottomT_max, bottomT_sd, current_mean)
+
+colnames(hydro_sel) <- str_remove(colnames(hydro_sel), "bottom")
+colnames(hydro_sel) <- str_replace(colnames(hydro_sel), "current", "Current")
+```
+
+## Bathymetry
+
+```{r bathymetry data}
+bathy <- depth_point_sub %>% 
+  filter(theme == "Bancs de Maërl") %>% 
+  select(-c(theme, method_echant))%>% #remove useless info
+  filter(site!= "Rhuys") %>%   #remove rows on Rhuys site, not analysed in this project
+  mutate(point_name = gsub("Belle-Ile", "Belle-ile", point_name)) %>% 
+  mutate(point_name = gsub("Rade de Brest - ", "", point_name)) %>%
+  mutate(point_name = gsub("Rade de Brest-", "", point_name)) %>%
+  mutate(point_name = gsub("è", "e", point_name)) %>% 
+  mutate(point_name = gsub("é", "e", point_name)) %>% #remove special ch.
+  mutate(site = gsub("Rade de Brest - ", "", .$site)) %>% 
+  mutate(site = gsub("Baie de ", "", .$site)) %>% 
+  rename(Point = point_name, Site = site) %>% 
+  mutate(Site = factor(Site, levels = c("Belle-ile", "Meaban", "Glenan", "Trevignon", "Camaret", "Keraliou", "Rozegat", "Molene", "Morlaix", "Saint-Brieuc"))) %>% 
+  mutate(Point = factor(Point, levels = c("Belle-ile 1","Belle-ile 2", "Belle-ile 3", "Meaban 1", "Meaban 2", "Meaban 3", "Glenan 1", "Glenan 2", "Glenan 3", "Trevignon 1", "Trevignon 2", "Trevignon 3", "Camaret 1", "Camaret 2", "Camaret 3", "Keraliou 1", "Keraliou 2", "Keraliou 3", "Rozegat 1", "Rozegat 2", "Rozegat 3", "Molene 1", "Molene 2", "Molene 3", "Morlaix 1", "Morlaix 2", "Morlaix 3", "Saint-Brieuc 1", "Saint-Brieuc 2", "Saint-Brieuc 3"))) %>% 
+  mutate(depth = -depth) %>% 
+  as.data.frame() %>%
+  set_rownames(paste( .$Point)) %>% 
+  mutate_if(is.character, as.factor)
+
+bathy <- droplevels(bathy)
+
+# ggplot(data = bathy, aes(x = point_name, y = depth, colour = site))+
+#   geom_point()+
+#   scale_color_manual(values = pal)+
+#   theme(axis.text.x = element_text(angle = 90))
+
+```
+
+## Fetch
+
+```{r fetch data, fig.width= 20, fig.height=11.25}
+fetch <- fetch.dfDCE %>% 
+  mutate(site = recode(site, "Trevignon " = "Trevignon")) %>%
+  mutate(point_name = paste(site, point, sep = " ")) %>% 
+  mutate(point_name = gsub("Rade de Brest - ", "", point_name)) %>%
+  mutate(point_name = gsub("Rade de Brest-", "", point_name)) %>%
+  mutate(point_name = gsub("Baie de ", "", point_name)) %>%
+    mutate(site = gsub("Rade de Brest - ", "", site)) %>% 
+  mutate(site = gsub("Baie de ", "", site)) %>% 
+  mutate(site = gsub("Rade de Brest - ", "", .$site)) %>% 
+  mutate(site = gsub("Baie de ", "", .$site)) %>% 
+  rename(Point = point_name, Site = site) %>% 
+  mutate(Site = factor(Site, levels = c("Belle-ile", "Meaban", "Glenan", "Trevignon", "Camaret", "Keraliou", "Rozegat", "Molene", "Morlaix", "Saint-Brieuc"))) %>% 
+  mutate(Point = factor(Point, levels = c("Belle-ile 1","Belle-ile 2", "Belle-ile 3", "Meaban 1", "Meaban 2", "Meaban 3", "Glenan 1", "Glenan 2", "Glenan 3", "Trevignon 1", "Trevignon 2", "Trevignon 3", "Camaret 1", "Camaret 2", "Camaret 3", "Keraliou 1", "Keraliou 2", "Keraliou 3", "Rozegat 1", "Rozegat 2", "Rozegat 3", "Molene 1", "Molene 2", "Molene 3", "Morlaix 1", "Morlaix 2", "Morlaix 3", "Saint-Brieuc 1", "Saint-Brieuc 2", "Saint-Brieuc 3"))) %>% 
+  set_rownames(paste( .$Point)) %>% 
+  mutate_if(is.character, as.factor)
+
+fetch.melt <- melt(fetch.dfDCE,id.vars=c("site","point","longitude","latitude"))
+
+# Retrieve a map layer for France
+france_data <- map_data("france")
+names(france_data) <- c("X","Y","PID","POS","region","subregion")
+
+# Zoom on Brittany
+xlim <- c(-7.5,-1.8)
+ylim <- c(46,49)
+francemap <- clipPolys(france_data, xlim=xlim,ylim=ylim, keepExtra=TRUE)
+
+
+p <- ggplot(aes(x=longitude,y=latitude,size=value, col = site), data=fetch.melt, fill = "black") + coord_equal()
+p <- p + geom_polygon(data=francemap,aes(X,Y,group=PID),fill="gray35",inherit.aes=F,show.legend=F)
+p <- p + geom_point(aes(text=paste(site,point,value)), alpha=0.3)
+p <- p + facet_wrap(~variable,ncol=3) 
+p <- p + scale_fill_manual(values = pal)
+p <- p + scale_colour_manual(values = pal)
+p <- p + theme(legend.position="none",panel.background = element_rect(fill = "#b6ced6"), panel.grid = element_blank())
+p <- p +  ylim(c(min(francemap$Y), max(francemap$Y)))
+p <- p + ylim(c(min(francemap$Y), max(francemap$Y)))
+p <- p + ylab("")+ xlab("")
+p <- p +scale_y_continuous(breaks=c(46.5,47,47.5,48,48.5,49,49.5,50), labels = c("46.5°N","47ºN","47.5°N", "48ºN","48.5°N", "49ºN","49.5°N","50°N")) 
+p <- p + scale_x_continuous(breaks=c(-6,-5,-4,-3,-2,-1,0), labels = c("6°W","5°W","4°W","3°W","2°W","1°W","0°")) 
+p <- p + coord_cartesian(xlim = xlim, ylim = ylim, expand = FALSE)
+
+# p
+
+# get the fetch max 
+fetch_max <- fetch %>% 
+  gather(North:West, key = "Direction", value = Fetch) %>% 
+  group_by(Point, Site, latitude, longitude) %>% 
+  summarise(Fetch_max = max(Fetch)) %>% 
+  left_join(fetch) %>% 
+  select(Site, Point, latitude, longitude, North:Average, Fetch_max) %>% 
+  set_rownames(paste(.$Point))
+
+p <- ggplot() 
+p <- p + geom_polygon(data=francemap,aes(X,Y,group=PID),fill="gray90",inherit.aes=F,show.legend=F)
+p <- p + geom_point(data = fetch_max, aes(x=longitude,y=latitude,size=Fetch_max, fill=Site), shape = 21, alpha  = 0.6) + coord_equal() + scale_size_continuous(range = c(2,15), name = "Fetch", breaks = c(50, 150, 300))
+p <- p + scale_fill_manual(values = pal)
+p <- p + guides(fill = FALSE, size = guide_legend(title.position = "top"))
+p <- p + theme(legend.key = element_rect(fill = NA), legend.background = element_blank(), panel.background = element_rect(fill = "#b6ced6"), panel.grid = element_blank(), axis.text = element_text(size = 14))
+p <- p + ylab("")+ xlab("")
+p <- p +scale_y_continuous(breaks=c(46.5,47,47.5,48,48.5,49,49.5,50), labels = c("46.5°N","47ºN","47.5°N", "48ºN","48.5°N", "49ºN","49.5°N","50°N")) 
+p <- p + scale_x_continuous(breaks=c(-7, -6,-5,-4,-3,-2,-1,0), labels = c( "7°W","6°W","5°W","4°W","3°W","2°W","1°W","0°")) 
+p <- p + coord_cartesian(xlim = xlim, ylim = ylim, expand = FALSE)
+
+# p
+
+
+
+# Color Brittany (Bretagne)
+fill_bret <- rep("gray90",nrow(france_data))
+fill_bret[france_data$region=="Finistere"] <- "gray35"
+fill_bret[france_data$region=="Morbihan"] <- "gray35"
+fill_bret[france_data$region=="Ille-et-Vilaine"] <- "gray35"
+fill_bret[france_data$region=="Cotes-Darmor"] <- "gray35"
+
+
+france_map <- ggplot() + coord_map()
+france_map <- france_map + scale_x_continuous(expand=c(0,0))
+france_map <- france_map + theme(axis.ticks=element_blank(), axis.title=element_blank(), axis.text=element_blank())
+france_map <- france_map + geom_polygon(data=france_data, mapping=aes(x=X, y=Y,group=PID), fill=fill_bret,col=fill_bret) 
+france_map <- france_map + theme_void() 
+
+### world
+
+world <- map_data("world")
+
+# Color France
+fill_world <- rep("gray90",nrow(world))
+fill_world[world$region=="France"] <- "gray35"
+col_world <- rep("gray75", nrow(world) )
+col_world[world$region=="France"] <- "gray35"
+worldmap <- ggplot(world, aes(x=long, y=lat, group=group)) 
+worldmap <- worldmap + geom_path(size = .2)
+worldmap <- worldmap + scale_y_continuous(breaks=(-2:2) * 30) 
+worldmap <- worldmap + scale_x_continuous(breaks=(-4:4) * 45)+ theme(panel.grid = element_line(colour = "gray35", size = 0.2))
+worldmap <- worldmap + coord_map("ortho", orientation=c(41, -5, 0)) + ylab("") + xlab("")
+worldmap <- worldmap + geom_polygon(data=world, mapping=aes(x=long, y=lat,group=group), fill=fill_world,col=col_world,size = 0.2) 
+worldmap <- worldmap+ theme(axis.text=element_blank(),axis.ticks=element_blank(),panel.border=element_blank(),panel.background = element_blank(), rect = element_blank())
+
+
+fetch_max <- fetch_max %>%
+  as.data.frame() %>% 
+  mutate(rename(., long = longitude, lat = latitude))
+
+
+(map_fetch <- p +  
+    geom_rect(aes(xmin = -6.3, xmax = -4.56, ymin = 46.1, ymax = 47.5), fill = alpha("gray35", .15), color = "gray35", lwd = 0.75)+
+    annotation_custom(grob = ggplotGrob(worldmap), xmin = -7.4, xmax = -6, ymin = 47.5, ymax = 48.7)+
+    geom_rect(aes(xmin = -6.7, xmax = -6.52, ymin = 48.1, ymax = 48.25), fill = NA, color = "gray35", lwd = 0.75)+
+    geom_line(aes(x = c(-6.3, -6.7), y = c(47.5, 48.25)), color = "gray35", lwd = 0.65, linetype = 2) +
+    geom_line(aes(x = c(-6.52, -4.56), y = c(48.25, 47.5)), color = "gray35", lwd = 0.65, linetype = 2) +
+    annotation_custom(grob = ggplotGrob(france_map), xmin = -6.3, xmax = -4.6, ymin = 46.1, ymax = 47.5 )+
+    scalebar(data=fetch_max, dist=45, dist_unit="km",  height = 0.02, transform=TRUE, model="WGS84", box.fill = c("gray35", "white"), location = "bottomright", st.color = "gray35", st.size = 8,  anchor = c(x = -2.38, y =  46.1))+
+  annotation_north_arrow(location = "br", which_north = "true", height = unit(1.5, "cm"), width = unit(1.5, "cm"), style = north_arrow_fancy_orienteering(fill = c("white", "gray35"), text_face = "bold", text_col = "gray35", text_size = 16, line_col = "gray35", line_width = 2))+
+  geom_text(aes(label = "France", x = -5.42, y = 46.85), fontface = "bold", colour = "gray35", size = 12)+
+  geom_text(aes(label = "Brittany", x = -2.9, y = 48.20), fontface = "bold", colour = "gray35", size = 16) +
+  geom_text(aes(label = "Saint-Brieuc", x = -2.35, y = 48.65), fontface = "bold", colour = "gray35", size = 10)+
+  geom_text(aes(label = "Rozegat", x = -4, y = 48.315), fontface = "bold", colour = "gray35", size = 10) +
+  geom_text(aes(label = "Keraliou", x = -4.06, y = 48.415), fontface = "bold", colour = "gray35", size = 10)+
+  geom_text(aes(label = "Morlaix", x = -3.5, y = 48.7), fontface = "bold", colour = "gray35", size = 10) +
+  geom_text(aes(label = "Molène", x = -5.3, y = 48.4), fontface = "bold", colour = "gray35", size = 10) +
+  geom_text(aes(label = "Camaret", x = -5.05, y = 48.25), fontface = "bold", colour = "gray35", size = 10) +
+  geom_text(aes(label = "Trévignon", x = -3.35, y = 47.82), fontface = "bold", colour = "gray35", size = 10)+
+  geom_text(aes(label = "Glénan", x = -4.4, y = 47.7), fontface = "bold", colour = "gray35", size = 10)+ 
+  geom_text(aes(label = "Méaban", x = -2.5, y = 47.53), fontface = "bold", colour = "gray35", size = 10)+ 
+  geom_text(aes(label = "Belle-île", x = -3.2, y = 47.22), fontface = "bold", colour = "gray35", size = 10)+
+  theme(legend.position = c(.81, .1), legend.direction = "horizontal", legend.title = element_text(face = "bold", colour = "gray35", size = 22), legend.text = element_text(size = 20, colour = "gray35"), axis.text = element_text(size = 20))
+  )
+
+
+# pdf("Output/fetch_map.pdf", width= 16, height=11.25)
+# map_fetch
+# dev.off()
+
+
+
+(map_fetch_brittany <- p +  
+    scalebar(data=fetch_max, dist=45, dist_unit="km",  height = 0.02, transform=TRUE, model="WGS84", box.fill = c("gray35", "white"), location = "bottomright", st.color = "gray35", st.size = 8,  anchor = c(x = -4, y =  47.1))+
+  annotation_north_arrow(location = "br", which_north = "true", height = unit(1.5, "cm"), width = unit(1.5, "cm"), style = north_arrow_fancy_orienteering(fill = c("white", "gray35"), text_face = "bold", text_col = "gray35", text_size = 16, line_col = "gray35", line_width = 2))+
+  geom_text(aes(label = "France", x = -5.42, y = 46.85), fontface = "bold", colour = "gray35", size = 12)+
+  geom_text(aes(label = "Brittany", x = -2.9, y = 48.20), fontface = "bold", colour = "gray35", size = 16) +
+  geom_text(aes(label = "Saint-Brieuc", x = -2.35, y = 48.65), fontface = "bold", colour = "gray35", size = 10)+
+  geom_text(aes(label = "Rozegat", x = -4, y = 48.315), fontface = "bold", colour = "gray35", size = 10) +
+  geom_text(aes(label = "Keraliou", x = -4.06, y = 48.415), fontface = "bold", colour = "gray35", size = 10)+
+  geom_text(aes(label = "Morlaix", x = -3.5, y = 48.7), fontface = "bold", colour = "gray35", size = 10) +
+  geom_text(aes(label = "Molène", x = -5.3, y = 48.4), fontface = "bold", colour = "gray35", size = 10) +
+  geom_text(aes(label = "Camaret", x = -5.05, y = 48.25), fontface = "bold", colour = "gray35", size = 10) +
+  geom_text(aes(label = "Trévignon", x = -3.35, y = 47.82), fontface = "bold", colour = "gray35", size = 10)+
+  geom_text(aes(label = "Glénan", x = -4.4, y = 47.7), fontface = "bold", colour = "gray35", size = 10)+ 
+  geom_text(aes(label = "Méaban", x = -2.5, y = 47.53), fontface = "bold", colour = "gray35", size = 10)+ 
+  geom_text(aes(label = "Belle-île", x = -3.2, y = 47.22), fontface = "bold", colour = "gray35", size = 10)+
+  theme(legend.position = c(.21, .15), legend.direction = "horizontal", legend.title = element_text(face = "bold", colour = "gray35", size = 22), legend.text = element_text(size = 20, colour = "gray35"), axis.text = element_text(size = 20))
+  )
+
+# pdf("Output/fetch_map_brittany.pdf", width= 16, height=11.25)
+# map_fetch
+# dev.off()
+```
+
+## Environment table
+
+```{r envtable}
+fetch_sel <- fetch_max %>% 
+  select(Site, Point, Fetch_max)
+env <- granulo_sel %>% 
+  left_join(hydro_sel) %>% 
+  left_join(bathy) %>% 
+  left_join(fetch_sel) %>% 
+  select(-Season) %>% 
+  set_rownames(paste(.$Point, .$Year, sep = "_")) %>% 
+  arrange(rownames(.))
+
+env_mean <- env %>% 
+  mutate(Year = as.factor(Year)) %>% 
+  group_by(Site, Point) %>% 
+  summarise_if(is.numeric, mean)
+
+```
+
+# Selecting by position in sediment
+
+## Getting the final position table and checking missing species
+
+```{r traits}
+
+traits <- traits_adeline[!duplicated(traits_adeline$Species),] %>% 
+  mutate(Species =  trimws(Species)) %>% 
+  select(-Species.y)
+
+duplicated <- traits %>%
+  mutate(worms_id == as.factor(worms_id)) %>%
+  filter(worms_id %in% worms_id[duplicated(worms_id)])
+
+
+data_all <-  data_all %>% 
+  rename(species_init = Species) %>% 
+  left_join(classif %>% select(-Species)) %>% 
+  rename(Species = species_init)
+  
+
+## Adding the position to the data table
+
+maerl_data <- data_all %>% 
+  filter(Habitat == "Maerl") %>% 
+  filter(Season == "Spring") %>% 
+  merge(traits, by = "worms_id") %>% 
+  select(worms_id:Genus.x, Mobility:Position) 
+
+
+for (col in 1:ncol(maerl_data)){
+    colnames(maerl_data)[col] <-  sub(".x", "", colnames(maerl_data)[col])
+}  
+
+maerl_unique <- maerl_data %>% 
+  filter(is.na(Position)) %>% 
+  distinct(., Species)
+
+
+maerl_data <- maerl_data %>% 
+  mutate(Position = if_else(Species == "Sphaerodoridae spp.", "Endofaune", Position)) #Here I chose to change sphaerodoridae to infauna as the only other sphaerodoridae species in the study area is an infaunal species
+
+maerl_unique <- maerl_data %>% 
+  filter(is.na(Position)) %>% 
+  distinct(., Species) #No missing species!!
+
+
+maerl_data <- maerl_data %>% 
+  mutate(Position =  recode(Position, "Endofaune" = "Infauna", "Epifaune" = "Epifauna")) %>% 
+  mutate(Site = factor(Site, levels = c("Belle-ile", "Meaban", "Glenan", "Trevignon", "Camaret", "Keraliou", "Rozegat", "Molene", "Morlaix", "Saint-Brieuc"))) %>% 
+  mutate(Point = factor(Point, levels = c("Belle-ile 1","Belle-ile 2", "Belle-ile 3", "Meaban 1", "Meaban 2", "Meaban 3", "Glenan 1", "Glenan 2", "Glenan 3", "Trevignon 1", "Trevignon 2", "Trevignon 3", "Camaret 1", "Camaret 2", "Camaret 3", "Keraliou 1", "Keraliou 2", "Keraliou 3", "Rozegat 1", "Rozegat 2", "Rozegat 3", "Molene 1", "Molene 2", "Molene 3", "Morlaix 1", "Morlaix 2", "Morlaix 3", "Saint-Brieuc 1", "Saint-Brieuc 2", "Saint-Brieuc 3")))
+
+maerl_fauna <- maerl_data %>% 
+  group_by(Point, Site, Year, Season, Species) %>% 
+  summarise(Abundance =  sum(Abundance)) %>%
+  ungroup() %>% 
+  spread(key = Species, value = Abundance, fill = 0)
+
+
+samples_maerl <- maerl_data %>% 
+  distinct(Site, Year, Point, Season, Replicate) %>%
+  group_by(Site, Point, Season, Year) %>%
+  summarise(count = n()) %>%
+  ungroup()
+
+maerl_fauna <- maerl_fauna %>% 
+  left_join(samples_maerl) %>% 
+  select(Point:Season, count, everything()) %>% 
+  set_rownames(paste(.$Point, .$Year, sep = "_"))
+
+
+maerl_dens <- maerl_data %>% 
+  group_by(Point, Site, Year, Season, Species) %>% 
+  summarise(Abundance =  sum(Abundance)) %>%
+  ungroup() %>% 
+  spread(key = Species, value = Abundance, fill = 0) %>% 
+  mutate(Year = as.factor(Year)) %>% 
+  mutate_if(is.numeric, funs(./(maerl_fauna$count*0.3))) %>% #change all the abundances to densities by dividing by the number of grabs available X the surface of a grab sample (0.3 m2)
+  set_rownames(paste(.$Point, .$Year, sep = "_")) %>% 
+  arrange(rownames(.))
+
+maerl_epi <- maerl_data %>% 
+  filter(Position == "Epifauna") %>%
+  select(Point, Site, Replicate, Year, Season, Date, Species, Position, Abundance) %>% 
+  mutate(Year = as.factor(Year)) %>% 
+  group_by(Point, Site, Year, Season, Species) %>% 
+  summarise(Abundance =  sum(Abundance)) %>% #Get the abundance at the point level by pooling the 3 grab samples at each point
+  ungroup() %>% 
+  spread(key = Species, value = Abundance, fill = 0) %>% #spread the table and fill NA's with 0s
+  mutate_if(is.numeric, funs(./(maerl_fauna$count*0.3))) %>% #change all the abundances to densities by dividing by the number of grabs available X the surface of a grab sample (0.3 m2)
+  set_rownames(paste(.$Point, .$Year,  sep = "_"))
+  
+samples_maerl_inf <- maerl_data %>%
+  filter(Position == "Infauna") %>% 
+  distinct(Site, Year, Point, Season, Replicate) %>%
+  group_by(Site, Point, Season, Year) %>%
+  summarise(count = n()) %>%
+  ungroup()
+
+maerl_inf <- maerl_data %>% 
+  filter(Position == "Infauna") %>%
+  select(Point, Site, Replicate, Year, Season, Date, Species, Position, Abundance) %>% 
+  mutate(Year = as.factor(Year)) %>% 
+  group_by(Point, Site, Year, Season, Species) %>%
+  summarise(Abundance =  sum(Abundance)) %>% 
+  ungroup() %>% 
+  spread(key = Species, value = Abundance, fill = 0) %>% 
+  mutate_if(is.numeric, funs(./(samples_maerl_inf$count*0.3))) %>% 
+  set_rownames(paste(.$Point, .$Year, sep = "_"))
+
+samples_maerl_int <- maerl_data %>%
+  filter(Position == "Interstice") %>% 
+  distinct(Site, Year, Point, Season, Replicate) %>%
+  group_by(Site, Point, Season, Year) %>%
+  summarise(count = n()) %>%
+  ungroup()
+
+maerl_int <- maerl_data %>% 
+  filter(Position == "Interstice") %>%
+  select(Point, Site, Replicate, Year, Season, Date, Species, Position, Abundance) %>%
+  mutate(Year = as.factor(Year)) %>% 
+  group_by(Point, Site, Year, Season, Species) %>% 
+  summarise(Abundance =  sum(Abundance)) %>%
+  ungroup() %>% 
+  spread(key = Species, value = Abundance, fill = 0) %>% 
+  mutate_if(is.numeric, funs(./(samples_maerl_int$count*0.3))) %>% 
+  set_rownames(paste(.$Point, .$Year, sep = "_"))
+
+
+```
+
+# Alpha Diversity
+
+## Total richness
+
+```{r alpha diversity}
+# Total richness
+
+
+nrow(maerl_data %>% 
+  distinct(., Species)) # 725 species
+
+# Total richness by sediment position
+
+nrow(maerl_data %>% 
+  filter(Position == "Epifauna") %>% 
+  distinct(., Species)) # 341 epifaunal species
+
+
+nrow(maerl_data %>% 
+  filter(Position == "Infauna") %>% 
+  distinct(., Species)) #266  infaunal species
+
+
+nrow(maerl_data %>% 
+  filter(Position == "Interstice") %>% 
+  distinct(., Species)) # 118 interstitial species
+
+#Get the relative abundance of each species
+relab <- maerl_dens %>% 
+  mutate(Year = as.ordered(Year)) %>% 
+  gather(., -Point:-Season, key = "Species", value = Abundance) %>% 
+  group_by(Site, Year) %>% 
+  mutate(abtot = sum(Abundance)) %>% 
+  ungroup() %>% 
+  group_by(Point, Year, Species) %>% 
+  mutate(abrel = Abundance/abtot * 100) %>% 
+  ungroup()
+
+#Sum the relative abundance of all species that add up to less then a % of the relative abundance to check in which habitats there's dominance
+relabfil <- relab %>% 
+  mutate(thresh = case_when(abrel <= 5 ~ "Others",
+                                 TRUE ~ Species)) %>% 
+  group_by(Year, Season, Site, thresh) %>% 
+  summarise(abrel = sum(abrel)) %>% 
+  ungroup() %>% 
+  mutate_if(is.character, as.factor)
+
+relabfil <- relabfil %>% 
+  mutate(thresh = forcats::fct_relevel(thresh, "Others", after = Inf))
+
+
+# pdf("Output/richesse_replicats.pdf")
+
+for(i in unique(relabfil$Site)) {
+a <- relabfil[relabfil$Site == i,]
+  p <- ggplot(data = a, aes(x= Year, y = abrel, fill = thresh)) 
+  
+  p <- p + geom_bar(position="stack", stat="identity")
+  p <- p + labs(x = "Time", y = "Relative Abundance", title = "Relative Abundance")
+  p <- p + facet_wrap(~Site)
+  p <- p + scale_fill_viridis_d(option = "mako", begin = 0.2, end = 1, direction = -1)
+  p <- p +theme(axis.title.y = element_blank(), axis.title.x = element_blank(), panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.ticks = element_blank())
+  plot(p)
+}
+
+# dev.off()
+
+
+#Get the relative abundance of each species for all years
+relab_mean <- relab %>% 
+  group_by(Site, Species) %>% 
+  summarise_if(is.numeric, mean) %>% 
+  ungroup()
+
+#Sum the relative abundance of all species that add up to less then a % of the relative abundance to check in which habitats there's dominance
+relabfil_mean <- relab_mean %>% 
+  mutate(thresh = case_when(abrel <= 5 ~ "Others",
+                                 TRUE ~ Species)) %>% 
+  group_by(Site, thresh) %>% 
+  summarise(abrel = sum(abrel)) %>% 
+  ungroup() %>% 
+  mutate_if(is.character, as.factor)
+
+relabfil_mean <- relabfil_mean %>% 
+  mutate(thresh = forcats::fct_relevel(thresh, "Others", after = Inf))
+
+
+# pdf("Output/richesse_replicats_mean.pdf")
+
+  p <- ggplot(data = relabfil_mean, aes(x= Site, y = abrel, fill = thresh)) 
+  p <- p + geom_bar(position="stack", stat="identity")
+  p <- p + labs(x = "Site", y = "Relative Abundance", title = "Relative Abundance")
+  p <- p + scale_fill_viridis_d(option = "mako", begin = 0.2, end = 1, direction = -1)
+  p <- p +theme(axis.title.y = element_blank(), axis.title.x = element_blank(), panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.ticks = element_blank())
+  plot(p)
+
+# dev.off()
+
+
+
+
+
+fam_abrel <- maerl_data %>% 
+  group_by(Site, Year) %>% 
+  mutate(abtot = sum(Abundance)) %>% 
+  ungroup() %>% 
+  group_by(Site, Year, Species) %>% 
+  mutate(abrel = Abundance/abtot * 100) %>% 
+  ungroup()
+
+
+fam_sel <- fam_abrel %>% 
+  mutate_if(is.factor, as.character) %>% 
+  mutate(thresh = case_when(abrel <= 1 ~ "Others",
+                                 TRUE ~ Phylum)) %>% 
+  group_by(Year, Site, thresh) %>% 
+  summarise(abrel = sum(abrel)) %>% 
+  ungroup() %>% 
+  mutate_if(is.character, as.factor)
+
+fam_sel <- fam_sel %>% 
+  mutate(thresh = forcats::fct_relevel(thresh, "Others", after = Inf))
+
+# pdf("Output/richesse_replicats_phylum.pdf")
+
+for(i in unique(fam_sel$Site)) {
+a <- fam_sel[fam_sel$Site == i,]
+  p <- ggplot(data = a, aes(x= Year, y = abrel, fill = thresh)) 
+  p <- p + geom_bar(position="stack", stat="identity")
+  p <- p + labs(x = "Time", y = "Relative Abundance", title = "Relative Abundance")
+  p <- p + facet_wrap(~Site)
+  p <- p + scale_fill_viridis_d(option = "mako", begin = 0.3, end = .95, direction = -1, name = "Family")
+  p <- p + theme(axis.title.y = element_blank(), axis.title.x = element_blank(), panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.ticks = element_blank())
+  plot(p)
+}
+
+# dev.off()
+
+fam_abrel_total <- maerl_data %>% 
+   filter(Phylum %in% c("Annelida", "Arthropoda","Chordata", "Cnidaria", "Echinodermata", "Mollusca")) %>% 
+  group_by(Site) %>% 
+  mutate(abtot = sum(Abundance)) %>% 
+  ungroup() %>% 
+  group_by(Site, Year, Species) %>% 
+  mutate(abrel = Abundance/abtot * 100) %>% 
+  ungroup()
+
+
+# pdf("Output/richesse_replicats_mean.pdf")
+
+  p <- ggplot(data = fam_abrel_total, aes(x= Site, y = abrel, fill = Phylum)) 
+  p <- p + geom_bar(position="stack", stat="identity")
+  p <- p + labs(x = "Site", y = "Relative Abundance", title = "Relative Abundance")
+  p <- p + scale_fill_viridis_d(option = "mako", begin = 0.3, end = .9, direction = -1,  name = "Phylum")
+  p <- p +theme(axis.title.y = element_blank(), axis.title.x = element_blank(), panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.ticks = element_blank())
+  plot(p)
+
+# dev.off()
+
+```
+
+## Indices total fauna
+
+```{r}
+
+#species represented by 1 individual over the 6 years
+sp1 <- as.data.frame(colSums(maerl_fauna[-c(1:5)]) == 1)
+count(sp1, sp1[1]) #125/725 = 16.1% of species represented by only 1 specimen 
+
+#species represented by <= 10 individuals over the 6 years
+sp10 <- as.data.frame(colSums(maerl_fauna[-c(1:5)]) <= 10) 
+count(sp10, sp10[1]) #342/725 = 47.2% of species represented by 10 or less specimens
+
+nbofind <- rowSums(maerl_fauna[-c(1:5)])
+sum(nbofind) # total number of individuals collected = 341878
+
+
+#---- Alpha diversity at POINT level ----
+#estimate richness from raw data
+maerl_num <- maerl_fauna %>%
+  rownames_to_column("Code") %>% 
+  select(-Point:-count) %>% 
+  column_to_rownames("Code")
+
+Spoint <- as.data.frame(t(as.matrix(estimateR(maerl_num))))
+Spoint <- Spoint %>% 
+  tibble::rownames_to_column(., "code") %>% 
+  mutate_if(is.character, as.factor)
+
+#estimate total density
+dens_num <- maerl_dens %>% 
+  rownames_to_column("Code") %>% 
+  select(-Point:-Season) %>% 
+  column_to_rownames("Code")
+
+Abpoint <- round(rowSums(dens_num))
+Abpoint <- as.data.frame(Abpoint) %>% 
+  tibble::rownames_to_column(., "code") %>% 
+  rename(., "Fauna_Density" = "Abpoint") %>% 
+  mutate_if(is.character, as.factor)
+  
+#final alpha diversity table
+
+alphapoint <- maerl_fauna %>%
+  rownames_to_column("code") %>%
+  select(Point:Year, code) %>% 
+  left_join(., Spoint) %>% 
+  left_join(., Abpoint) %>% 
+  #Inverse Simpson diversity
+  mutate(N2 = diversity(maerl_dens[-c(1:4)], "inv")) %>% 
+  mutate(E20 = N2/log(specnumber(maerl_dens[-c(1:4)]))) %>%  #Simpson evenness (Hill's ratio) %>% 
+  mutate(J = diversity(maerl_dens[-c(1:4)])/log(specnumber(maerl_dens[-c(1:4)]))) #pielou's evenness
+
+
+
+ggplot(data = alphapoint, aes(x = Point, y = S.obs, colour = Site, fill = Site))+
+  geom_boxplot(lwd = 1)+
+  scale_color_manual(values = pal)+
+  scale_fill_manual(values  = alpha(pal, alpha = .4))+
+  theme(axis.text.x = element_text(angle = 90))
+
+ggplot(data = alphapoint, aes(x = Point, y = S.chao1, colour = Site, fill = Site))+
+  geom_boxplot(lwd = 1)+
+  scale_color_manual(values = pal)+
+  scale_fill_manual(values  = alpha(pal, alpha = .4))+
+  theme(axis.text.x = element_text(angle = 90))
+
+
+ggplot(data = alphapoint, aes(x = Point, y = N2, colour = Site, fill = Site))+
+  geom_boxplot(lwd = 1)+
+  scale_color_manual(values = pal)+
+  scale_fill_manual(values  = alpha(pal, alpha = .4))+
+  theme(axis.text.x = element_text(angle = 90))
+
+ggplot(data = alphapoint, aes(x = Point, y = Fauna_Density, colour = Site, fill = Site))+
+  geom_boxplot(lwd = 1)+
+  scale_color_manual(values = pal)+
+  scale_fill_manual(values  = alpha(pal, alpha = .4))+
+  theme(axis.text.x = element_text(angle = 90))+
+  scale_y_log10()
+
+ggplot(data = alphapoint, aes(x = Point, y = E20, colour = Site, fill = Site))+
+  geom_boxplot(lwd = 1)+
+  scale_color_manual(values = pal)+
+  scale_fill_manual(values  = alpha(pal, alpha = .4))+
+  theme(axis.text.x = element_text(angle = 90))
+
+ggplot(data = alphapoint, aes(x = Point, y = J, colour = Site, fill = Site))+
+  geom_boxplot(lwd = 1)+
+  scale_color_manual(values = pal)+
+  scale_fill_manual(values  = alpha(pal, alpha = .4))+
+  theme(axis.text.x = element_text(angle = 90))
+
+
+```
+
+## Rarefaction Curves / sampling unit
+
+```{r rarefaction, eval=FALSE}
+# Species abundances in each sample 
+sp.ech <- maerl_data %>%
+  filter(Abundance != 0) %>%
+  select(Site, Point, Replicate, Year, Species, Abundance) %>% 
+  mutate(Point = str_replace_all(Point, " ", "_"))
+
+# Number of samples by hab/site/year
+nb.ech <-  maerl_data %>%
+  filter(Abundance != 0) %>%
+  select(Site, Point, Replicate, Year, Species, Abundance) %>%
+  mutate(Point = str_replace_all(Point, " ", "_")) %>% 
+  distinct(Site, Point, Replicate, Year)  %>% 
+  mutate(rep = paste(Point, Replicate, sep = "_"))
+
+# Incidence matrix  
+incid <- nb.ech %>%
+  left_join(., sp.ech) %>%
+  spread(Species, Abundance, fill = 0) %>%
+  gather(-Site, -Point, -Replicate, -Year, -rep, key = "Species", value = "Abundance") %>%
+  mutate(pres = ifelse(Abundance > 0, 1, 0)) %>%
+  select(-Abundance, -Site, -Replicate) %>%
+  spread(rep, pres, fill = 0) %>%
+  mutate(sum = rowSums(.[-c(1:4)])) 
+  
+# Rarefaction curves by habitats 
+#-------------------------------
+
+# SM 
+# SM 
+P.incid <- incid %>% 
+  # Take the subtidal and remove absent species in the habitat
+  dplyr::select(-sum) %>%
+  group_by(Point) %>%
+  # Make a list of sp*replicates df by site
+  split(f = as.factor(.$Point)) %>%
+  # Create a location column (site + year)
+  map(~ unite(., Point, Year, col = "location", sep ="_")) %>%
+  # Create a list of sp*replicates df by year for each site
+  map(~split(., f = as.factor(.$location))) %>%
+  # For each site tranform the list of df into matrices 
+  map(~map (., column_to_rownames, "Species")) %>%
+  map(~map (., select, -"location")) %>%
+  map(~map(., ~as.matrix(.)))
+
+# Store the results in a list
+res <- list()
+# Set up parameters for iNEXT 
+t <- seq(1, 40, by=1)
+# Compute iNEXT for each site (1 curve = 1 year)
+for(i in names(P.incid)){
+  res[[i]] <- iNEXT(P.incid[[i]], q=0, datatype="incidence_raw", size=t)
+}
+
+# Plot the graphs for each site
+pdf("Output/rarefaction.SM.pdf")
+for(i in names(res)) {
+  p <- ggiNEXT(res[[i]], type=1, color.var="site") 
+  p <- p + theme(legend.position="none")
+  p <- p + labs(title = i )
+  plot(p)
+}
+dev.off()
+```
+
+## Indices by position in sediment
+
+```{r}
+epi_raw <- maerl_data %>% 
+  filter(Position == "Epifauna") %>%
+  select(Point, Site, Replicate, Year, Season, Date, Species, Position, Abundance) %>% 
+  mutate(Year = as.factor(Year)) %>% 
+  group_by(Point, Site, Year, Season, Species) %>% 
+  summarise(Abundance =  sum(Abundance)) %>% #Get the abundance at the point level by pooling the 3 grab samples at each point
+  ungroup() %>% 
+  spread(key = Species, value = Abundance, fill = 0) %>% 
+  set_rownames(paste(.$Point, .$Year, sep = "_"))
+
+inf_raw <- maerl_data %>% 
+  filter(Position == "Infauna") %>%
+  select(Point, Site, Replicate, Year, Season, Date, Species, Position, Abundance) %>% 
+  mutate(Year = as.factor(Year)) %>% 
+  group_by(Point, Site, Year, Season, Species) %>% 
+  summarise(Abundance =  sum(Abundance)) %>% #Get the abundance at the point level by pooling the 3 grab samples at each point
+  ungroup() %>% 
+  spread(key = Species, value = Abundance, fill = 0) %>% 
+  set_rownames(paste(.$Point, .$Year, sep = "_"))
+
+int_raw <- maerl_data %>% 
+  filter(Position == "Interstice") %>%
+  select(Point, Site, Replicate, Year, Season, Date, Species, Position, Abundance) %>% 
+  mutate(Year = as.factor(Year)) %>% 
+  group_by(Point, Site, Year, Season, Species) %>% 
+  summarise(Abundance =  sum(Abundance)) %>% #Get the abundance at the point level by pooling the 3 grab samples at each point
+  ungroup() %>% 
+  spread(key = Species, value = Abundance, fill = 0) %>% 
+  set_rownames(paste(.$Point, .$Year, sep = "_"))
+
+```
+
+### Epifauna
+
+```{r epi alpha}
+nbofindepi <- rowSums(epi_raw[-c(1:4)])
+sum(nbofindepi)
+
+epi_num <- epi_raw %>%
+  rownames_to_column("Code") %>%
+  arrange(Point) %>% 
+  select(-Point:-Season) %>% 
+  column_to_rownames("Code")
+
+Sepi <- as.data.frame(t(as.matrix(estimateR(epi_num))))
+Sepi <- Sepi %>% 
+  tibble::rownames_to_column(., "code") %>% 
+  mutate_if(is.character, as.factor)
+
+epi_dens <- maerl_epi %>%
+  rownames_to_column("Code") %>% 
+  select(-Point:-Season) %>% 
+  column_to_rownames("Code")
+
+Abepi <- round(rowSums(epi_dens))
+Abepi <- as.data.frame(Abepi) %>% 
+  tibble::rownames_to_column(., "code") %>% 
+  rename(., "Fauna_Density" = "Abepi") %>% 
+  mutate_if(is.character, as.factor)
+
+alphaepi <- maerl_epi %>%
+  rownames_to_column("code") %>%
+  select(Point:Year, code) %>% 
+  left_join(., Sepi) %>% 
+  left_join(., Abepi) %>% 
+  #Inverse Simpson diversity
+  mutate(N2 = diversity(epi_dens[-c(1:4)], "inv")) %>% 
+  mutate(E20 = N2/log(specnumber(epi_dens[-c(1:4)]))) %>%  #Simpson evenness (Hill's ratio) %>% 
+  mutate(J = diversity(epi_dens[-c(1:4)])/log(specnumber(epi_dens[-c(1:4)]))) #pielou's evenness
+
+alphaepi$Year <- as.numeric(levels(alphaepi$Year))[alphaepi$Year]
+
+
+ggplot(data = alphaepi, aes(x = Point, y = S.obs, colour = Site, fill = Site))+
+  geom_boxplot(lwd = 1)+
+  scale_color_manual(values = pal)+
+  scale_fill_manual(values  = alpha(pal, alpha = .4))+
+  theme(axis.text.x = element_text(angle = 90))
+
+ggplot(data = alphaepi, aes(x = Point, y = S.chao1, colour = Site, fill = Site))+
+  geom_boxplot(lwd = 1)+
+  scale_color_manual(values = pal)+
+  scale_fill_manual(values  = alpha(pal, alpha = .4))+
+  theme(axis.text.x = element_text(angle = 90))
+
+
+ggplot(data = alphaepi, aes(x = Point, y = N2, colour = Site, fill = Site))+
+  geom_boxplot(lwd = 1)+
+  scale_color_manual(values = pal)+
+  scale_fill_manual(values  = alpha(pal, alpha = .4))+
+  theme(axis.text.x = element_text(angle = 90))
+
+ggplot(data = alphaepi, aes(x = Point, y = Fauna_Density, colour = Site, fill = Site))+
+  geom_boxplot(lwd = 1)+
+  scale_color_manual(values = pal)+
+  scale_fill_manual(values  = alpha(pal, alpha = .4))+
+  theme(axis.text.x = element_text(angle = 90))+
+  scale_y_log10()
+
+ggplot(data = alphaepi, aes(x = Point, y = E20, colour = Site, fill = Site))+
+  geom_boxplot(lwd = 1)+
+  scale_color_manual(values = pal)+
+  scale_fill_manual(values  = alpha(pal, alpha = .4))+
+  theme(axis.text.x = element_text(angle = 90))
+
+ggplot(data = alphaepi, aes(x = Point, y = J, colour = Site, fill = Site))+
+  geom_boxplot(lwd = 1)+
+  scale_color_manual(values = pal)+
+  scale_fill_manual(values  = alpha(pal, alpha = .4))+
+  theme(axis.text.x = element_text(angle = 90))
+
+## Rarefaction
+# Number of species in each sampling year
+(epi.nbsp <- specnumber(epi_num))
+# Cores with minimum and maximum observed species richness
+epi.nbsp[epi.nbsp == min(epi.nbsp)]
+epi.nbsp[epi.nbsp == max(epi.nbsp)]
+range(epi.nbsp)
+# Total abundance in the 70 cores
+(epi.abund <- rowSums(epi_num))
+range(epi.abund)
+# Abundance in the cores with smallest number of species
+epi.abund[epi.nbsp == min(epi.nbsp)]
+# Abundance in the core with largest number of species
+epi.abund[epi.nbsp == max(epi.nbsp)]
+# Number of species in the core with smallest abundance
+epi.nbsp[epi.abund == min(epi.abund)]
+# Number of species in the core with largest abundance
+epi.nbsp[epi.abund == max(epi.abund)]
+
+median(epi.abund)
+mean(epi.abund)
+
+Mode <- function(x) {
+  ux <- unique(x)
+  ux[which.max(tabulate(match(x, ux)))]
+}
+Mode(epi.abund)
+# Rarefaction to 95 individuals
+epi.rare95 <- rarefy(epi_num, sample = 95)
+# Compare ranking of observed and rarefied cores
+sort(epi.nbsp)
+sort(round(epi.rare95))
+# Cores with minimum and maximum estimated species richness
+epi.rare95[epi.rare95 == min(epi.rare95)]
+epi.rare95[epi.rare95 == max(epi.rare95)]
+# Observed core with smallest predicted species richness
+epi_num[which(epi.rare95 == min(epi.rare95)),]
+# Observed core with largest predicted species richness
+epi_num[which(epi.rare95 == max(epi.rare95)),]
+
+# rarecurve(epi_num, step = 1, sample = 95, xlab = "Number of individuals (Sample Size)", ylab = "Species", label = FALSE, col = "#4477AA")
+```
+
+### Infauna
+
+```{r inf alpha}
+nbofindinf <- rowSums(inf_raw[-c(1:4)])
+sum(nbofindinf)
+
+inf_num <- inf_raw %>%
+  rownames_to_column("Code") %>% 
+  select(-Point:-Season) %>% 
+  column_to_rownames("Code")
+
+Sinf <- as.data.frame(t(as.matrix(estimateR(inf_num))))
+Sinf <- Sinf %>% 
+  tibble::rownames_to_column(., "code") %>% 
+  mutate_if(is.character, as.factor)
+
+inf_dens <- maerl_inf %>%
+  rownames_to_column("Code") %>% 
+  select(-Point:-Season) %>% 
+  column_to_rownames("Code")
+
+Abinf <- round(rowSums(inf_dens))
+Abinf <- as.data.frame(Abinf) %>% 
+  tibble::rownames_to_column(., "code") %>% 
+  rename(., "Fauna_Density" = "Abinf") %>% 
+  mutate_if(is.character, as.factor)
+
+alphainf <- maerl_inf %>%
+  rownames_to_column("code") %>%
+  select(Point:Year, code) %>% 
+  left_join(., Sinf) %>% 
+  left_join(., Abinf) %>% 
+  #Inverse Simpson diversity
+  mutate(N2 = diversity(inf_dens[-c(1:4)], "inv")) %>% 
+  mutate(E20 = N2/log(specnumber(inf_dens[-c(1:4)]))) %>%  #Simpson evenness (Hill's ratio) %>% 
+  mutate(J = diversity(inf_dens[-c(1:4)])/log(specnumber(inf_dens[-c(1:4)]))) #pielou's evenness
+
+alphainf$Year <- as.numeric(levels(alphainf$Year))[alphainf$Year]
+
+
+ggplot(data = alphainf, aes(x = Point, y = S.obs, colour = Site, fill = Site))+
+  geom_boxplot(lwd = 1)+
+  scale_color_manual(values = pal)+
+  scale_fill_manual(values  = alpha(pal, alpha = .4))+
+  theme(axis.text.x = element_text(angle = 90))
+
+ggplot(data = alphainf, aes(x = Point, y = S.chao1, colour = Site, fill = Site))+
+  geom_boxplot(lwd = 1)+
+  scale_color_manual(values = pal)+
+  scale_fill_manual(values  = alpha(pal, alpha = .4))+
+  theme(axis.text.x = element_text(angle = 90))
+
+
+ggplot(data = alphainf, aes(x = Point, y = N2, colour = Site, fill = Site))+
+  geom_boxplot(lwd = 1)+
+  scale_color_manual(values = pal)+
+  scale_fill_manual(values  = alpha(pal, alpha = .4))+
+  theme(axis.text.x = element_text(angle = 90))
+
+ggplot(data = alphainf, aes(x = Point, y = Fauna_Density, colour = Site, fill = Site))+
+  geom_boxplot(lwd = 1)+
+  scale_color_manual(values = pal)+
+  scale_fill_manual(values  = alpha(pal, alpha = .4))+
+  theme(axis.text.x = element_text(angle = 90))+
+  scale_y_log10()
+
+ggplot(data = alphainf, aes(x = Point, y = E20, colour = Site, fill = Site))+
+  geom_boxplot(lwd = 1)+
+  scale_color_manual(values = pal)+
+  scale_fill_manual(values  = alpha(pal, alpha = .4))+
+  theme(axis.text.x = element_text(angle = 90))
+
+ggplot(data = alphainf, aes(x = Point, y = J, colour = Site, fill = Site))+
+  geom_boxplot(lwd = 1)+
+  scale_color_manual(values = pal)+
+  scale_fill_manual(values  = alpha(pal, alpha = .4))+
+  theme(axis.text.x = element_text(angle = 90))
+
+## Rarefaction
+# Number of species in each sampling year
+(inf.nbsp <- specnumber(inf_num))
+# Cores with minimum and maximum observed species richness
+inf.nbsp[inf.nbsp == min(inf.nbsp)]
+inf.nbsp[inf.nbsp == max(inf.nbsp)]
+range(inf.nbsp)
+# Total abundance in the 70 cores
+(inf.abund <- rowSums(inf_num))
+range(inf.abund)
+# Abundance in the cores with smallest number of species
+inf.abund[inf.nbsp == min(inf.nbsp)]
+# Abundance in the core with largest number of species
+inf.abund[inf.nbsp == max(inf.nbsp)]
+# Number of species in the core with smallest abundance
+inf.nbsp[inf.abund == min(inf.abund)]
+# Number of species in the core with largest abundance
+inf.nbsp[inf.abund == max(inf.abund)]
+
+median(inf.abund)
+mean(inf.abund)
+
+Mode(inf.abund)
+# Rarefaction to 95 individuals
+inf.rare130 <- rarefy(inf_num, sample = 130)
+# Compare ranking of observed and rarefied cores
+sort(inf.nbsp)
+sort(round(inf.rare130))
+# Cores with minimum and maximum estimated species richness
+inf.rare130[inf.rare130 == min(inf.rare130)]
+inf.rare130[inf.rare130 == max(inf.rare130)]
+# Observed core with smallest predicted species richness
+inf_num[which(inf.rare130 == min(inf.rare130)),]
+# Observed core with largest predicted species richness
+inf_num[which(inf.rare130 == max(inf.rare130)),]
+
+# rarecurve(inf_num, step = 1, sample = 130, xlab = "Number of individuals (Sample Size)", ylab = "Species", label = FALSE, col = "#4477AA")
+```
+
+### Interstitial fauna
+
+```{r int alpha}
+nbofindint <- rowSums(int_raw[-c(1:4)])
+sum(nbofindint)
+
+int_num <- int_raw %>%
+  rownames_to_column("Code") %>% 
+  select(-Point:-Season) %>% 
+  column_to_rownames("Code")
+
+Sint <- as.data.frame(t(as.matrix(estimateR(int_num))))
+Sint <- Sint %>% 
+  tibble::rownames_to_column(., "code") %>% 
+  mutate_if(is.character, as.factor)
+
+int_dens <- maerl_int %>%
+  rownames_to_column("Code") %>% 
+  select(-Point:-Season) %>% 
+  column_to_rownames("Code")
+
+Abint <- round(rowSums(int_dens))
+Abint <- as.data.frame(Abint) %>% 
+  tibble::rownames_to_column(., "code") %>% 
+  rename(., "Fauna_Density" = "Abint") %>% 
+  mutate_if(is.character, as.factor)
+
+alphaint <- maerl_int %>%
+  rownames_to_column("code") %>%
+  select(Point:Year, code) %>% 
+  left_join(., Sint) %>% 
+  left_join(., Abint) %>% 
+  #Inverse Simpson diversity
+  mutate(N2 = diversity(int_dens[-c(1:4)], "inv")) %>% 
+  mutate(E20 = N2/log(specnumber(int_dens[-c(1:4)]))) %>%  #Simpson evenness (Hill's ratio) %>% 
+  mutate(J = diversity(int_dens[-c(1:4)])/log(specnumber(int_dens[-c(1:4)]))) #pielou's evenness
+
+alphaint$Year <- as.numeric(levels(alphaint$Year))[alphaint$Year]
+
+
+ggplot(data = alphaint, aes(x = Point, y = S.obs, colour = Site, fill = Site))+
+  geom_boxplot(lwd = 1)+
+  scale_color_manual(values = pal)+
+  scale_fill_manual(values  = alpha(pal, alpha = .4))+
+  theme(axis.text.x = element_text(angle = 90))
+
+ggplot(data = alphaint, aes(x = Point, y = S.chao1, colour = Site, fill = Site))+
+  geom_boxplot(lwd = 1)+
+  scale_color_manual(values = pal)+
+  scale_fill_manual(values  = alpha(pal, alpha = .4))+
+  theme(axis.text.x = element_text(angle = 90))
+
+
+ggplot(data = alphaint, aes(x = Point, y = N2, colour = Site, fill = Site))+
+  geom_boxplot(lwd = 1)+
+  scale_color_manual(values = pal)+
+  scale_fill_manual(values  = alpha(pal, alpha = .4))+
+  theme(axis.text.x = element_text(angle = 90))
+
+ggplot(data = alphaint, aes(x = Point, y = Fauna_Density, colour = Site, fill = Site))+
+  geom_boxplot(lwd = 1)+
+  scale_color_manual(values = pal)+
+  scale_fill_manual(values  = alpha(pal, alpha = .4))+
+  theme(axis.text.x = element_text(angle = 90))+
+  scale_y_log10()
+
+ggplot(data = alphaint, aes(x = Point, y = E20, colour = Site, fill = Site))+
+  geom_boxplot(lwd = 1)+
+  scale_color_manual(values = pal)+
+  scale_fill_manual(values  = alpha(pal, alpha = .4))+
+  theme(axis.text.x = element_text(angle = 90))
+
+ggplot(data = alphaint, aes(x = Point, y = J, colour = Site, fill = Site))+
+  geom_boxplot(lwd = 1)+
+  scale_color_manual(values = pal)+
+  scale_fill_manual(values  = alpha(pal, alpha = .4))+
+  theme(axis.text.x = element_text(angle = 90))
+
+## Rarefaction
+# Number of species in the 70 moss or soil cores
+(int.nbsp <- specnumber(int_num))
+# Cores with minimum and maximum observed species richness
+int.nbsp[int.nbsp == min(int.nbsp)]
+int.nbsp[int.nbsp == max(int.nbsp)]
+range(int.nbsp)
+# Total abundance in the 70 cores
+(int.abund <- rowSums(int_num))
+range(int.abund)
+# Abundance in the cores with smallest number of species
+int.abund[int.nbsp == min(int.nbsp)]
+# Abundance in the core with largest number of species
+int.abund[int.nbsp == max(int.nbsp)]
+# Number of species in the core with smallest abundance
+int.nbsp[int.abund == min(int.abund)]
+# Number of species in the core with largest abundance
+int.nbsp[int.abund == max(int.abund)]
+
+median(int.abund)
+mean(int.abund)
+
+Mode <- function(x) {
+  ux <- unique(x)
+  ux[which.max(tabulate(match(x, ux)))]
+}
+Mode(int.abund)
+# Rarefaction to 20 individuals
+int.rare20 <- rarefy(int_num, sample = 20)
+# Compare ranking of observed and rarefied cores
+sort(int.nbsp)
+sort(round(int.rare20))
+# Cores with minimum and maximum estimated species richness
+int.rare20[int.rare20 == min(int.rare20)]
+int.rare20[int.rare20 == max(int.rare20)]
+# Observed core with smallest predicted species richness
+int_num[which(int.rare20 == min(int.rare20)),]
+# Observed core with largest predicted species richness
+int_num[which(int.rare20 == max(int.rare20)),]
+
+# rarecurve(int_num, step = 1, xlab = "Number of individuals (Sample Size)", ylab = "Species", label = FALSE, col = "#4477AA")
+
+```
+
+## Table for models
+
+```{r alpha table}
+alphaepi <- alphaepi %>% 
+  mutate(Position = "Epifauna") 
+
+alphainf <- alphainf %>% 
+  mutate(Position = "Infauna") 
+
+alphaint <- alphaint %>% 
+  mutate(Position = "Interstice") 
+
+alpha_all <- alphaepi %>% 
+  bind_rows(alphainf) %>% 
+  bind_rows(alphaint)
+```
+
+# Complexity Data
+
+```{r complexity data}
+comp <- complexity %>% 
+  mutate(Mini = paste(.$Code, .$Point, sep = "_")) %>% 
+  mutate(Site = recode(Code,"NBK" = "Keraliou", "MBE" = "Belle-ile", "MCM" = "Camaret", "MGL" = "Glenan","MME"= "Meaban","MMO" = "Molene", "MMX" = "Morlaix", "MRZ" = "Rozegat", "MPP" = "Saint-Brieuc", "MTR" = "Trevignon"))%>% 
+  mutate(Site = factor(Site, levels = c("Belle-ile", "Meaban", "Glenan", "Trevignon", "Camaret", "Keraliou", "Rozegat", "Molene", "Morlaix", "Saint-Brieuc"))) %>% 
+  mutate(Old_density = recode(Site, "Keraliou" = 	2288, "Belle-ile" = 1311, "Camaret" = 1322, "Glenan" = 2155, "Meaban" = 2222, "Molene" = 977, "Morlaix" = 3000, "Saint-Brieuc" = 277, "Rozegat" = 3377, "Trevignon" = 988)) %>%  ## add maerl density data at site level
+  mutate(Sphericity = ((S^2)/(L*I))^(1/3)) %>% 
+  mutate(DR1 = S/L) %>% 
+  mutate(DR2 = ((L-I)/(L-S))) %>% 
+  mutate(DR3 = I/L) %>% 
+  mutate(Point = paste(.$Site, .$Point, sep = " ")) %>% 
+  mutate(Point = factor(Point, levels = c("Belle-ile 1","Belle-ile 2", "Belle-ile 3", "Meaban 1", "Meaban 2", "Meaban 3", "Glenan 1", "Glenan 2", "Glenan 3", "Trevignon 1", "Trevignon 2", "Trevignon 3", "Camaret 1", "Camaret 2", "Camaret 3", "Keraliou 1", "Keraliou 2", "Keraliou 3", "Rozegat 1", "Rozegat 2", "Rozegat 3", "Molene 1", "Molene 2", "Molene 3", "Morlaix 1", "Morlaix 2", "Morlaix 3", "Saint-Brieuc 1", "Saint-Brieuc 2", "Saint-Brieuc 3"))) %>% 
+  select(Mini, Site, Point, everything(), -Code) %>%
+  as.data.frame() %>%
+  mutate_if(is.character, as.factor)
+
+new_dens <- new_dens %>% 
+  mutate(Mini = paste(.$Code, .$Point, sep = "_")) %>% 
+  mutate(Site = factor(Site, levels = c("Belle-ile", "Meaban", "Glenan", "Trevignon", "Camaret", "Keraliou", "Rozegat", "Molene", "Morlaix", "Saint-Brieuc"))) %>% 
+  mutate(Point = paste(.$Site, .$Point, sep = " ")) %>% 
+  mutate(Point = factor(Point, levels = c("Belle-ile 1","Belle-ile 2", "Belle-ile 3", "Meaban 1", "Meaban 2", "Meaban 3", "Glenan 1", "Glenan 2", "Glenan 3", "Trevignon 1", "Trevignon 2", "Trevignon 3", "Camaret 1", "Camaret 2", "Camaret 3", "Keraliou 1", "Keraliou 2", "Keraliou 3", "Rozegat 1", "Rozegat 2", "Rozegat 3", "Molene 1", "Molene 2", "Molene 3", "Morlaix 1", "Morlaix 2", "Morlaix 3", "Saint-Brieuc 1", "Saint-Brieuc 2", "Saint-Brieuc 3"))) %>% 
+  select(Mini, Site, Point, everything(), -Code) %>%
+  rename(Dry_weight = `Dry weight (g)`) %>% 
+  mutate(Replicate =  as.factor(Replicate)) %>% 
+  group_by(Mini, Point, Site) %>% 
+  summarise_if(is.numeric, mean) %>% 
+  as.data.frame() %>%
+  mutate_if(is.character, as.factor)
+
+colnames(new_dens) <- str_replace(colnames(new_dens), " ", "_")
+colnames(new_dens) <- str_replace(colnames(new_dens), "/", "_")
+
+ 
+comp <- comp %>% 
+  left_join(new_dens)
+
+dens <- new_dens %>% 
+  mutate(Density_1990 = recode(Site, "Keraliou" = 	2288, "Belle-ile" = 1311, "Camaret" = 1322, "Glenan" = 2155, "Meaban" = 2222, "Molene" = 977, "Morlaix" = 3000, "Saint-Brieuc" = 277, "Rozegat" = 3377, "Trevignon" = 988)) %>% 
+  group_by(Site) %>% 
+  summarise_if(is.numeric, mean)
+
+
+
+ggplot(dens, aes(y = Total_Density, x = Density_1990, colour = Site))+
+  geom_point()+
+  scale_colour_manual(values = pal)+
+  geom_smooth(colour = "gray45", method = "lm")+
+  scale_x_continuous(n.breaks = 15)+
+  scale_y_log10(n.breaks = 15)+
+  theme(text = element_text(size = 20))
+cor.test(x = dens$Total_Density, y = dens$Density_1990)  #not correlated
+cor.test(x = log(dens$Total_Density), y = log(dens$Density_1990), method = "spearman") #not correlated
+
+ggplot(comp, aes(x = Total_Density, y = Dry_weight, colour = Site))+
+  geom_point()+
+  scale_colour_manual(values = pal)+
+  geom_smooth(colour = "gray45")+
+  scale_y_log10(n.breaks = 12)+
+  scale_x_log10(n.breaks = 15)
+
+cor.test(x = log(comp$Total_Density), y = log(comp$Dry_weight))  # correlated 
+
+
+ggplot(comp, aes(x = Total_Density, y = L, colour = Site))+
+  geom_point()+
+  scale_colour_manual(values = pal)+
+  geom_smooth(colour = "gray45")+
+  scale_y_log10(n.breaks = 15)+
+  scale_x_log10(n.breaks = 10)
+
+cor.test(x = log(comp$Total_Density), y = comp$L) #very small negative correlation... but it's not linear
+cor.test(x = log(comp$Total_Density), y = comp$L, method = "spearman") #-0.26 significant correlation
+
+
+comp_med <- comp %>% 
+  select(-Sample) %>% 
+  group_by(Mini, Site, Point) %>% 
+  summarise_if(is_numeric, median)
+
+ggplot(comp_med, aes(x = Total_Density, y = L, colour = Site))+
+  geom_point()+
+  scale_colour_manual(values = pal)+
+  geom_smooth(colour = "gray45")+
+  scale_y_continuous(n.breaks = 15)+
+  scale_x_log10(n.breaks = 10)
+
+cor.test(x = log(comp_med$Total_Density), y = comp_med$L, method = "spearman") #not correlated
+
+ggplot(comp_med, aes(x = Dry_weight, y = L, colour = Site))+
+  geom_point()+
+  scale_colour_manual(values = pal)+
+  geom_smooth(colour = "gray45")+
+  scale_y_continuous(n.breaks = 15)+
+  scale_x_log10(n.breaks = 10)
+
+# GGally::ggpairs(comp[-c(1:4)])
+
+
+
+
+
+```
+
+## LIP (LLoyd's Index of Patchiness)
+
+```{r LIP}
+
+LIP <- comp_med %>% 
+  group_by(Site) %>% 
+  summarise(Mean_Density = mean(Total_Density), Var_Density = var(Total_Density)) %>% 
+  ungroup() %>% 
+  mutate(LIP = round((Mean_Density+Var_Density/(Mean_Density-1))/Mean_Density, digits = 2))
+
+
+ggplot(data = LIP, aes(x = Site, y = LIP, fill = Site))+
+  geom_bar(stat = "identity")+
+  scale_fill_manual(values = pal)
+```
+
+## Transformations
+
+```{r }
+
+bccomp <- comp %>% 
+  mutate(L = boxcoxTransform(L, boxcox(.$L, optimize = TRUE )$lambda)) %>%
+  mutate(I = boxcoxTransform(I, boxcox(.$I, optimize = TRUE )$lambda)) %>%
+  mutate(S = boxcoxTransform(S, boxcox(.$S, optimize = TRUE )$lambda)) %>%
+  mutate(Total_Density = boxcoxTransform(Total_Density, boxcox(.$Total_Density, optimize = TRUE )$lambda)) %>% 
+  mutate(Broken_density = boxcoxTransform(Broken_density+1, boxcox(.$Broken_density+1, optimize = TRUE )$lambda)) %>% 
+  mutate(Alive_Density = boxcoxTransform(Alive_Density, boxcox(.$Alive_Density, optimize = TRUE )$lambda)) %>%
+  mutate(Alive_Total = boxcoxTransform(Alive_Total+1, boxcox(.$Alive_Total+1, optimize = TRUE )$lambda)) %>%
+  mutate(Dry_weight = boxcoxTransform(Dry_weight, boxcox(.$Dry_weight, optimize = TRUE )$lambda)) %>%
+  select(-Old_density, -Alive:-Total) %>% 
+  set_rownames(paste(.$Mini, .$Sample, sep = "_")) %>% 
+  ungroup()
+
+bccomp_med <- comp_med %>% 
+  mutate(L = boxcoxTransform(L, boxcox(.$L, optimize = TRUE )$lambda)) %>%
+  mutate(I = boxcoxTransform(I, boxcox(.$I, optimize = TRUE )$lambda)) %>%
+  mutate(S = boxcoxTransform(S, boxcox(.$S, optimize = TRUE )$lambda)) %>%
+  mutate(Total_Density = boxcoxTransform(Total_Density, boxcox(.$Total_Density, optimize = TRUE )$lambda)) %>% 
+  mutate(Broken_density = boxcoxTransform(Broken_density+1, boxcox(.$Broken_density+1, optimize = TRUE )$lambda)) %>% 
+  mutate(Alive_Density = boxcoxTransform(Alive_Density, boxcox(.$Alive_Density, optimize = TRUE )$lambda)) %>%
+  mutate(Alive_Total = boxcoxTransform(Alive_Total+1, boxcox(.$Alive_Total+1, optimize = TRUE )$lambda)) %>%
+  mutate(Dry_weight = boxcoxTransform(Dry_weight, boxcox(.$Dry_weight, optimize = TRUE )$lambda)) %>%
+  select(-Old_density, -Alive:-Total) %>% 
+  set_rownames(paste(.$Mini)) %>% 
+  ungroup()
+
+# GGally::ggpairs(bccomp[-c(1:4)])
+# GGally::ggpairs(bccomp_med[-c(1:3)])
+  
+```
+
+```{r plotting after transformations, echo=FALSE, eval=FALSE}
+#---- L ----
+ggplot(comp_med, aes(x = L))+
+  geom_density(alpha= .5, fill = "gray35")
+ggplot(bccomp, aes(x = L))+
+  geom_density(alpha= .5, fill = "gray35")
+ggplot(comp_med, aes(x = L, fill = Site))+
+  geom_density(alpha= .5)+
+  facet_wrap(comp_med$Site, nrow = 2)+
+  scale_fill_manual(values = pal)
+ggplot(bccomp, aes(x = L, fill = bccomp$Site))+
+  geom_density(alpha= .5)+
+  facet_wrap(comp_med$Site, nrow = 2)+
+  scale_fill_manual(values = pal)
+#---- I ----
+ggplot(comp_med, aes(x = I))+
+  geom_density(alpha= .5, fill = "gray35")
+ggplot(bccomp, aes(x = I))+
+  geom_density(alpha= .5, fill = "gray35")
+
+ggplot(comp_med, aes(x = I, fill = comp_med$Site))+
+  geom_density(alpha= .5)+
+  facet_wrap(comp_med$Site, nrow = 2)+
+  scale_fill_manual(values = pal)
+ggplot(bccomp, aes(x = I, fill = bccomp$Site))+
+  geom_density(alpha= .5)+
+  facet_wrap(comp_med$Site, nrow = 2)+
+  scale_fill_manual(values = pal)
+#---- S ----
+ggplot(comp_med, aes(x = S))+
+  geom_density(alpha= .5, fill = "gray35")
+ggplot(bccomp, aes(x = S))+
+  geom_density(alpha= .5, fill = "gray35")
+
+ggplot(comp_med, aes(x = S, fill = comp_med$Site))+
+  geom_density(alpha= .5)+
+  facet_wrap(comp_med$Site, nrow = 2)+
+  scale_fill_manual(values = pal)
+ggplot(bccomp, aes(x = S, fill = bccomp$Site))+
+  geom_density(alpha= .5)+
+  facet_wrap(comp_med$Site, nrow = 2)+
+  scale_fill_manual(values = pal)
+
+#---- Total_Density ----
+ggplot(comp_med, aes(x = Total_Density))+
+  geom_density(alpha= .5, fill = "gray35")
+ggplot(bccomp, aes(x = Total_Density))+
+  geom_density(alpha= .5, fill = "gray35")
+
+ggplot(comp, aes(x = Total_Density, fill = comp$Site))+
+  geom_density(alpha= .5)+
+  facet_wrap(comp$Site, nrow = 2)+
+  scale_fill_manual(values = pal)
+ggplot(bccomp, aes(x = Total_Density, fill = Site))+
+  geom_density(alpha= .5)+
+  facet_wrap(bccomp$Site, nrow = 2)+
+  scale_fill_manual(values = pal)
+
+#---- Broken_density ----
+ggplot(comp_med, aes(x = Broken_density))+
+  geom_density(alpha= .5, fill = "gray35")
+ggplot(bccomp, aes(x = Broken_density))+
+  geom_density(alpha= .5, fill = "gray35")
+
+ggplot(comp_med, aes(x = Broken_density, fill = comp_med$Site))+
+  geom_density(alpha= .5)+
+  facet_wrap(comp_med$Site, nrow = 2)+
+  scale_fill_manual(values = pal)
+ggplot(bccomp, aes(x = Broken_density, fill = bccomp$Site))+
+  geom_density(alpha= .5)+
+  facet_wrap(comp_med$Site, nrow = 2)+
+  scale_fill_manual(values = pal)
+
+
+```
+
+## PCA total
+
+```{r Complexity PCA, echo= TRUE, fig.width= 20, fig.height= 8.75}
+compnum <- bccomp %>% 
+  select(-Mini:-Sample)
+
+complexpca <- rda(compnum, scale = TRUE)
+par(mfrow = c(1,1))
+#summary(complexpca)
+screeplot(complexpca,bstick=TRUE) #only look at pc1 to pc3
+
+## save as PDF
+# pdf("Output/pca_complex.pdf", width = 20, height = 8.75) 
+
+pca_victor(pca = complexpca, metadata = bccomp, main.group = "Site", scale.fill = pal, scale.colour = pal, goodness.thresh = 0.0, add.centroids = TRUE, nudge.x = c(0, 0.09, -0.055, .14, -0.05, 0, 0.06, -0.14, 0, 0), nudge.y = c(-.05, .06, -.05, .005, 0.055, -.05, -.05, .005, .05, -.05), stat1 = "ellipse", conf.level = .8, ysites = c(-.75, .75), xsites = c(-.75, .75), ysp = c(-1.9, 1.7), xsp = c(-1.9, 1.7), font.size = 20/.pt, axis.size = 22, axis.text = 20, c.size = 4)
+
+# dev.off()
+
+
+pca_victor(axes = c(1,3),pca = complexpca, metadata = bccomp, main.group = "Site", scale.fill = pal, scale.colour = pal, stat1 = "ellipse" ,ysites = c(-1.0, 1.0), xsites = c(-1.0, 1.0), ysp= c(-2,2), xsp = c(-2,2), goodness.thresh = 0.0)
+
+GGally::ggpairs(bccomp %>%  select(L, I, S))
+GGally::ggpairs(bccomp %>%  select(DR1, DR2, DR3, Sphericity))
+GGally::ggpairs(bccomp %>%  select(Alive_Total, Alive_Density, Total_Density, Dry_weight))
+
+
+compnum_sel <- compnum %>% 
+  select(-DR1,-DR2,  -Broken_density, -I, -S, -Alive_Density, -Alive_Total, -Dry_weight)
+
+complexpca_sel <- rda(compnum_sel, scale = TRUE)
+
+#summary(complexpca)
+screeplot(complexpca_sel,bstick=TRUE) #only look at pc1 and pc2, and maybe pc3
+
+## save as PDF
+
+# pdf("Output//pca_complex.pdf", width = 20, height = 8.75) 
+
+pca_victor(pca = complexpca_sel, metadata = bccomp, main.group = "Site", scale.fill = pal, scale.colour = pal, goodness.thresh = 0.0, add.centroids = TRUE, stat1 = "ellipse", conf.level = .8, ysites = c(-.56, .56), xsites = c(-.56, .56), ysp = c(-1.9, 1.5), xsp = c(-1.9, 1.5), font.size = 20/.pt, axis.size = 22, axis.text = 20, c.size = 4)
+
+# dev.off()
+
+#Extract PC1 and PC2 scores for exploration against environmental variables 
+bccomp <- bccomp %>%
+  mutate(PC1_score =  scores(complexpca_sel,choices = 1, scaling = 1, display = "sites")) %>%
+  mutate(PC2_score =  scores(complexpca_sel,choices = 2, scaling = 1, display = "sites"))
+
+bccomp_centroid <- bccomp %>%
+  group_by(Mini, Site, Point) %>%
+  summarise(PC1_c = mean(PC1_score), PC2_c = mean(PC2_score)) %>%
+  ungroup()
+
+```
+
+## PCA median
+
+```{r Complexity PCA med, echo= TRUE, fig.width= 20, fig.height= 8.75}
+compnum <- bccomp_med %>% 
+  ungroup() %>% 
+  select(-Mini, -Site) %>% 
+  column_to_rownames(.,"Point")
+
+complexpca <- rda(compnum, scale = TRUE)
+par(mfrow = c(1,1))
+#summary(complexpca)
+screeplot(complexpca,bstick=TRUE) #only look at pc1 to pc3
+
+## save as PDF
+# pdf("03_Figures/pca_complex.pdf", width = 20, height = 8.75) 
+
+pca_victor(pca = complexpca, metadata = bccomp_med, main.group = "Site", scale.fill = pal, scale.colour = pal, goodness.thresh = 0.0, add.centroids = TRUE, nudge.x = c(0, 0.09, -0.055, .14, -0.05, 0, 0.06, -0.14, 0, 0), nudge.y = c(-.05, .06, -.05, .005, 0.055, -.05, -.05, .005, .05, -.05), stat1 = "chull", conf.level = .8, ysites = c(-1.0, 1.1), xsites = c(-1.0, 1.1), ysp = c(-1.5, 1.8), xsp = c(-1.5, 1.8), font.size = 20/.pt, axis.size = 22, axis.text = 20, c.size = 4)
+
+# dev.off()
+
+
+pca_victor(axes = c(1,3),pca = complexpca, metadata = bccomp_med, main.group = "Site", scale.fill = pal, scale.colour = pal, stat1 = "chull" ,ysites = c(-1.0, 1.0), xsites = c(-1.0, 1.0), ysp= c(-2,2), xsp = c(-2,2), goodness.thresh = 0.0)
+
+GGally::ggpairs(bccomp_med %>%  select(L, I, S))
+GGally::ggpairs(bccomp_med %>%  select(DR1, DR2, DR3, Sphericity))
+GGally::ggpairs(bccomp_med %>%  select(Alive_Total, Alive_Density, Total_Density, Dry_weight))
+
+
+compnum_sel <- compnum %>% 
+  rownames_to_column(., "Point") %>% 
+  select(-DR1,-DR2,  -Broken_density, -I, -S, -Alive_Density, -Alive_Total, -Dry_weight) %>% 
+  column_to_rownames(.,"Point")
+
+complexpca_sel <- rda(compnum_sel, scale = TRUE)
+
+#summary(complexpca)
+screeplot(complexpca_sel,bstick=TRUE) #only look at pc1 and pc2, and maybe pc3
+
+## save as PDF
+
+# pdf("Output//pca_complexT.pdf", width = 12, height = 5.25)
+
+pca_victor(pca = complexpca_sel, metadata = bccomp_med, main.group = "Site", scale.fill = pal, scale.colour = pal, goodness.thresh = 0.0, add.centroids = TRUE, stat1 = "chull", conf.level = .8, ysites = c(-1.1, .8), xsites = c(-1.1, .8), ysp = c(-1.7, 1.7), xsp = c(-1.7, 1.7), axis.size = 22, axis.text = 20, c.size = 3, nudge.x = c(-.15,0,-.15,0,0,.28,.15,.25,0,-.25), nudge.y = c(-.1,-.1,-.1,.13,.13,0,-.1,0,-.1,-.1), font.size = 12/.pt, ext.plot.scale = 2.5)
+
+# dev.off()
+
+#Extract PC1 and PC2 scores for exploration against environmental variables 
+bccomp_med <- bccomp_med %>% 
+  mutate(PC1_score =  scores(complexpca_sel,choices = 1, scaling = 1, display = "sites")) %>% 
+  mutate(PC2_score =  scores(complexpca_sel,choices = 2, scaling = 1, display = "sites")) %>% 
+  mutate(PC2_score = -PC2_score) %>% 
+  left_join(bccomp_centroid)
+  
+
+ggplot(bccomp_med, aes(PC1_score, PC1_c, colour = Site)) +
+  geom_point()+
+  scale_colour_manual(values = pal) +
+  geom_smooth(colour = "gray", method = lm)
+
+ggplot(bccomp_med, aes(PC2_score, PC2_c, colour = Site)) +
+  geom_point()+
+  scale_colour_manual(values = pal) +
+  geom_smooth(colour = "gray", method = lm)
+
+
+```
+
+## Cluster
+
+```{r Cluster analysis}
+bccomp_sites <- comp %>% select(-Point, -Mini, -Sample) %>% group_by(Site) %>% summarise_if(is.numeric, median) %>% ungroup() %>% select(-DR1,-DR2,  -Broken_density, -I, -S, -Alive_Density, -Alive_Total, -Dry_weight) %>%  mutate(L = boxcoxTransform(L, boxcox(.$L, optimize = TRUE)$lambda)) %>%
+  mutate(Total_Density = boxcoxTransform(Total_Density, boxcox(.$Total_Density, optimize = TRUE )$lambda)) %>% 
+  column_to_rownames("Site")
+
+sites_sc <- scale(bccomp_sites) #scale variables before clustering
+  
+
+sitesclust <- hclust(dist(sites_sc), "ward.D2")
+plot(sitesclust, main = "Ward - Point", cex = .8, xaxt = "none")
+
+points_sc <- scale(compnum_sel)
+pointsclust <- hclust(dist(points_sc), "ward.D2")
+plot(pointsclust, main = "Ward - Point", cex = .8, xaxt = "none")
+
+axes <- bccomp_med %>% 
+  select(Point,  PC1_score, PC2_score) %>% 
+  column_to_rownames(.,"Point")
+
+clust.axes <- hclust(dist(axes), "ward.D2")
+plot(clust.axes, main = "Ward - Point", cex = 1)
+
+```
+
+# Alpha models
+
+## Total Fauna
+
+### Richness
+
+```{r models alpha}
+modalpha <- alphapoint %>%
+  left_join(bccomp_med) %>%
+  left_join(env) 
+ggplot(data = modalpha, aes(x = S.obs))+
+  geom_density(colour = "red")
+
+ggplot(data = modalpha , aes(x = PC1_score, y = S.obs, colour = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray")
+
+cor.test(x = modalpha$S.obs, y = modalpha$PC1_score) #correlation
+cor.test(x = modalpha$S.obs, y = modalpha$PC1_score, method = "spearman")
+
+modfixalpha1 <- lm(data = modalpha, S.obs ~ PC1_score)
+summ(modfixalpha1) #NOT 
+gvlma::gvlma(modfixalpha1)
+par(mfrow = c(2,2))
+plot(modfixalpha1) 
+
+# pdf("Output/Richness.pdf", width= 12, height=6)
+ggplot(data = modalpha , aes(x = PC2_score, y = S.obs, colour = Site))+
+  geom_point(size = 4, alpha = .7)+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray", method = lm)+
+  ylab("Species Richness")+
+  xlab("Bed Complexity (-PC2)")+
+  scale_y_continuous(breaks = c(0, 25, 50, 75, 100, 125))+
+  theme(legend.title = element_text(face = "bold", size = 22), legend.text = element_text(size = 20), legend.background = element_blank(), legend.box.background = element_blank(), legend.key = element_blank(), axis.text = element_text(size = 20), axis.title = element_text(size =22, face = "bold")) +
+  guides(fill = guide_legend(title.position = "top"))
+  
+# dev.off()
+cor.test(x = modalpha$S.obs, y = modalpha$PC2_score) #correlation
+cor.test(x = modalpha$S.obs, y = modalpha$PC2_score, method = "spearman")
+
+modfixalpha2 <- lm(data = modalpha, S.obs ~ PC2_score)
+summ(modfixalpha2) #NOT 
+gvlma::gvlma(modfixalpha2)
+par(mfrow = c(2,2))
+plot(modfixalpha2)
+
+Stable <- alphapoint %>%
+  column_to_rownames("code") %>% 
+  select(Point:Year, Site, S.obs) %>% 
+  left_join(bccomp_med %>% select(Site, Point, PC1_score, PC2_score)) %>% 
+  left_join(env)
+  
+
+ggplot(data = modalpha , aes(x = Current_mean, y = S.obs, colour = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray", method = lm, formula = y ~ poly(x, 3)) 
+ggplot(data = modalpha , aes(x = Fetch_max, y = S.obs, colour = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray", method = "lm", formula = y ~ poly(x, 3)) 
+ggplot(data = modalpha , aes(x = depth, y = S.obs, colour = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray", method = "lm", formula = y ~ poly(x, 1))
+ggplot(data = modalpha , aes(x = depth, y = PC2_score, colour = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray", method = "lm", formula = y ~ poly(x, 1)) 
+
+
+Stable_num <- Stable %>% 
+  select_if(is.numeric) %>% 
+  select(-Year)
+
+mod0 <- lm(S.obs ~ 1, Stable_num)
+modF <- lm(S.obs ~., data = Stable_num)
+MASS::stepAIC(mod0, direction = "forward",
+              scope = list(lower = mod0, upper = modF))
+
+forward.sel(Stable_num[1], Stable_num[-1])
+
+Smodsel <- lm(formula = S.obs ~ depth + Fetch_max + T_mean + PC2_score+ OM + Year, data = Stable)
+summ(Smodsel) #significant 
+gvlma::gvlma(Smodsel)
+par(mfrow = c(2,2))
+plot(Smodsel)
+
+Smodsel_ran1 <- lmer(formula = S.obs ~ depth + Fetch_max + T_mean + PC2_score +
+    OM + Year + (1|Site), data = Stable)
+summ(Smodsel_ran1)
+
+R2 <- partR2(Smodsel_ran1, partvars =  c("depth", "Fetch_max", "T_mean", "OM", "Year", "PC2_score"), R2_type = "marginal", CI = .95, nboot = 100, max_level = 1)
+R2
+forestplot(R2)
+
+export_summs(modfixalpha2,Smodsel, Smodsel_ran1, error_pos = "right", to.file = "docx", file.name = "Output/models.docx")
+
+# avPlots.invis <- function(MODEL, ...) {
+#   
+#   ff <- tempfile()
+#   png(filename = ff)
+#   OUT <- car::avPlots(MODEL, ...)
+#   dev.off()
+#   unlink(ff)
+#   OUT }
+# 
+# avtable <- avPlots.invis(Smodsel, intercept = TRUE)
+
+# S_PC2 <- as.data.frame(avtable[["PC2_score"]]) %>%
+#   rename(S_obs = S.obs) %>% 
+#   bind_cols(alphapoint) %>% 
+#   select(Point, Site, PC2_score, S_obs)
+
+# ggplot(data = S_PC2 , aes(x = PC2_score, y = S_obs, colour = Site))+
+#   geom_point()+
+#   scale_color_manual(values = pal) +
+#   geom_smooth(colour = "gray65", method = lm)
+
+effect_plot(Smodsel_ran1, PC2_score, interval = TRUE, plot.points = TRUE, partial.residuals = TRUE)
+
+
+
+```
+
+### Fauna Density
+
+```{r}
+ggplot(data = modalpha, aes(x = Fauna_Density))+
+  geom_density(colour = "red")+
+  scale_x_log10()
+
+ggplot(data = modalpha , aes(x = depth, y = Fauna_Density, colour = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray") +
+  scale_y_log10()
+ggplot(data = modalpha , aes(x = Mud, y = Fauna_Density, colour = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray") +
+  scale_y_log10()+
+  scale_x_log10()
+
+ggplot(data = modalpha , aes(x = PC1_score, y = Fauna_Density, colour = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray", method = lm)+
+  ylab("Density of Macrofauna")+
+  xlab("Rhodolith Complexity (PC1)")+
+  scale_y_log10()+
+  theme(legend.title = element_text(face = "bold", colour = "gray35", size = 22), legend.text = element_text(size = 20, colour = "gray35"), legend.background = element_blank(), legend.box.background = element_blank(), legend.key = element_blank(), axis.text = element_text(size = 20), axis.title = element_text(size =22, face = "bold")) +
+  guides(fill = guide_legend(title.position = "top"))
+
+cor.test(x = log(modalpha$Fauna_Density), y = modalpha$PC1_score) #correlation
+cor.test(x = log(modalpha$Fauna_Density), y = modalpha$PC1_score, method = "spearman")
+
+modfixalpha1 <- lm(data = modalpha, log(Fauna_Density) ~ PC1_score)
+summ(modfixalpha1) #NOT 
+gvlma::gvlma(modfixalpha1)
+par(mfrow = c(2,2))
+plot(modfixalpha1) 
+
+# pdf("Output/Density.pdf", width= 16, height=11.25)
+ggplot(data = modalpha , aes(x = PC2_score, y = Fauna_Density, colour = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray", method = lm)+
+  ylab("Density of Macrofauna")+
+  xlab("Bed Complexity (-PC2)")+
+  scale_y_log10()+
+  theme(legend.title = element_text(face = "bold", colour = "gray35", size = 22), legend.text = element_text(size = 20, colour = "gray35"), legend.background = element_blank(), legend.box.background = element_blank(), legend.key = element_blank(), axis.text = element_text(size = 20), axis.title = element_text(size =22, face = "bold")) +
+  guides(fill = guide_legend(title.position = "top"))
+  
+# dev.off()
+cor.test(x = modalpha$Fauna_Density, y = modalpha$PC2_score) #correlation
+cor.test(x = modalpha$Fauna_Density, y = modalpha$PC2_score, method = "spearman")
+
+modfixalpha2 <- lm(data = modalpha, log(Fauna_Density) ~ PC2_score)
+summ(modfixalpha2) #NOT 
+gvlma::gvlma(modfixalpha2)
+par(mfrow = c(2,2))
+plot(modfixalpha2)
+
+Dtable <- alphapoint %>% 
+  select(Point:code, Fauna_Density) %>% 
+  left_join(bccomp_med %>% select(Site, Point, PC1_score, PC2_score)) %>% 
+  left_join(env) %>%
+  column_to_rownames("code") %>% 
+  select_if(is.numeric) %>% 
+  select(-Year)
+
+ggplot(data = modalpha , aes(x = Current_mean, y = Fauna_Density, colour = Site))+
+  geom_point()+
+  scale_y_log10()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray", method = lm, formula = y ~ poly(x, 2))
+
+mod0 <- lm(log(Fauna_Density) ~ 1, Dtable)
+modF <- lm(log(Fauna_Density) ~., data = Dtable)
+MASS::stepAIC(mod0, direction = "forward",
+              scope = list(lower = mod0, upper = modF))
+
+
+
+Dmodsel <- lm(formula = log(Fauna_Density) ~ Current_mean + depth + 
+    PC1_score + T_mean + OM + T_sd + Fetch_max + Grain_size, data = Dtable)
+summ(Dmodsel) #NOT 
+gvlma::gvlma(Dmodsel)
+par(mfrow = c(2,2))
+plot(Dmodsel)
+
+# export_summs(modfixalpha2, Smodsel, to.file = "docx", file.name = "Output/models.docx" )
+
+effect_plot(Dmodsel, PC1_score, interval = TRUE, plot.points = TRUE, partial.residuals = FALSE)
+
+
+```
+
+### N2
+
+```{r}
+ggplot(data = modalpha, aes(x = N2))+
+  geom_density(colour = "red")
+
+ggplot(data = modalpha , aes(x = depth, y = N2, colour = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray") 
+
+ggplot(data = modalpha , aes(x = Mud, y = N2, colour = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray")
+
+
+ggplot(data = modalpha , aes(x = PC1_score, y = N2, colour = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray", method = loess)+
+  ylab("Macrofauna Diversity N2")+
+  xlab("Rhodolith Complexity (PC1)")+
+  scale_y_log10()+
+  theme(legend.title = element_text(face = "bold", colour = "gray35", size = 22), legend.text = element_text(size = 20, colour = "gray35"), legend.background = element_blank(), legend.box.background = element_blank(), legend.key = element_blank(), axis.text = element_text(size = 20), axis.title = element_text(size =22, face = "bold")) +
+  guides(fill = guide_legend(title.position = "top"))
+
+cor.test(x = log(modalpha$N2), y = modalpha$PC1_score) #correlation
+cor.test(x = log(modalpha$N2), y = modalpha$PC1_score, method = "spearman") #no cor
+
+modfixalpha1 <- lm(data = modalpha, N2 ~ PC1_score)
+summ(modfixalpha1) #NOT 
+gvlma::gvlma(modfixalpha1)
+par(mfrow = c(2,2))
+plot(modfixalpha1) 
+
+# pdf("Output/Density.pdf", width= 16, height=11.25)
+ggplot(data = modalpha , aes(x = PC2_score, y = N2, colour = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray", method = loess)+
+  ylab("Macrofauna Diversity N2")+
+  xlab("Bed Complexity (-PC2)")+
+  scale_y_log10()+
+  theme(legend.title = element_text(face = "bold", colour = "gray35", size = 22), legend.text = element_text(size = 20, colour = "gray35"), legend.background = element_blank(), legend.box.background = element_blank(), legend.key = element_blank(), axis.text = element_text(size = 20), axis.title = element_text(size =22, face = "bold")) +
+  guides(fill = guide_legend(title.position = "top"))
+  
+# dev.off()
+cor.test(x = modalpha$N2, y = modalpha$PC2_score) #correlation
+cor.test(x = modalpha$N2, y = modalpha$PC2_score, method = "spearman")
+
+modfixalpha2 <- lm(data = modalpha, N2 ~ PC2_score)
+summ(modfixalpha2) 
+gvlma::gvlma(modfixalpha2)
+par(mfrow = c(2,2))
+plot(modfixalpha2)
+
+N2table <- alphapoint %>% 
+  select(Point:code, N2) %>% 
+  left_join(bccomp_med %>% select(Site, Point, PC1_score, PC2_score)) %>% 
+  left_join(env) %>%
+  column_to_rownames("code") %>% 
+  select_if(is.numeric) %>% 
+  select(-Year)
+
+ggplot(data = modalpha , aes(x = Current_mean, y = N2, colour = Site))+
+  geom_point()+
+  scale_y_log10()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray", method = lm, formula = y ~ poly(x, 2))
+
+mod0 <- lm(N2 ~ 1, N2table)
+modF <- lm(N2 ~., data = N2table)
+MASS::stepAIC(mod0, direction = "forward",
+              scope = list(lower = mod0, upper = modF))
+
+
+
+N2modsel <- lm(formula = N2 ~ T_sd + depth + Mud + PC1_score + PC2_score + Current_mean + OM + Grain_size, data = N2table)
+summ(N2modsel) #NOT 
+gvlma::gvlma(N2modsel)
+par(mfrow = c(2,2))
+plot(Dmodsel)
+
+
+# export_summs(modfixalpha2, Smodsel, to.file = "docx", file.name = "Output/models.docx" )
+
+
+
+```
+
+## Epifauna
+
+```{r models epi}
+modepi <- alphaepi %>%
+  left_join(bccomp_med) %>%
+  left_join(env) 
+```
+
+### Richness
+
+```{r epi richness}
+#---- Richness ----
+ggplot(data = modepi, aes(x = S.obs))+
+  geom_density(colour = "red")
+ggplot(data = modepi, aes(x = sqrt(S.obs)))+
+  geom_density(colour = "red")
+ggplot(data = modepi, aes(x = PC1_score))+
+  geom_density(colour = "red")
+ggplot(data = modepi, aes(x = PC2_score))+
+  geom_density(colour = "red")
+
+cor.test(x = modepi$S.obs, y = modepi$PC1_score) #correlation
+cor.test(x = sqrt(modepi$S.obs), y = modepi$PC1_score)
+
+
+ggplot(data = modepi , aes(x = PC1_score, y = S.obs, colour = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray") 
+
+ggplot(data = modepi , aes(x = Current_mean, y = S.obs, colour = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray") +
+  scale_x_log10()
+
+## FIXED MODEL
+modfixepi1 <- lm(data = modepi, S.obs ~ PC1_score)
+summ(modfixepi1)  
+gvlma::gvlma(modfixepi1)
+par(mfrow = c(2,2))
+plot(modfixepi1) 
+
+ggplot(data = modepi , aes(x = PC2_score, y = S.obs, colour = Site))+
+  geom_point()+
+#  geom_label_repel(aes(label = Point))+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray", method = lm) 
+
+cor.test(x = modepi$S.obs, y = modepi$PC2_score) 
+cor.test(x = sqrt(modepi$S.obs), y = modepi$PC2_score) 
+
+## FIXED MODEL PC2
+modfixepi2 <- lm(data = modepi, S.obs ~ PC2_score)
+summ(modfixepi2) 
+gvlma::gvlma(modfixepi2) 
+par(mfrow = c(2,2))
+plot(modfixepi2) 
+
+modpol <- lm(data =  modepi, S.obs ~ PC2_score)
+summ(modpol)
+
+gvlma::gvlma(modpol) 
+par(mfrow = c(2,2))
+plot(modpol) 
+
+   
+ggplot(modepi, aes(PC2_score, S.obs, colour = Site) ) +
+  geom_point()+
+  geom_smooth(method = "lm", formula = y ~ poly(x, 2, raw = TRUE), colour = "gray")+
+  scale_color_manual(values = pal)
+
+epiStable <- alphaepi %>%
+  column_to_rownames("code") %>% 
+  select(Point:Year, Site, S.obs) %>% 
+  left_join(bccomp_med %>% select(Site, Point, PC1_score, PC2_score)) %>% 
+  left_join(env)
+  
+
+ggplot(data = modepi , aes(x = Current_mean, y = S.obs, colour = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray", method = lm, formula = y ~ poly(x, 3)) 
+
+epiStable_num <- epiStable %>% 
+  select_if(is.numeric) %>% 
+  select(-Year)
+
+mod0 <- lm(S.obs ~ 1, epiStable_num)
+modF <- lm(S.obs ~., data = epiStable_num)
+MASS::stepAIC(mod0, direction = "forward",
+              scope = list(lower = mod0, upper = modF))
+
+forward.sel(epiStable_num[1], epiStable_num[-1])
+
+epiSmodsel <- lm(formula = S.obs ~ depth + OM + Gravel + T_max + 
+    PC2_score, data = epiStable)
+summ(epiSmodsel) #significant 
+gvlma::gvlma(epiSmodsel)
+par(mfrow = c(2,2))
+plot(epiSmodsel)
+
+epiSmodsel_ran1 <- lmer(formula = S.obs ~ depth + Fetch_max + T_mean + PC2_score +
+    OM + Gravel + (1|Site), data = epiStable)
+summ(epiSmodsel_ran1)
+
+epiSmodsel_ran2 <- lmer(formula = S.obs ~ depth + Fetch_max + T_mean + PC2_score +
+    OM + (1|Site) + (1|Year), data = epiStable)
+summ(epiSmodsel_ran2)
+varpart(epiStable$S.obs, ~depth + Fetch_max + T_mean + OM, ~PC2_score, ~Site, ~Year, data = epiStable)
+
+# Everything
+compenv <- bccomp_med %>%
+  select(-PC1_score, -PC2_score, -I, -S, -DR1, -DR2, -DR3, -Broken_density, -Alive_Total, -Alive_Density) %>% 
+  left_join(env) 
+
+forward.sel.par(Y = alphaepi$S.obs, X = compenv %>% select_if(is.numeric), verbose = TRUE)
+
+starting.model <- lm(modepi$S.obs ~ ., data = compenv %>% select_if(is.numeric))
+simple.model <- lm(modepi$S.obs ~ 1, data = compenv %>% select_if(is.numeric))
+MASS::stepAIC(starting.model, scope = list(upper = starting.model, lower = simple.model), direction = "both")
+
+modfull <- lm(data =  modepi, S.obs ~ D_bin + Current_mean + OM + L + Fetch_max + depth + Total_Density  + Branching_density)
+summ(modfull)
+gvlma::gvlma(modfull)
+par(mfrow = c(2,2))
+plot(modfull) 
+
+```
+
+### Abundance
+
+```{r epi ab}
+#---- Abundance ---- 
+ggplot(data = modepi, aes(x = Fauna_Density))+
+  geom_density(colour = "red")
+ggplot(data = modepi, aes(x = log(Fauna_Density)))+
+  geom_density(colour = "red")
+
+ggplot(data = modepi , aes(x = PC1_score, y = Fauna_Density, colour = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray", method = "lm") +
+  scale_y_log10()
+
+cor.test(x = modepi$Fauna_Density, y = modepi$PC1_score) #Correlation
+cor.test(x = log(modepi$Fauna_Density), y = modepi$PC1_score) #Correlation
+
+## FIXED MODEL
+modfixepi3 <- lm(data = modepi, log(Fauna_Density) ~ PC1_score)
+summ(modfixepi3) #NOT 
+gvlma::gvlma(modfixepi3)
+par(mfrow = c(2,2))
+plot(modfixepi3) 
+
+ggplot(data = modepi, aes(x = PC2_score, y = Fauna_Density, colour = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray", method = "lm") +
+  scale_y_log10()
+
+ggplot(data = modepi %>%  filter(!Site %in% c("Trevignon", "Molene")) , aes(x = PC2_score, y = Fauna_Density, colour = Site))+
+  geom_point()+
+  scale_color_manual(values = pal[-c(4,8)]) +
+  geom_smooth( colour = "gray", method = "lm") +
+  scale_y_log10()
+
+cor.test(x = log(modepi$Fauna_Density), y = modepi$PC2_score) 
+
+## fixepiED MODEL
+modfixepi4 <- lm(data = modepi %>%  filter(!Site %in% c("Trevignon", "Molene")), log(Fauna_Density) ~ PC2_score * PC1_score)
+summ(modfixepi4) #NOT SIGNIFICANT
+gvlma::gvlma(modfixepi4) 
+par(mfrow = c(2,2))
+plot(modfixepi4) 
+
+
+#---- Evenness ----
+ggplot(data = modepi, aes(x = E20))+
+  geom_density(colour = "red")
+ggplot(data = modepi, aes(x = log(E20)))+
+  geom_density(colour = "red")
+
+ggplot(data = modepi , aes(x = PC1_score, y= E20, colour = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray")+
+  scale_y_log10()
+
+cor.test(x = log(modepi$E20), y = modepi$PC1_score) 
+
+## FIXED MODEL
+modfixepi5 <- lm(data = modepi, log(E20) ~ PC1_score)
+summ(modfixepi5) #NOT 
+gvlma::gvlma(modfixepi5)
+par(mfrow = c(2,2))
+plot(modfixepi3) 
+
+
+modrandepi5 <- lmer(data = modepi, formula = log(E20) ~ PC1_score + (1|Site), REML = TRUE)
+
+
+summ(modrandepi5)
+
+piecewiseSEM::rsquared(modrandepi5) 
+fit5 <- predict(modrandepi5)
+
+ggplot(data = modepi , aes(x = PC2_score, y = log(E20), colour = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_line(aes(y = fit5), size = .8)+
+  geom_smooth(method = "lm", colour = "dark gray", se = FALSE, linetype = 2)+
+  labs(y = "Density of epifauna", x = "Complexity (PC2_axis)")
+
+qqmath(modrandepi5,id=0.05) 
+plot(modrandepi5,type=c("p","smooth")) 
+plot(modrandepi5,sqrt(abs(resid(.)))~fitted(.), type=c("p","smooth")) #residuos padronizados
+
+#PC2
+ggplot(data = modepi , aes(x = PC2_score, y = E20, colour = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray")+
+  scale_y_log10()
+
+cor.test(x = log(modepi$E20), y = modepi$PC2_score) 
+cor.test(x = sqrt(modepi$E20), y = modepi$PC2_score) 
+
+## fixED MODEL
+modfixepi6 <- lm(data = modepi, E20 ~ PC2_score)
+summ(modfixepi6) 
+gvlma::gvlma(modfixepi6) 
+par(mfrow = c(2,2))
+plot(modfixepi6) 
+
+
+
+
+#---- Simpsons diversity ----
+ggplot(data = modepi, aes(x = N2))+
+  geom_density(colour = "red")
+ggplot(data = modepi, aes(x = sqrt(N2)))+
+  geom_density(colour = "red")
+ggplot(data = modepi, aes(x = log(N2)))+
+  geom_density(colour = "red")
+
+
+ggplot(data = modepi , aes(x = PC1_score, y= N2, colour = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray")+
+  scale_y_log10()
+
+cor.test(x = log(modepi$N2), y = modepi$PC1_score) 
+
+
+## FIXED MODEL
+modfixepi7 <- lm(data = modepi, log(N2) ~ PC1_score)
+summ(modfixepi7) #NOT 
+gvlma::gvlma(modfixepi7)
+par(mfrow = c(2,2))
+plot(modfixepi7) 
+
+
+ggplot(data = modepi , aes(x = PC2_score, y = N2, colour = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray")+
+  scale_y_log10()
+  
+
+cor.test(x = log(modepi$N2), y = modepi$PC2_score, method = "spearman") 
+
+
+## fixED MODEL
+modfixepi8 <- lm(data = modepi, log(N2) ~ PC2_score)
+summ(modfixepi8) 
+gvlma::gvlma(modfixepi8) 
+par(mfrow = c(2,2))
+plot(modfixepi8) 
+
+```
+
+## Infauna
+
+```{r models inf}
+modinf <- alphainf %>% 
+  left_join(bccomp) %>% 
+  left_join(env)
+
+#---- Richness ----
+ggplot(data = modinf, aes(x = S.obs))+
+  geom_density(colour = "red")
+ggplot(data = modinf, aes(x = sqrt(S.obs)))+
+  geom_density(colour = "red")
+
+ggplot(data = modinf , aes(x = PC1_score, y = S.obs, colour = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray") 
+
+cor.test(x = modinf$S.obs, y = modinf$PC1_score) 
+
+## fixinfED MODEL
+modfixinf1 <- lm(data = modinf, S.obs ~ PC1_score)
+summ(modfixinf1) #NOT 
+gvlma::gvlma(modfixinf1)
+par(mfrow = c(2,2))
+plot(modfixinf1) 
+
+
+ggplot(data = modinf , aes(x = PC2_score, y = S.obs, colour = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray") 
+
+cor.test(x = modinf$S.obs, y = modinf$PC2_score) #POSITIVE CORRELATION strong
+cor.test(x = sqrt(modinf$S.obs), y = modinf$PC2_score) 
+
+## fixinfED MODEL
+modfixinf2 <- lm(data = modinf, S.obs ~ PC2_score)
+summ(modfixinf2) #NOT SIGNIFICANT
+gvlma::gvlma(modfixinf2) 
+par(mfrow = c(2,2))
+plot(modfixinf2) 
+
+
+modrandinf2 <- lmer(data = modinf, formula = S.obs ~ PC2_score + (1|Site), REML = TRUE)
+
+
+summ(modrandinf2) #significant fixed effect
+
+piecewiseSEM::rsquared(modrandinf2) #conditional r-squared of 0.04, marginal of 0.37
+
+fit2 <- predict(modrandinf2)
+
+ggplot(data = modinf , aes(x = PC2_score, y = S.obs, colour = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_line(aes(y = fit2), size = .8)+
+  geom_smooth(method = "lm", colour = "dark gray", se = FALSE, linetype = 2)+
+  labs(y = "Estimated Richness (Chao1)", x = "Complexity (PC2_axis)")
+
+qqmath(modrandinf2,id=0.05) 
+plot(modrandinf2,type=c("p","smooth")) 
+plot(modrandinf2,sqrt(abs(resid(.)))~fitted(.), type=c("p","smooth")) #residuos padronizados
+
+#---- Abundance ---- 
+ggplot(data = modinf, aes(x = Fauna_Density))+
+  geom_density(colour = "red")
+ggplot(data = modinf, aes(x = log(Fauna_Density)))+
+  geom_density(colour = "red")
+
+ggplot(data = modinf , aes(x = PC1_score, y = Fauna_Density, colour = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray", method = "lm") +
+  scale_y_log10()
+
+cor.test(x = modinf$Fauna_Density, y = modinf$PC1_score) #Correlation
+cor.test(x = log(modinf$Fauna_Density), y = modinf$PC1_score) #Correlation
+
+## FIXED MODEL
+modfixinf3 <- lm(data = modinf, log(Fauna_Density) ~ PC1_score)
+summ(modfixinf3) #NOT 
+gvlma::gvlma(modfixinf3)
+par(mfrow = c(2,2))
+plot(modfixinf3) 
+
+
+ggplot(data = modinf , aes(x = PC2_score, y = Fauna_Density, colour = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray", method = "lm") +
+  scale_y_log10()
+
+cor.test(x = log(modinf$Fauna_Density), y = modinf$PC2_score) #POSITIVE CORRELATION
+cor.test(x = sqrt(modinf$Fauna_Density), y = modinf$PC2_score) 
+
+## fixED MODEL
+modfixinf4 <- lm(data = modinf, log(Fauna_Density) ~ PC2_score)
+summ(modfixinf4) #NOT SIGNIFICANT
+gvlma::gvlma(modfixinf4) 
+par(mfrow = c(2,2))
+plot(modfixinf4) 
+
+
+modrandinf4 <- lmer(data = modinf, formula = log(Fauna_Density) ~ PC2_score + (1|Site), REML = TRUE)
+
+
+summ(modrandinf4) #significant fixinfed effect
+
+piecewiseSEM::rsquared(modrandinf4) #conditional r-squared of 0.04, marginal of 0.38
+fit4 <- predict(modrandinf4)
+
+ggplot(data = modinf , aes(x = -PC2_score, y = log(Fauna_Density), colour = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_line(aes(y = fit4), size = .8)+
+  geom_smooth(method = "lm", colour = "dark gray", se = FALSE, linetype = 2)+
+  labs(y = "Density of inffauna", x = "Complexity (PC2_axis)")
+
+qqmath(modrandinf4,id=0.05) 
+plot(modrandinf4,type=c("p","smooth")) 
+plot(modrandinf4,sqrt(abs(resid(.)))~fitted(.), type=c("p","smooth")) #residuos padronizados
+#---- Evenness ----
+ggplot(data = modinf, aes(x = E20))+
+  geom_density(colour = "red")
+
+ggplot(data = modinf , aes(x = PC1_score, y= E20, colour = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray", method = "lm")
+
+cor.test(x = modinf$E20, y = modinf$PC1_score) 
+
+## FIXED MODEL
+modfixinf5 <- lm(data = modinf, E20 ~ PC1_score)
+summ(modfixinf5) #NOT 
+gvlma::gvlma(modfixinf5)
+par(mfrow = c(2,2))
+plot(modfixinf3) 
+
+
+ggplot(data = modinf , aes(x = PC2_score, y = E20, colour = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray")
+
+cor.test(x = modinf$E20, y = modinf$PC2_score) 
+
+## fixED MODEL
+modfixinf6 <- lm(data = modinf, E20 ~ PC2_score)
+summ(modfixinf6) 
+gvlma::gvlma(modfixinf6) 
+par(mfrow = c(2,2))
+plot(modfixinf6) 
+
+#---- Simpsons diversity ----
+ggplot(data = modinf, aes(x = N2))+
+  geom_density(colour = "red")
+
+ggplot(data = modinf , aes(x = PC1_score, y= N2, colour = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray", method = "lm")
+
+cor.test(x = modinf$N2, y = modinf$PC1_score) 
+
+## FIXED MODEL
+modfixinf7 <- lm(data = modinf, N2 ~ PC1_score)
+summ(modfixinf7) #NOT 
+gvlma::gvlma(modfixinf7)
+par(mfrow = c(2,2))
+plot(modfixinf3) 
+
+
+ggplot(data = modinf , aes(x = PC2_score, y = N2, colour = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray")
+
+cor.test(x = modinf$N2, y = modinf$PC2_score) 
+
+
+## fixED MODEL
+modfixinf8 <- lm(data = modinf, N2 ~ PC2_score)
+summ(modfixinf8) 
+gvlma::gvlma(modfixinf8) 
+par(mfrow = c(2,2))
+plot(modfixinf8) 
+
+```
+
+## Interstice
+
+```{r models int}
+modint <- alphaint %>% 
+  left_join(bccomp) %>% 
+  left_join(env)
+
+#---- Richness ----
+ggplot(data = modint, aes(x = S.obs))+
+  geom_density(colour = "red")
+ggplot(data = modint, aes(x = sqrt(S.obs)))+
+  geom_density(colour = "red")
+
+ggplot(data = modint , aes(x = PC1_score, y = S.obs, colour = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray") 
+
+cor.test(x = modint$S.obs, y = modint$PC1_score) 
+
+## fixintED MODEL
+modfixint1 <- lm(data = modint, S.obs ~ PC1_score)
+summ(modfixint1) 
+gvlma::gvlma(modfixint1)
+par(mfrow = c(2,2))
+plot(modfixint1) 
+
+
+ggplot(data = modint , aes(x = PC2_score, y = S.obs, colour = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray") 
+
+cor.test(x = modint$S.obs, y = modint$PC2_score) 
+cor.test(x = sqrt(modint$S.obs), y = modint$PC2_score) 
+
+## FIXED MODEL
+modfixint2 <- lm(data = modint, S.obs ~ PC2_score)
+summ(modfixint2) 
+gvlma::gvlma(modfixint2) 
+par(mfrow = c(2,2))
+plot(modfixint2) 
+
+
+modrandint2 <- lmer(data = modint, formula = S.obs ~ PC2_score + (1|Site), REML = TRUE)
+
+
+summ(modrandint2) 
+
+piecewiseSEM::rsquared(modrandint2) 
+
+fit2 <- predict(modrandint2)
+
+ggplot(data = modint , aes(x = PC2_score, y = S.obs, colour = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_line(aes(y = fit2), size = .8)+
+  geom_smooth(method = "lm", colour = "dark gray", se = FALSE, linetype = 2)+
+  labs(y = "Estimated Richness (Chao1)", x = "Complexity (PC2_axis)")
+
+qqmath(modrandint2,id=0.05) 
+plot(modrandint2,type=c("p","smooth")) 
+plot(modrandint2,sqrt(abs(resid(.)))~fitted(.), type=c("p","smooth"))
+
+#---- Abundance ---- 
+ggplot(data = modint, aes(x = E20))+
+  geom_density(colour = "red")
+ggplot(data = modint, aes(x = log(E20)))+
+  geom_density(colour = "red")
+
+ggplot(data = modint , aes(x = PC1_score, y = E20, colour = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray", method = "lm") +
+  scale_y_log10()
+
+cor.test(x = modint$E20, y = modint$PC1_score) 
+cor.test(x = log(modint$E20), y = modint$PC1_score) 
+
+## FIXED MODEL
+modfixint3 <- lm(data = modint, log(E20) ~ PC1_score)
+summ(modfixint3) #NOT 
+gvlma::gvlma(modfixint3)
+par(mfrow = c(2,2))
+plot(modfixint3) 
+
+
+ggplot(data = modint , aes(x = PC2_score, y = E20, colour = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray") +
+  scale_y_log10()
+
+cor.test(x = log(modint$E20), y = modint$PC2_score) 
+cor.test(x = sqrt(modint$E20), y = modint$PC2_score) 
+
+## fixED MODEL
+modfixint4 <- lm(data = modint, log(E20) ~ PC2_score)
+summ(modfixint4) 
+gvlma::gvlma(modfixint4) 
+par(mfrow = c(2,2))
+plot(modfixint4) 
+
+
+modrandint4 <- lmer(data = modint, formula = log(E20) ~ PC2_score + (1|Site), REML = TRUE)
+
+
+summ(modrandint4)
+
+piecewiseSEM::rsquared(modrandint4) 
+fit4 <- predict(modrandint4)
+
+ggplot(data = modint , aes(x = -PC2_score, y = log(E20), colour = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_line(aes(y = fit4), size = .8)+
+  geom_smooth(method = "lm", colour = "dark gray", se = FALSE, linetype = 2)+
+  labs(y = "Density of intfauna", x = "Complexity (PC2_axis)")
+
+qqmath(modrandint4,id=0.05) 
+plot(modrandint4,type=c("p","smooth")) 
+plot(modrandint4,sqrt(abs(resid(.)))~fitted(.), type=c("p","smooth")) #residuos padronizados
+
+
+#---- Evenness ----
+
+modint <- modint %>% 
+  filter(E20 != Inf)
+
+ggplot(data = modint, aes(x = E20))+
+  geom_density(colour = "red")
+ggplot(data = modint, aes(x = log(E20)))+
+  geom_density(colour = "red")
+
+ggplot(data = modint , aes(x = PC1_score, y= E20, colour = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray", method = "lm")+
+  scale_y_log10()
+
+cor.test(x = modint$E20, y = modint$PC1_score) 
+cor.test(x = log(modint$E20), y = modint$PC1_score) 
+
+## FIXED MODEL
+modfixint3 <- lm(data = modint, log(E20) ~ PC1_score)
+summ(modfixint3) #NOT 
+gvlma::gvlma(modfixint3)
+par(mfrow = c(2,2))
+plot(modfixint3) 
+
+
+ggplot(data = modint , aes(x = PC2_score, y = E20, colour = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray") +
+  scale_y_log10()
+
+cor.test(x = log(modint$E20), y = modint$PC2_score) 
+cor.test(x = sqrt(modint$E20), y = modint$PC2_score) 
+
+## fixED MODEL
+modfixint4 <- lm(data = modint, log(E20) ~ PC2_score)
+summ(modfixint4) 
+gvlma::gvlma(modfixint4) 
+par(mfrow = c(2,2))
+plot(modfixint4) 
+
+
+modrandint4 <- lmer(data = modint, formula = log(E20) ~ PC2_score + (1|Site), REML = TRUE)
+
+
+summ(modrandint4)
+
+piecewiseSEM::rsquared(modrandint4) 
+fit4 <- predict(modrandint4)
+
+ggplot(data = modint , aes(x = -PC2_score, y = log(E20), colour = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_line(aes(y = fit4), size = .8)+
+  geom_smooth(method = "lm", colour = "dark gray", se = FALSE, linetype = 2)+
+  labs(y = "Density of intfauna", x = "Complexity (PC2_axis)")
+
+qqmath(modrandint4,id=0.05) 
+plot(modrandint4,type=c("p","smooth")) 
+plot(modrandint4,sqrt(abs(resid(.)))~fitted(.), type=c("p","smooth")) #residuos padronizados
+
+
+```
+
+# Anova
+
+```{r anova}
+all_table <- alpha_all %>% 
+  left_join(bccomp_med)
+
+shapiro.test(all_table$S.obs)  #not normal
+
+objtest <- lm(data = all_table, formula = S.obs ~ PC1_score * PC2_score * Position)
+test <- anova(objtest)
+test
+
+permcomp <- adonis2(formula= all_table$S.obs ~ all_table$PC1_score * all_table$PC2_score * all_table$Position, method = "eucl")
+permcomp
+```
+
+# RDA
+
+## total fauna
+
+```{r rda}
+compenv <- env %>% 
+  left_join(bccomp_med) %>%
+  select(-DR1,-DR2,  -Broken_density, -I, -S, -Alive_Density, -Alive_Total, -Dry_weight) %>%
+  mutate(code = paste(.$Point, .$Year, sep = "_")) %>% 
+  column_to_rownames("code") %>% 
+  arrange(rownames(.))
+
+rownames(maerl_dens) == rownames(compenv)
+
+num_compenv <- compenv %>% 
+  rownames_to_column("code") %>% 
+  select(-Site:-Point, -mini, -Mini,  -PC1_score, -PC2_score, -PC1_c, -PC2_c, -Year) %>% 
+  column_to_rownames("code")
+
+num_maerldens <- maerl_dens %>%
+  rownames_to_column("code") %>% 
+  select(-Point:-Season) %>% 
+  column_to_rownames("code")
+
+bcmaerl <- box.cox.chord(num_maerldens)
+rownames(bcmaerl) == rownames(num_compenv)
+
+pcamaerl <- rda(bcmaerl)
+summary(pcamaerl)
+screeplot(pcamaerl, bstick = T)
+pdf("Output/pca_fauna.pdf", height = 5.25, width = 12)
+pca_victor(pcamaerl, metadata = maerl_dens, main.group = "Site", scale.fill = pal, scale.colour = pal, goodness.thresh = .55, stat1 = "ellipse", add.centroids = TRUE, ysites = c(-0.18, .18), xsites = c(-.18,.18), ysp = c(-.5,.4), xsp = c(-.5,.4), nudge.y = c(0,0,-.017,.02,-.017,-.017,0,-.017,-.017,-.017), nudge.x = c(.05, -.05, .02, 0, 0, -.02, .05, 0, 0, 0), conf.level = .8, font.size = 12/.pt, ext.plot.scale = 2.5, point.size = 1.5, c.size = 2.5)
+dev.off()
+pca_victor(pcamaerl, axes = c(1,3), metadata = maerl_dens, main.group = "Site", scale.fill = pal, scale.colour = pal, goodness.thresh = .5, stat1 = "ellipse")
+# forward.sel(bcmaerl, num_compenv, nperm = 1000)
+
+rdamaerl <- rda(formula = bcmaerl ~ Mud + depth + Current_mean + Branching_density +  D_bin + Fetch_max + T_sd + Sphericity + T_mean + D_gray  +  Total_Density + L + OM +  Year + Site, data = compenv)
+(aovtotal <- anova(rdamaerl, permutations = how(nperm = 999)))
+# (aovterms <- anova(rdamaerl, permutations = how(nperm = 999), by = "term"))
+# (aovaxes <- anova(rdamaerl, permutations = how(nperm = 999), by = "axis"))
+(R2adj <- RsquareAdj(rdamaerl)$adj.r.squared)
+
+maerl_dens_rda <- maerl_dens %>%
+  rename(site = Site)
+# pdf("Output/Partial_RDA_1_2.pdf", width = 12.39, height = 10.01)
+autoplot.rda.victor(object = rdamaerl, axes = c(1,2), metadata = maerl_dens_rda, scale.fill = pal, scale.colour = pal, layers = c("sites", "biplot", "regression", "centroids"), thresh = 0.24, stat = "ellipse", lvl = .8, legend.position = c(.5,.9), title.size = 22, font.size = 22/.pt, arrows = FALSE) + 
+  theme(legend.title = element_text(face = "bold", colour = "gray35", size = 22), legend.text = element_text(size = 20, colour = "gray35"), legend.position = "top", legend.background = element_blank(), legend.spacing.x = unit(0.5, "cm"), legend.box.background = element_blank(), legend.key = element_blank(), axis.text = element_text(size = 20)) + guides(fill = guide_legend(title.position = "top"), )+
+  ylim(c(-.6, 0.6))+
+  xlim(c(-.6, 0.6))
+# dev.off()
+
+# pdf("Output/Partial_RDA_1_3.pdf", width = 12.39, height = 10.01)
+autoplot.rda.victor(object = rdamaerl, axes = c(1,3), metadata = maerl_dens_rda, scale.fill = pal, scale.colour = pal, layers = c("sites", "biplot", "regression", "centroids"), thresh = 0.24, stat = "ellipse", lvl = .8, legend.position = c(.5,.9), title.size = 22, font.size = 22/.pt, arrows = FALSE) + 
+  theme(legend.title = element_text(face = "bold", colour = "gray35", size = 22), legend.text = element_text(size = 20, colour = "gray35"), legend.position = "right", legend.background = element_blank(), legend.spacing.x = unit(0.5, "cm"), legend.box.background = element_blank(), legend.key = element_blank(), axis.text = element_text(size = 20)) + guides(fill = guide_legend(title.position = "top"))+
+  ylim(c(-.6, 0.6))+
+  xlim(c(-.6, 0.6))
+# dev.off()
+
+#Fonction RDA CCA et
+
+list.hp <- list(Depth = compenv %>% select(depth), Hydrodynamics = compenv %>% select(Current_mean, Fetch_max), Granulometry = compenv %>% select(Mud, OM), Complexity = compenv %>% select(Branching_density, D_gray, D_bin,  Total_Density, L, Sphericity), Time = compenv %>% select(Year))
+rdamaerl.hp <- rdacca.hp(bcmaerl, list.hp, var.part = TRUE)
+rdamaerl.hp
+plot(rdamaerl.hp)
+varpart.hp <- as.data.frame(rdamaerl.hp$Var.part) %>% 
+  rownames_to_column("Variables")
+
+list.hp2 <- list(Depth = compenv %>% select(depth), Hydrodynamics = compenv %>% select(Current_mean, Fetch_max), Granulometry = compenv %>% select(Mud, OM), Temperature = compenv %>% select(T_mean, T_sd), Complexity = compenv %>% select(Branching_density, D_gray, D_bin,  Total_Density, L, Sphericity), Sites = compenv %>%  select(Site), Time = compenv %>% select(Year))
+rdamaerl.hp2 <- rdacca.hp(bcmaerl, list.hp2, var.part = TRUE)
+rdamaerl.hp2
+plot(rdamaerl.hp2)
+
+#library(UpSetVP)
+# pdf("Output/upsetvp_sites.pdf",width = 12, height = 6)
+upset_vp(rdamaerl.hp2, cutoff = 0.005, int.var = "Complexity", pal = pal[1:8], title.cex = 22, axis.cex = 20, pch.size = 6, col.width = .8, effect.cex = 6)
+dev.off()
+pdf("Output/upsetvp.pdf", width = 12, height = 6)
+upset_vp(rdamaerl.hp, cutoff = 0.0001, int.var = "Complexity", pal = pal[1:5])
+# dev.off()
+
+sitefauna <- maerl_dens %>% 
+  select(-Point, -Season, -Year) %>% 
+  group_by(Site) %>% 
+  summarise_if(is_numeric, median) %>% 
+  ungroup() %>%
+  column_to_rownames("Site")
+  
+sitechord <- box.cox.chord(sitefauna)
+
+testclust <- hclust(dist(sitechord),"ward.D2")
+
+plot(testclust)
+cutree(testclust, 4)
+
+```
+
+# Beta
+
+```{r beta}
+library(adespatial)
+test <- beta.div.comp(maerl_dens[-c(1:4)], coef = "J", quant = FALSE)
+test$part
+
+betalist <- list()
+for(i in unique(maerl_dens$Point)){
+  betalist[[i]] <- maerl_dens %>% filter(Point == i) %>% select(-Point:-Season)
+}
+
+reslist <- list()
+for(i in names(betalist)){
+  reslist[[i]] <- beta.div.comp(betalist[[i]], coef = "J", quant = FALSE)$part
+}
+
+bdruzicka <- as.data.frame(reslist) %>%
+  rownames_to_column %>% 
+  gather(Point, value, -rowname) %>% 
+  spread(rowname, value) %>% 
+  mutate(Point =  str_replace(Point, "\\.", " ")) %>% 
+  mutate(Point =  str_replace(Point, "\\.", " ")) %>% 
+  mutate(Point = str_replace(Point, "Belle ile", "Belle-ile")) %>% 
+  mutate(Point = str_replace(Point, "Saint Brieuc", "Saint-Brieuc")) %>% 
+  mutate(Point = as.factor(Point)) %>%
+  mutate(Point = factor(Point, levels = c("Belle-ile 1","Belle-ile 2", "Belle-ile 3", "Meaban 1", "Meaban 2", "Meaban 3", "Glenan 1", "Glenan 2", "Glenan 3", "Trevignon 1", "Trevignon 2", "Trevignon 3", "Camaret 1", "Camaret 2", "Camaret 3", "Keraliou 1", "Keraliou 2", "Keraliou 3", "Rozegat 1", "Rozegat 2", "Rozegat 3", "Molene 1", "Molene 2", "Molene 3", "Morlaix 1", "Morlaix 2", "Morlaix 3", "Saint-Brieuc 1", "Saint-Brieuc 2", "Saint-Brieuc 3"))) %>% 
+  left_join(comp_med %>% select(Point, Site)) %>% 
+  mutate(Site = factor(Site, levels = c("Belle-ile", "Meaban", "Glenan", "Trevignon", "Camaret", "Keraliou", "Rozegat", "Molene", "Morlaix", "Saint-Brieuc"))) %>% 
+  select(Mini, Point, Site, everything()) %>% 
+  arrange(Point)
+  
+
+comp_medsel <- bccomp_med %>% 
+  select(Mini, Site, Point, PC1_score, PC2_score)
+
+bdcomplex <- bdruzicka %>% 
+  left_join(comp_medsel) %>% 
+  left_join(env_mean)
+
+bdplot <- bdruzicka %>% 
+  mutate(Rf = 1-BDtotal) %>% 
+  select(-`Repl/BDtotal`, -`RichDif/BDtotal`) %>% 
+  gather(.,"Component", "Value", Repl:Rf) %>% 
+  mutate(Component = factor(Component, levels = c("Repl", "Rf", "RichDif"))) %>% 
+  arrange(Site, Component) %>%
+  mutate(Code = factor(paste(.$Site, .$Component, sep = "_"), levels = rev(do.call(paste, c(tidyr::expand_grid(levels(.$Site), levels(.$Component), sep = '_')))))) %>% 
+  mutate(Point = as.factor(Point)) %>% 
+  mutate(Point = factor(Point, levels = rev(levels(Point))))
+
+bdplot_mean <- bdruzicka %>% 
+  plyr::ddply("Site", summarise, BDmean = mean(BDtotal), Replmean = mean(Repl), RDmean = mean(RichDif), Replsd = sd(Repl), RDsd = sd(RichDif))  %>% 
+  mutate(Rf = 1-BDmean) %>%
+  gather(.,"Component", "Value", c(Replmean,Rf,RDmean)) %>% 
+  mutate(Component = factor(Component, levels = c("Replmean", "Rf", "RDmean"))) %>% 
+  mutate(Code = as.factor(paste(.$Site, .$Component, sep = "_"))) %>% 
+  arrange(Site, Component) %>% 
+  mutate(Code = factor(Code, levels  = rev(levels(Code)))) %>% 
+  mutate(Site = as.factor(Site)) %>% 
+  mutate(Site = factor(Site, levels = rev(levels(Site))))
+
+
+pal2 <- c(rbind(pal, rep("transparent", 10), paste(pal, "4D", sep = "")))
+
+(bdp <- ggplot(bdplot, aes(x = Value, y  = Point, fill = Code)) + 
+  geom_bar(position="fill", stat="identity") + 
+  scale_fill_manual(values = rev(pal2))+
+  labs(x = "BDtotal")+
+  scale_x_continuous(sec.axis = dup_axis(name = element_blank(), trans = "rev", breaks = c(0, .1, .2, .3, .4, .5, .6, .7, .8, .9, 1)), n.breaks = 11)+
+  theme(panel.grid = element_blank(), legend.position = "none", legend.title = element_text(face = "bold", colour = "gray35", size = 22), legend.text = element_text(size = 20, colour = "gray35"), legend.background = element_blank(), legend.box.background = element_blank(), legend.key = element_blank(), axis.text.y = element_blank(), axis.text = element_text(size = 20), axis.title = element_text(size =22, face = "bold"))+
+  coord_cartesian(xlim = c(0,1), expand = FALSE))
+
+pal3 <- c(rbind(pal, paste(pal, "4D", sep = ""), rep("transparent", 10)))
+
+(bdp2 <- ggplot(bdplot %>% mutate(Component = factor(Component, levels = c("Repl", "RichDif", "Rf"))) %>% 
+  arrange(Site, Component) %>%
+  mutate(Code = factor(paste(.$Site, .$Component, sep = "_"), levels = rev(do.call(paste, c(tidyr::expand_grid(levels(.$Site), levels(.$Component), sep = '_')))))), aes(x = Value, y  = Point, fill = Code)) + 
+  geom_bar(position="fill", stat="identity") + 
+  scale_fill_manual(values = rev(pal3))+
+  labs(x = "BDtotal")+
+  scale_x_continuous(n.breaks = 11)+
+  theme(panel.grid = element_blank(), legend.position = "none", legend.title = element_text(face = "bold", colour = "gray35", size = 22), legend.text = element_text(size = 20, colour = "gray35"), legend.background = element_blank(), legend.box.background = element_blank(), legend.key = element_blank(), axis.text.y = element_blank(), axis.text = element_text(size = 20), axis.title = element_text(size =22, face = "bold"))+
+  coord_cartesian(xlim = c(0,1), expand = FALSE))
+
+
+(bdp_mean <- ggplot(bdplot_mean, aes(x = Value, y  = Site, fill = Code)) + 
+  geom_bar(position="fill", stat="identity") + 
+  scale_fill_manual(values = rev(pal2))+
+  labs(x = "BDtotal")+
+  theme(panel.grid = element_blank(), legend.position = "none", axis.text.y = element_blank(), legend.title = element_text(face = "bold", colour = "gray35", size = 22), legend.text = element_text(size = 20, colour = "gray35"), legend.background = element_blank(), legend.box.background = element_blank(), legend.key = element_blank(), axis.text = element_text(size = 20), axis.title = element_text(size =22, face = "bold"))+
+  coord_cartesian(xlim = c(0,1), expand = FALSE))
+
+p <- ggplot(bdplot %>% filter(Component != "Rf"), aes(x = Value, y  = Point, fill = Component)) + 
+  geom_bar(position="fill", stat="identity") + 
+  scale_fill_manual(values = c("#000000", "#0000004D"))+
+  theme(legend.title = element_text(face = "bold", colour = "gray35", size = 22), legend.text = element_text(size = 20, colour = "gray35"), legend.background = element_blank(), legend.box.background = element_blank(), legend.key = element_blank(), axis.text = element_text(size = 20), axis.title = element_text(size =22, face = "bold"), legend.direction = "horizontal")+
+  coord_cartesian(xlim = c(0,1), expand = FALSE)
+legp <- get_legend(p)
+
+p2 <- ggplot(bdplot %>% filter(Component != "Rf"), aes(x = Value, y  = Point, fill = Site)) +
+  geom_bar(position="fill", stat="identity") +
+  scale_fill_manual(values = pal)+
+  theme(panel.grid = element_blank(), legend.title = element_text(face = "bold", colour = "gray35", size = 22), legend.text = element_text(size = 20, colour = "gray35"), legend.background = element_blank(), legend.box.background = element_blank(), legend.key = element_blank(), axis.text = element_text(size = 20), axis.title = element_text(size =22, face = "bold"))+
+  coord_cartesian(xlim = c(0,1), expand = FALSE)
+legp2 <- get_legend(p2)
+
+design <- c(patchwork::area(2, 1, 10, 3), patchwork::area(1, 1, 1, 3), patchwork::area(2, 4, 10, 4))
+
+design2 <- c(patchwork::area(2, 1, 10, 3), patchwork::area(1, 1, 1, 3), patchwork::area(2, 3, 10, 3))
+# pdf("Output/BetaPartition.pdf", width = 12, height=6)
+bdp + legp + legp2 + patchwork::plot_layout(design = design)
+# dev.off()
+bdp2 + legp + legp2 + patchwork::plot_layout(design = design2)
+#---- BDTOT ---- 
+
+ggplot(data = bdcomplex, aes(x = BDtotal))+
+  geom_density(colour = "red")
+ggplot(data = bdcomplex, aes(sqrt(max(BDtotal+1) - BDtotal)))+
+  geom_density(colour = "red")
+bdcomplex <- bdcomplex %>% 
+  mutate(BCBDtotal = boxcoxTransform(BDtotal, boxcox(.$BDtotal, optimize = TRUE )$lambda))
+ggplot(data = bdcomplex, aes(y = BDtotal, x = Site, fill = Site))+
+  geom_boxplot()
+skewness(bdcomplex$BDtotal)
+skewness(bdcomplex$BCBDtotal)
+
+
+ggplot(data =  bdcomplex, aes(y = BDtotal, fill = Site))+
+  geom_boxplot()+
+  scale_fill_manual(values = pal)
+##---- PC1 ----
+# pdf("Output/BDTOT_PC1_full.pdf",  width= 16, height=11.25)
+ggplot(data =  bdcomplex, aes(x = PC1_score, y = BDtotal, col = Site))+
+  geom_point(size = 4)+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray55", method = "lm", formula = y ~ poly(x, 2, raw = TRUE))+
+  ylab("Temporal Total BD")+
+  xlab("Maerl Rhodolith Complexity (PC1)")+
+  #scale_y_continuous(breaks = c(.25, .3, .35, .4), limits = c(0.22, 0.4))+
+  theme(legend.title = element_text(face = "bold", colour = "gray35", size = 22), legend.text = element_text(size = 20, colour = "gray35"), legend.background = element_blank(), legend.box.background = element_blank(), legend.key = element_blank(), axis.text = element_text(size = 20), axis.title = element_text(size =30, face = "bold")) +
+  guides(fill = guide_legend(title.position = "top"))
+# dev.off()
+
+ggplot(data =  bdcomplex %>% filter(Site != "Trevignon"), aes(x = PC1_score, y = BDtotal, col = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray", method = "lm", formula = y ~ poly(x, 2, raw = TRUE))
+
+bdtotfix1 <- lm(BDtotal ~ PC1_score, bdcomplex)
+summ(bdtotfix1)
+gvlma::gvlma(bdtotfix1)
+par(mfrow = c(2,2))
+plot(bdtotfix1)
+
+bdtotpol1 <- lm(BDtotal ~ poly(PC1_score, 2, raw = TRUE), bdcomplex)
+summ(bdtotpol1)
+gvlma::gvlma(bdtotpol1)
+par(mfrow = c(2,2))
+plot(bdtotpol1)
+
+##---- PC2 ----
+# pdf("Output/BDTot_PC2_full.pdf",  width= 16, height=11.25)
+ggplot(data =  bdcomplex, aes(x = -PC2_score, y = BDtotal, col = Site))+
+  geom_point(size = 4)+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray55", method = lm)+ 
+  ylab("Temporal Total BD")+
+  xlab("Bed Complexity (-PC2)")+
+  # scale_y_continuous(breaks = c(.25, .3, .35, .4), limits = c(0.25, 0.4))+
+  theme(legend.title = element_text(face = "bold", colour = "gray35", size = 22), legend.text = element_text(size = 20, colour = "gray35"), legend.background = element_blank(), legend.box.background = element_blank(), legend.key = element_blank(), axis.text = element_text(size = 20), axis.title = element_text(size =30, face = "bold")) +
+  guides(fill = guide_legend(title.position = "top"))
+# dev.off()
+
+# pdf("Output/BDTot_PC2_sT.pdf",  width= 16, height=11.25)
+ggplot(data = bdcomplex %>% filter(Site != "Trevignon"), aes(x = -PC2_score, y = BDtotal, col = Site))+
+  geom_point(size = 4)+
+  scale_color_manual(values = pal[-4]) +
+  geom_smooth( colour = "gray", method = "lm")+
+  ylab("Temporal Total BD")+
+  xlab("Bed Complexity (-PC2)")+
+# scale_y_continuous(breaks = c(.25, .3, .35, .4), limits = c(0.25, 0.4))+
+  theme(legend.title = element_text(face = "bold", colour = "gray35", size = 22), legend.text = element_text(size = 20, colour = "gray35"), legend.background = element_blank(), legend.box.background = element_blank(), legend.key = element_blank(), axis.text = element_text(size = 20), axis.title = element_text(size =30, face = "bold")) +
+  guides(fill = guide_legend(title.position = "top"))
+# dev.off() 
+
+bdtotfix2 <- lm(BDtotal ~ PC2_score, bdcomplex)
+summ(bdtotfix2)
+gvlma::gvlma(bdtotfix2)
+par(mfrow = c(2,2))
+plot(bdtotfix2) 
+
+bdtotfix3 <- lm(BDtotal ~ poly(PC1_score,2) + PC2_score, bdcomplex)
+summ(bdtotfix3)
+gvlma::gvlma(bdtotfix3)
+par(mfrow = c(2,2))
+plot(bdtotfix3) 
+
+effect_plot(bdtotfix3, pred = PC1_score, plot.points = TRUE, partial.residuals = TRUE, data =  bdcomplex)
+effect_plot(bdtotfix3, pred = PC2_score, plot.points = TRUE, partial.residuals = TRUE, data =  bdcomplex)
+
+bdtotran1 <- lmer(BDtotal ~ poly(PC1_score,2) + PC2_score + (1|Site), bdcomplex)
+summary(bdtotran1)
+summ(bdtotran1, model.info = TRUE)
+plot(bdtotran1) 
+
+export_summs(bdtotfix3, to.file = "docx", file.name = "Output/models_bdtot.docx")  
+
+
+
+forward.sel.par(Y = bdcomplex[4], X = bdcomplex[c(9:22)])
+
+bdtotfix12 <- lm(BDtotal ~ poly(PC1_score,2) + PC2_score + depth + OM+ Gravel, bdcomplex)
+
+summ(bdtotfix12)
+gvlma::gvlma(bdtotfix12)
+par(mfrow = c(2,2))
+plot(bdtotfix12) 
+
+
+#---- Replacement ----
+ggplot(data = bdcomplex, aes(x = Repl))+
+  geom_density(colour = "red")
+ggplot(data = bdcomplex, aes(sqrt(max(Repl+1) - Repl)))+
+  geom_density(colour = "red")
+bdcomplex <- bdcomplex %>% 
+  mutate(BCRepl = boxcoxTransform(Repl, boxcox(.$Repl, optimize = TRUE )$lambda))
+ggplot(data = bdcomplex, aes(x = BCRepl))+
+  geom_density(colour = "red")
+skewness(bdcomplex$Repl)
+skewness(bdcomplex$BCRepl)
+##---- PC1 ----
+ggplot(data =  bdcomplex, aes(x = PC1_score, y = Repl, col = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray", method = lm, formula =  y ~ poly(x, 2)) 
+
+bdtotfix1 <- lm(Repl~ poly(PC1_score,3), bdcomplex)
+summ(bdtotfix1)
+gvlma::gvlma(bdtotfix1)
+par(mfrow = c(2,2))
+plot(bdtotfix1) 
+
+##---- PC2 ----
+ggplot(data =  bdcomplex, aes(x = -PC2_score, y = Repl, col = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray", method = lm, formula  = y ~ poly(x, 2)) 
+bdtotfix2 <- lm(Repl ~ poly(PC2_score,2), bdcomplex)
+summ(bdtotfix2)
+gvlma::gvlma(bdtotfix2)
+par(mfrow = c(2,2))
+plot(bdtotfix2) 
+
+repfix3 <- lm(Repl ~ poly(PC1_score,2)+ PC2_score, bdcomplex)
+summ(repfix3)
+gvlma::gvlma(repfix3)
+par(mfrow = c(2,2))
+plot(repfix3)
+
+#---- Richness Difference ----
+ggplot(data = bdcomplex, aes(x = RichDif))+
+  geom_density(colour = "red")
+ggplot(data = bdcomplex, aes(sqrt(max(RichDif+1) - RichDif)))+
+  geom_density(colour = "red")
+bdcomplex <- bdcomplex %>% 
+  mutate(BCRichDif = boxcoxTransform(RichDif, boxcox(.$RichDif, optimize = TRUE )$lambda))
+ggplot(data = bdcomplex, aes(x = BCRichDif))+
+  geom_density(colour = "red")
+skewness(bdcomplex$RichDif)
+skewness(bdcomplex$BCRichDif)
+##---- PC1 ----
+ggplot(data =  bdcomplex, aes(x = PC1_score, y = RichDif, col = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth(colour = "gray", method = "lm", formula = y ~ poly(x, 1)) 
+
+bdtotfix1 <- lm(RichDif ~ PC1_score, bdcomplex)
+summ(bdtotfix1)
+gvlma::gvlma(bdtotfix1)
+par(mfrow = c(2,2))
+plot(bdtotfix1) 
+
+##---- PC2 ----
+ggplot(data =  bdcomplex, aes(x = PC2_score, y = RichDif, col = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray",  method = "lm", formula  = y ~ poly(x,1)) 
+
+bdtotfix2 <- lm(RichDif ~ PC2_score , bdcomplex %>%  filter(Site != "Trevignon"))
+summ(bdtotfix2)
+gvlma::gvlma(bdtotfix2)
+par(mfrow = c(2,2))
+plot(bdtotfix2) 
+
+rdfix3 <- lm(RichDif ~ poly(PC1_score,2)+PC2_score, bdcomplex)
+summ(rdfix3)
+gvlma::gvlma(rdfix3)
+par(mfrow = c(2,2))
+plot(rdfix3) 
+```
+
+# Beta/Position
+
+## Epifauna
+
+```{r epibeta}
+
+epibetalist <- list()
+for(i in unique(maerl_epi$Point)){
+  epibetalist[[i]] <- maerl_epi %>% filter(Point == i) %>% select(-Point:-Season)
+}
+
+epireslist <- list()
+for(i in names(epibetalist)){
+  epireslist[[i]] <- beta.div.comp(epibetalist[[i]], coef = "J", quant = FALSE)$part
+}
+
+epibdruzicka <- as.data.frame(epireslist) %>%
+  rownames_to_column %>% 
+  gather(Point, value, -rowname) %>% 
+  spread(rowname, value) %>% 
+  mutate(Point =  str_replace(Point, "\\.", " ")) %>% 
+  mutate(Point =  str_replace(Point, "\\.", " ")) %>% 
+  mutate(Point = str_replace(Point, "Belle ile", "Belle-ile")) %>% 
+  mutate(Point = str_replace(Point, "Saint Brieuc", "Saint-Brieuc")) %>% 
+  mutate(Point = as.factor(Point)) %>%
+  mutate(Point = factor(Point, levels = c("Belle-ile 1","Belle-ile 2", "Belle-ile 3", "Meaban 1", "Meaban 2", "Meaban 3", "Glenan 1", "Glenan 2", "Glenan 3", "Trevignon 1", "Trevignon 2", "Trevignon 3", "Camaret 1", "Camaret 2", "Camaret 3", "Keraliou 1", "Keraliou 2", "Keraliou 3", "Rozegat 1", "Rozegat 2", "Rozegat 3", "Molene 1", "Molene 2", "Molene 3", "Morlaix 1", "Morlaix 2", "Morlaix 3", "Saint-Brieuc 1", "Saint-Brieuc 2", "Saint-Brieuc 3"))) %>% 
+  left_join(comp_med %>% select(Point, Site)) %>% 
+  mutate(Site = factor(Site, levels = c("Belle-ile", "Meaban", "Glenan", "Trevignon", "Camaret", "Keraliou", "Rozegat", "Molene", "Morlaix", "Saint-Brieuc"))) %>% 
+  select(Mini, Point, Site, everything()) %>% 
+  arrange(Point)
+
+epibdcomplex <- epibdruzicka %>% 
+  left_join(bccomp_med)
+
+
+epibdplot <- epibdruzicka %>% 
+  mutate(Rf = 1-BDtotal) %>% 
+  select(-`Repl/BDtotal`, -`RichDif/BDtotal`) %>% 
+  gather(.,"Component", "Value", Repl:Rf) %>% 
+  mutate(Component = factor(Component, levels = c("Repl", "Rf", "RichDif"))) %>% 
+  arrange(Site, Component) %>%
+  mutate(Code = factor(paste(.$Site, .$Component, sep = "_"), levels = rev(do.call(paste, c(tidyr::expand_grid(
+    levels(.$Site), levels(.$Component), sep = '_')))))) %>% 
+  mutate(Point = as.factor(Point)) %>% 
+  mutate(Point = factor(Point, levels = rev(levels(Point))))
+
+(epibdp <- ggplot(epibdplot, aes(x = Value, y  = Point, fill = Code)) + 
+  geom_bar(position="fill", stat="identity") + 
+  scale_fill_manual(values = rev(pal2))+
+  labs(x = "BDtotal")+
+  theme(panel.grid = element_blank(), legend.position = "none", legend.title = element_text(face = "bold", colour = "gray35", size = 22), legend.text = element_text(size = 20, colour = "gray35"), legend.background = element_blank(), legend.box.background = element_blank(), legend.key = element_blank(), axis.text.y = element_blank(), axis.text = element_text(size = 20), axis.title = element_text(size =22, face = "bold"))+
+  coord_cartesian(xlim = c(0,1), expand = FALSE))
+#---- BDTOT ---- 
+
+ggplot(data = epibdcomplex, aes(x = BDtotal))+
+  geom_density(colour = "red")
+
+ggplot(data = epibdcomplex, aes(sqrt(max(BDtotal+1) - BDtotal)))+
+  geom_density(colour = "red")
+epibdcomplex <- epibdcomplex %>% 
+  mutate(BCBDtot = boxcoxTransform(BDtotal, boxcox(.$BDtotal, optimize = TRUE )$lambda))
+ggplot(data = epibdcomplex, aes(x = BCBDtot))+
+  geom_density(colour = "red")
+skewness(epibdcomplex$BDtotal)
+skewness(epibdcomplex$BCBDtot)
+##---- PC1 ----
+ggplot(data =  epibdcomplex, aes(x = PC1_score, y = BDtotal, col = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray", method = "lm", formula = y ~ poly(x,2)) 
+
+
+bdtotfix1 <- lm(BDtotal ~ poly(PC1_score,2), epibdcomplex)
+summ(bdtotfix1)
+gvlma::gvlma(bdtotfix1)
+par(mfrow = c(2,2))
+plot(bdtotfix1) 
+
+##---- PC2 ----
+ggplot(data =  epibdcomplex, aes(x = PC2_score, y = BDtotal, col = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray",  method = "lm") 
+
+bdtotfix2 <- lm(BDtotal ~ PC2_score, epibdcomplex)
+summ(bdtotfix2)
+gvlma::gvlma(bdtotfix2)
+par(mfrow = c(2,2))
+plot(bdtotfix2) 
+
+
+bdtotepi3 <- lm(BDtotal ~ poly(PC1_score, 2)+PC2_score, epibdcomplex)
+summ(bdtotepi3)
+gvlma::gvlma(bdtotepi3)
+par(mfrow = c(2,2))
+plot(bdtotepi3) 
+
+epibdcomplex <- epibdcomplex %>% 
+  mutate(Point = as.factor(Point))
+
+bdtotepiran <- lmer(BDtotal ~ poly(PC1_score, 2)+ PC2_score + (1|Site), epibdcomplex)
+summ(bdtotepiran)
+
+#---- Replacement ----
+ggplot(data = epibdcomplex, aes(x = Repl))+
+  geom_density(colour = "red")
+ggplot(data = epibdcomplex, aes(sqrt(max(Repl+1) - Repl)))+
+  geom_density(colour = "red")
+epibdcomplex <- epibdcomplex %>% 
+  mutate(BCRepl = boxcoxTransform(Repl, boxcox(.$Repl, optimize = TRUE )$lambda))
+ggplot(data = epibdcomplex, aes(x = BCRepl))+
+  geom_density(colour = "red")
+skewness(epibdcomplex$Repl)
+skewness(epibdcomplex$BCRepl)
+##---- PC1 ----
+ggplot(data =  epibdcomplex, aes(x = PC1_score, y = BCRepl, col = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray", method = lm, formula = y ~ poly(x, 2)) 
+
+bdtotfix1 <- lm(BCRepl ~ poly(PC1_score,2), epibdcomplex)
+summ(bdtotfix1)
+gvlma::gvlma(bdtotfix1)
+par(mfrow = c(2,2))
+plot(bdtotfix1) 
+
+##---- PC2 ----
+ggplot(data =  epibdcomplex, aes(x = PC2_score, y = BCRepl, col = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray", method =  "lm") 
+
+bdtotfix2 <- lm(BCRepl ~ PC2_score, epibdcomplex)
+summ(bdtotfix2)
+gvlma::gvlma(bdtotfix2)
+par(mfrow = c(2,2))
+plot(bdtotfix2) 
+
+repepi3 <- lm(Repl ~ poly(PC1_score, 2)+ PC2_score, epibdcomplex)
+summ(repepi3)
+gvlma::gvlma(repepi3)
+par(mfrow = c(2,2))
+plot(bdtotfix2)
+
+#---- Richness Difference ----
+ggplot(data = epibdcomplex, aes(x = RichDif))+
+  geom_density(colour = "red")
+ggplot(data = epibdcomplex, aes(sqrt(max(RichDif+1) - RichDif)))+
+  geom_density(colour = "red")
+epibdcomplex <- epibdcomplex %>% 
+  mutate(BCRichDif = boxcoxTransform(RichDif, boxcox(.$RichDif, optimize = TRUE )$lambda))
+ggplot(data = epibdcomplex, aes(x = BCRichDif))+
+  geom_density(colour = "red")
+skewness(epibdcomplex$RichDif)
+skewness(epibdcomplex$BCRichDif)
+##---- PC1 ----
+ggplot(data =  epibdcomplex, aes(x = PC1_score, y = RichDif, col = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray", method = "lm", formula = y ~ poly(x, 2)) 
+
+bdtotfix1 <- lm(RichDif ~ poly(PC1_score,2), epibdcomplex)
+summ(bdtotfix1)
+gvlma::gvlma(bdtotfix1)
+par(mfrow = c(2,2))
+plot(bdtotfix1) 
+
+##---- PC2 ----
+ggplot(data =  epibdcomplex, aes(x = PC2_score, y = RichDif, col = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray",  method = "lm") 
+
+bdtotfix2 <- lm(BCRichDif ~ PC2_score, epibdcomplex)
+summ(bdtotfix2)
+gvlma::gvlma(bdtotfix2)
+par(mfrow = c(2,2))
+plot(bdtotfix2) 
+
+
+rdepi3 <- lm(RichDif ~ poly(PC1_score,2) + PC2_score, epibdcomplex)
+summ(rdepi3)
+gvlma::gvlma(rdepi3)
+par(mfrow = c(2,2))
+plot(rdepi3) 
+
+```
+
+## Infauna
+
+```{r infbeta}
+
+infbetalist <- list()
+for(i in unique(maerl_inf$Point)){
+  infbetalist[[i]] <- maerl_inf %>% filter(Point == i) %>% select(-Point:-Season)
+}
+
+infreslist <- list()
+for(i in names(infbetalist)){
+  infreslist[[i]] <- beta.div.comp(infbetalist[[i]], coef = "J", quant = FALSE)$part
+}
+
+infbdruzicka <- as.data.frame(infreslist) %>%
+  rownames_to_column %>% 
+  gather(Point, value, -rowname) %>% 
+  spread(rowname, value) %>% 
+  mutate(Point =  str_replace(Point, "\\.", " ")) %>% 
+  mutate(Point =  str_replace(Point, "\\.", " ")) %>% 
+  mutate(Point = str_replace(Point, "Belle ile", "Belle-ile")) %>% 
+  mutate(Point = str_replace(Point, "Saint Brieuc", "Saint-Brieuc")) %>% 
+  mutate(Point = as.factor(Point)) %>%
+  mutate(Point = factor(Point, levels = c("Belle-ile 1","Belle-ile 2", "Belle-ile 3", "Meaban 1", "Meaban 2", "Meaban 3", "Glenan 1", "Glenan 2", "Glenan 3", "Trevignon 1", "Trevignon 2", "Trevignon 3", "Camaret 1", "Camaret 2", "Camaret 3", "Keraliou 1", "Keraliou 2", "Keraliou 3", "Rozegat 1", "Rozegat 2", "Rozegat 3", "Molene 1", "Molene 2", "Molene 3", "Morlaix 1", "Morlaix 2", "Morlaix 3", "Saint-Brieuc 1", "Saint-Brieuc 2", "Saint-Brieuc 3"))) %>% 
+  left_join(comp_med %>% select(Point, Site)) %>% 
+  mutate(Site = factor(Site, levels = c("Belle-ile", "Meaban", "Glenan", "Trevignon", "Camaret", "Keraliou", "Rozegat", "Molene", "Morlaix", "Saint-Brieuc"))) %>% 
+  select(Mini, Point, Site, everything()) %>% 
+  arrange(Point)
+
+infbdcomplex <- infbdruzicka %>% 
+  left_join(bccomp_med)
+
+
+infbdplot <- infbdruzicka %>% 
+  mutate(Rf = 1-BDtotal) %>% 
+  select(-`Repl/BDtotal`, -`RichDif/BDtotal`) %>% 
+  gather(.,"Component", "Value", Repl:Rf) %>% 
+  mutate(Component = factor(Component, levels = c("Repl", "Rf", "RichDif"))) %>% 
+  arrange(Site, Component) %>%
+  mutate(Code = factor(paste(.$Site, .$Component, sep = "_"), levels = rev(do.call(paste, c(tidyr::expand_grid(
+    levels(.$Site), levels(.$Component), sep = '_')))))) %>% 
+  mutate(Point = as.factor(Point)) %>% 
+  mutate(Point = factor(Point, levels = rev(levels(Point))))
+
+(infbdp <- ggplot(infbdplot, aes(x = Value, y  = Point, fill = Code)) + 
+  geom_bar(position="fill", stat="identity") + 
+  scale_fill_manual(values = rev(pal2))+
+  labs(x = "BDtotal")+
+  theme(panel.grid = element_blank(), legend.position = "none", legend.title = element_text(face = "bold", colour = "gray35", size = 22), legend.text = element_text(size = 20, colour = "gray35"), legend.background = element_blank(), legend.box.background = element_blank(), legend.key = element_blank(), axis.text.y = element_blank(), axis.text = element_text(size = 20), axis.title = element_text(size =22, face = "bold"))+
+  coord_cartesian(xlim = c(0,1), expand = FALSE))
+
+#---- BDTOT ---- 
+
+ggplot(data = infbdcomplex, aes(x = BDtotal))+
+  geom_density(colour = "red")
+ggplot(data = infbdcomplex, aes(sqrt(max(BDtotal+1) - BDtotal)))+
+  geom_density(colour = "red")
+infbdcomplex <- infbdcomplex %>% 
+  mutate(BCBDtot = boxcoxTransform(BDtotal, boxcox(.$BDtotal, optimize = TRUE )$lambda))
+ggplot(data = infbdcomplex, aes(x = BCBDtot))+
+  geom_density(colour = "red")
+skewness(infbdcomplex$BDtotal)
+skewness(infbdcomplex$BCBDtot)
+##---- PC1 ----
+ggplot(data =  infbdcomplex, aes(x = PC1_score, y = BDtotal, col = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray", method = "lm", formula = y ~ poly(x,2)) 
+
+bdtotfix1 <- lm(BDtotal ~ poly(PC1_score,2), infbdcomplex)
+summ(bdtotfix1)
+gvlma::gvlma(bdtotfix1)
+par(mfrow = c(2,2))
+plot(bdtotfix1) 
+
+##---- PC2 ----
+ggplot(data =  infbdcomplex, aes(x = PC2_score, y = BDtotal, col = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray",  method = "lm") 
+
+bdtotfix2 <- lm(BDtotal ~ PC2_score, infbdcomplex)
+summ(bdtotfix2)
+gvlma::gvlma(bdtotfix2)
+par(mfrow = c(2,2))
+plot(bdtotfix2) 
+
+
+bdtotinf3 <- lm(BDtotal ~ poly(PC1_score,2) + PC2_score, infbdcomplex)
+summ(bdtotinf3)
+gvlma::gvlma(bdtotinf3)
+par(mfrow = c(2,2))
+plot(bdtotinf3) 
+
+#---- Replacement ----
+ggplot(data = infbdcomplex, aes(x = Repl))+
+  geom_density(colour = "red")
+ggplot(data = infbdcomplex, aes(sqrt(max(Repl+1) - Repl)))+
+  geom_density(colour = "red")
+infbdcomplex <- infbdcomplex %>% 
+  mutate(BCRepl = boxcoxTransform(Repl, boxcox(.$Repl, optimize = TRUE )$lambda))
+ggplot(data = infbdcomplex, aes(x = BCRepl))+
+  geom_density(colour = "red")
+skewness(infbdcomplex$Repl)
+skewness(infbdcomplex$BCRepl)
+##---- PC1 ----
+ggplot(data =  infbdcomplex, aes(x = PC1_score, y = Repl, col = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray", method = "lm") 
+
+bdtotfix1 <- lm(Repl ~ poly(PC1_score,2), infbdcomplex)
+summ(bdtotfix1)
+gvlma::gvlma(bdtotfix1)
+par(mfrow = c(2,2))
+plot(bdtotfix1) 
+
+##---- PC2 ----
+ggplot(data =  infbdcomplex, aes(x = PC2_score, y = Repl, col = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray",  method = "lm") 
+
+bdtotfix2 <- lm(BCRepl ~ PC2_score, infbdcomplex)
+summ(bdtotfix2)
+gvlma::gvlma(bdtotfix2)
+par(mfrow = c(2,2))
+plot(bdtotfix2) 
+
+repinf3 <- lm(Repl ~ poly(PC1_score, 2)+ PC2_score, infbdcomplex)
+summ(repinf3)
+gvlma::gvlma(repinf3)
+par(mfrow = c(2,2))
+plot(bdtotfix2)
+
+#---- Richness Difference ----
+ggplot(data = infbdcomplex, aes(x = RichDif))+
+  geom_density(colour = "red")
+ggplot(data = infbdcomplex, aes(sqrt(max(RichDif+1) - RichDif)))+
+  geom_density(colour = "red")
+infbdcomplex <- infbdcomplex %>% 
+  mutate(BCRichDif = boxcoxTransform(RichDif, boxcox(.$RichDif, optimize = TRUE )$lambda))
+ggplot(data = infbdcomplex, aes(x = BCRichDif))+
+  geom_density(colour = "red")
+skewness(infbdcomplex$RichDif)
+skewness(infbdcomplex$BCRichDif)
+##---- PC1 ----
+ggplot(data =  infbdcomplex, aes(x = PC1_score, y = RichDif, col = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray", method = "lm") 
+
+bdtotfix1 <- lm(RichDif ~ PC1_score, infbdcomplex)
+summ(bdtotfix1)
+gvlma::gvlma(bdtotfix1)
+par(mfrow = c(2,2))
+plot(bdtotfix1) 
+
+##---- PC2 ----
+ggplot(data =  infbdcomplex, aes(x = PC2_score, y = RichDif, col = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray",  method = "lm") 
+
+bdtotfix2 <- lm(BCRichDif ~ PC2_score, infbdcomplex)
+summ(bdtotfix2)
+gvlma::gvlma(bdtotfix2)
+par(mfrow = c(2,2))
+plot(bdtotfix2) 
+
+
+rdinf3 <- lm(RichDif ~ poly(PC1_score,2) + PC2_score, infbdcomplex)
+summ(rdinf3)
+gvlma::gvlma(rdinf3)
+par(mfrow = c(2,2))
+plot(rdinf3) 
+```
+
+## Interstice
+
+```{r intbeta}
+
+intbetalist <- list()
+for(i in unique(maerl_int$Point)){
+  intbetalist[[i]] <- maerl_int %>% filter(Point == i) %>% select(-Point:-Season)
+}
+
+intreslist <- list()
+for(i in names(intbetalist)){
+  intreslist[[i]] <- beta.div.comp(intbetalist[[i]], coef = "J", quant = TRUE)$part
+}
+
+intbdruzicka <- as.data.frame(intreslist) %>%
+  rownames_to_column %>% 
+  gather(Point, value, -rowname) %>% 
+  spread(rowname, value) %>% 
+  mutate(Point =  str_replace(Point, "\\.", " ")) %>% 
+  mutate(Point =  str_replace(Point, "\\.", " ")) %>% 
+  mutate(Point = str_replace(Point, "Belle ile", "Belle-ile")) %>% 
+  mutate(Point = str_replace(Point, "Saint Brieuc", "Saint-Brieuc")) %>% 
+  mutate(Point = as.factor(Point)) %>%
+  mutate(Point = factor(Point, levels = c("Belle-ile 1","Belle-ile 2", "Belle-ile 3", "Meaban 1", "Meaban 2", "Meaban 3", "Glenan 1", "Glenan 2", "Glenan 3", "Trevignon 1", "Trevignon 2", "Trevignon 3", "Camaret 1", "Camaret 2", "Camaret 3", "Keraliou 1", "Keraliou 2", "Keraliou 3", "Rozegat 1", "Rozegat 2", "Rozegat 3", "Molene 1", "Molene 2", "Molene 3", "Morlaix 1", "Morlaix 2", "Morlaix 3", "Saint-Brieuc 1", "Saint-Brieuc 2", "Saint-Brieuc 3"))) %>% 
+  left_join(comp_med %>% select(Point, Site)) %>% 
+  mutate(Site = factor(Site, levels = c("Belle-ile", "Meaban", "Glenan", "Trevignon", "Camaret", "Keraliou", "Rozegat", "Molene", "Morlaix", "Saint-Brieuc"))) %>% 
+  select(Mini, Point, Site, everything()) %>% 
+  arrange(Point)
+
+intbdcomplex <- intbdruzicka %>% 
+  left_join(bccomp_med)
+
+
+intbdplot <- intbdruzicka %>% 
+  mutate(Rf = 1-BDtotal) %>% 
+  select(-`Repl/BDtotal`, -`RichDif/BDtotal`) %>% 
+  gather(.,"Component", "Value", Repl:Rf) %>% 
+  mutate(Component = factor(Component, levels = c("Repl", "Rf", "RichDif"))) %>% 
+  arrange(Site, Component) %>%
+  mutate(Code = factor(paste(.$Site, .$Component, sep = "_"), levels = rev(do.call(paste, c(tidyr::expand_grid(
+    levels(.$Site), levels(.$Component), sep = '_')))))) %>% 
+  mutate(Point = as.factor(Point)) %>% 
+  mutate(Point = factor(Point, levels = rev(levels(Point))))
+
+(intbdp <- ggplot(intbdplot, aes(x = Value, y  = Point, fill = Code)) + 
+  geom_bar(position="fill", stat="identity") + 
+  scale_fill_manual(values = rev(pal2))+
+  labs(x = "BDtotal")+
+  theme(panel.grid = element_blank(), legend.position = "none", legend.title = element_text(face = "bold", colour = "gray35", size = 22), legend.text = element_text(size = 20, colour = "gray35"), legend.background = element_blank(), legend.box.background = element_blank(), legend.key = element_blank(), axis.text.y = element_blank(), axis.text = element_text(size = 20), axis.title = element_text(size =22, face = "bold"))+
+  coord_cartesian(xlim = c(0,1), expand = FALSE))
+
+#---- BDTOT ---- 
+
+ggplot(data = intbdcomplex, aes(x = BDtotal))+
+  geom_density(colour = "red")
+ggplot(data = intbdcomplex, aes(sqrt(max(BDtotal+1) - BDtotal)))+
+  geom_density(colour = "red")
+intbdcomplex <- intbdcomplex %>% 
+  mutate(BCBDtot = boxcoxTransform(BDtotal, boxcox(.$BDtotal, optimize = TRUE )$lambda))
+ggplot(data = intbdcomplex, aes(x = BCBDtot))+
+  geom_density(colour = "red")
+skewness(intbdcomplex$BDtotal)
+skewness(intbdcomplex$BCBDtot)
+##---- PC1 ----
+ggplot(data =  intbdcomplex, aes(x = PC1_score, y = BDtotal, col = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray", method = "lm") 
+
+bdtotfix1 <- lm(BDtotal ~ PC1_score, intbdcomplex)
+summ(bdtotfix1)
+gvlma::gvlma(bdtotfix1)
+par(mfrow = c(2,2))
+plot(bdtotfix1) 
+
+##---- PC2 ----
+ggplot(data =  intbdcomplex %>%  filter(Site != "Trevignon"), aes(x = PC2_score, y = BDtotal, col = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray",  method = "lm") 
+
+bdtotfix2 <- lm(BDtotal ~ PC2_score, intbdcomplex %>%  filter(Site != "Trevignon"))
+summ(bdtotfix2)
+gvlma::gvlma(bdtotfix2)
+par(mfrow = c(2,2))
+plot(bdtotfix2) 
+
+bdtotint3 <- lm(BDtotal ~ poly(PC1_score,2) + PC2_score, intbdcomplex)
+summ(bdtotint3)
+gvlma::gvlma(bdtotint3)
+par(mfrow = c(2,2))
+plot(bdtotint3) 
+
+#---- Replacement ----
+ggplot(data = intbdcomplex, aes(x = Repl))+
+  geom_density(colour = "red")
+ggplot(data = intbdcomplex, aes(sqrt(max(Repl+1) - Repl)))+
+  geom_density(colour = "red")
+intbdcomplex <- intbdcomplex %>% 
+  mutate(BCRepl = boxcoxTransform(Repl, boxcox(.$Repl, optimize = TRUE )$lambda))
+ggplot(data = intbdcomplex, aes(x = BCRepl))+
+  geom_density(colour = "red")
+skewness(intbdcomplex$Repl)
+skewness(intbdcomplex$BCRepl)
+##---- PC1 ----
+ggplot(data =  intbdcomplex, aes(x = PC1_score, y = BCRepl, col = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray", method = "lm") 
+
+bdtotfix1 <- lm(BCRepl ~ PC1_score, intbdcomplex)
+summ(bdtotfix1)
+gvlma::gvlma(bdtotfix1)
+par(mfrow = c(2,2))
+plot(bdtotfix1) 
+
+##---- PC2 ----
+ggplot(data =  intbdcomplex, aes(x = PC2_score, y = BCRepl, col = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray",  method = "lm") 
+
+bdtotfix2 <- lm(BCRepl ~ PC2_score, intbdcomplex)
+summ(bdtotfix2)
+gvlma::gvlma(bdtotfix2)
+par(mfrow = c(2,2))
+plot(bdtotfix2) 
+
+repint3 <- lm(Repl ~ poly(PC1_score, 2)+ PC2_score, intbdcomplex)
+summ(repint3)
+gvlma::gvlma(repint3)
+par(mfrow = c(2,2))
+plot(repint3)
+
+#---- Richness Difference ----
+ggplot(data = intbdcomplex, aes(x = RichDif))+
+  geom_density(colour = "red")
+ggplot(data = intbdcomplex, aes(sqrt(max(RichDif+1) - RichDif)))+
+  geom_density(colour = "red")
+intbdcomplex <- intbdcomplex %>% 
+  mutate(BCRichDif = boxcoxTransform(RichDif, boxcox(.$RichDif, optimize = TRUE )$lambda))
+ggplot(data = intbdcomplex, aes(x = BCRichDif))+
+  geom_density(colour = "red")
+skewness(intbdcomplex$RichDif)
+skewness(intbdcomplex$BCRichDif)
+##---- PC1 ----
+ggplot(data =  intbdcomplex, aes(x = PC1_score, y = BCRichDif, col = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray", method = "lm") 
+
+bdtotfix1 <- lm(BCRichDif ~ PC1_score, intbdcomplex)
+summ(bdtotfix1)
+gvlma::gvlma(bdtotfix1)
+par(mfrow = c(2,2))
+plot(bdtotfix1) 
+
+##---- PC2 ----
+ggplot(data =  intbdcomplex, aes(x = PC2_score, y = RichDif, col = Site))+
+  geom_point()+
+  scale_color_manual(values = pal) +
+  geom_smooth( colour = "gray",  method = "lm") 
+
+bdtotfix2 <- lm(BCRichDif ~ PC2_score, intbdcomplex)
+summ(bdtotfix2)
+gvlma::gvlma(bdtotfix2)
+par(mfrow = c(2,2))
+plot(bdtotfix2) 
+
+rdint3 <- lm(RichDif ~ poly(PC1_score,2) + PC2_score, intbdcomplex)
+summ(rdint3)
+gvlma::gvlma(rdint3)
+par(mfrow = c(2,2))
+plot(rdint3) 
+```
+
+## effect plots
+
+```{r effect plots}
+(ps1 <- plot_summs(bdtotfix3, bdtotepi3, bdtotinf3, bdtotint3, model.names = c("1. Total macrofauna", "2. Epifauna", "3. Infauna", "4. Interstitial fauna"), colors = pal[c(1, 3:5)], robust = FALSE, coefs = c("PC1" = "poly(PC1_score, 2)1", "PC1ˆ2" = "poly(PC1_score, 2)2", "-PC2" = "PC2_score"), point.size = 4, inner_ci_level =  .9)+
+  ggtitle("BDTotal")+
+  theme(plot.title = element_text(hjust = .5), legend.title = element_text(face = "bold", size = 22), legend.text = element_text(size = 20), legend.background = element_blank(), legend.box.background = element_blank(), legend.key = element_blank(), axis.text = element_text(size = 20), axis.title = element_text(size =20, face = "bold"))+
+   guides(colour = guide_legend(title.position = "top")))
+
+(ps2 <-plot_summs(repfix3, repepi3, repinf3, repint3, model.names = c("1. Total macrofauna", "2. Epifauna", "3. Infauna", "4. Interstitial fauna"), colors = pal[c(1, 3:5)], robust = TRUE, coefs = c("PC1" = "poly(PC1_score, 2)1", "PC1ˆ2" = "poly(PC1_score, 2)2", "-PC2" = "PC2_score"), point.size = 4 , inner_ci_level =  .9)+
+  ggtitle("Replacement")+
+  theme(plot.title = element_text(hjust = .5), axis.text.y = element_text(colour = "transparent"), axis.text.x = element_text(angle = 45), legend.title = element_text(face = "bold", colour = "gray35", size = 22), legend.text = element_text(size = 20, colour = "gray35"), legend.background = element_blank(), legend.box.background = element_blank(), legend.key = element_blank(), axis.text = element_text(size = 20), axis.title = element_text(size =20, face = "bold")))
+
+(ps3 <- plot_summs(rdfix3, rdepi3, rdinf3, rdint3, model.names = c("1. Total macrofauna", "2. Epifauna", "3. Infauna", "4. Interstitial fauna"), colors = pal[c(1, 3:5)], robust = FALSE, coefs = c("PC1" = "poly(PC1_score, 2)1", "PC1ˆ2" = "poly(PC1_score, 2)2", "-PC2" = "PC2_score"), point.size = 4 , inner_ci_level =  .9)+
+  ggtitle("Richness Difference")+
+  theme(plot.title = element_text(hjust = .5), legend.title = element_text(face = "bold", size = 22), axis.text.y = element_text(colour = "transparent"),  axis.text.x = element_text(angle = 45), legend.text = element_text(size = 20, colour = "gray35"), legend.background = element_blank(), legend.box.background = element_blank(), legend.key = element_blank(), axis.text = element_text(size = 20), axis.title = element_text(size =20, face = "bold")))
+
+pdf("Output/bdtot2.pdf", width= 12, height=6)
+ggarrange(ps1, ps2, ps3, common.legend = TRUE, ncol = 3, legend = "top")
+dev.off()
+
+# pdf("Output/BetaPartition.pdf", width = 12, height=6)
+ps1 + ps2 + ps3 + patchwork::plot_layout(design = design)
+
+
+export_summs(bdtotfix3, bdtotepi3, bdtotinf3, bdtotint3, model.names = c("Total", "Epifauna", "Infauna", "Interstitial"), error_pos = "right")
+export_summs(repfix3, repepi3, repinf3, repint3, model.names = c("Total", "Epifauna", "Infauna", "Interstitial"), error_pos = "right")
+export_summs(rdfix3, rdepi3, rdinf3, rdint3, model.names = c("Total", "Epifauna", "Infauna", "Interstitial"), error_pos = "right")
+```
+
+# Epi
+
+```{r epirda}
+bcepi <- box.cox.chord(epi_dens)
+pcaepi <- rda(bcepi)
+pca_victor(pca = pcaepi, metadata = maerl_epi, main.group = "Site", scale.fill = pal, scale.colour = pal, goodness.thresh = 0.35, add.centroids = TRUE,  stat1 = "ellipse", conf.level = .8, font.size = 20/.pt, axis.size = 22, axis.text = 20, c.size = 4)
+
+compenv <- bccomp_med %>% 
+  select(-PC1_score, -PC2_score, -S, -I, -DR2, -DR1) %>% 
+  left_join(env) %>% 
+  mutate(code  = paste(.$Point, .$Year)) %>% 
+  select(-Kurtosis.fw.um, -Broken_density, -DR3) %>% 
+  column_to_rownames("code") %>% 
+  select_if(is.numeric) 
+
+compenv_mean <- bccomp_med %>% 
+  select(-PC1_score, -PC2_score, -S, -I, -DR2, -DR1) %>% 
+  left_join(env_mean) %>% 
+  select(-Kurtosis.fw.um, -Broken_density, -DR3) %>% 
+  column_to_rownames("Point") %>% 
+  select_if(is.numeric) 
+
+compenv_sc <- as.data.frame(scale(compenv))
+forward.sel(bcepi, compenv)
+
+rdaepi <- rda(formula = bcepi2013 ~ Fetch_max + D_bin + Branching_density + Current_mean + depth + D_gray + Sphericity + Gravel + L +  Mud + T_mean + Total_Density, data = compenv_mean)
+anova(rdaepi, permutations = how(nperm = 999))
+(R2adj <- RsquareAdj(rdaepi)$adj.r.squared)
+
+triplot.rda(rdaepi, plot.spe = F)
+maerl_epi_rda <- maerl_epi %>%
+  filter(Year == 2013) %>% 
+  rename(site = Site)
+autoplot.rda.victor(object = rdaepi, metadata = maerl_epi_rda, scale.fill = pal, scale.colour = pal, layers = c("sites", "biplot", "regression", "species"), thresh = 0.3, stat = "chull", lvl = .8, legend.position = c(.5,.9), title.size = 22, font.size = 22/.pt, arrows = FALSE) + theme(legend.title = element_text(face = "bold", colour = "gray35", size = 22), legend.text = element_text(size = 20, colour = "gray35"), legend.direction = "horizontal", legend.background = element_blank(), legend.spacing.x = unit(0.5, "cm"), legend.box.background = element_blank(), legend.key = element_blank(), axis.text = element_text(size = 20)) + guides(fill = guide_legend(title.position = "top"))
+
+
+
+
+
+```
+
+# MRT epi
+
+```{r MRT epi}
+comptree_2013 <- bccomp %>%
+  left_join(hydro) %>% 
+  left_join(fetch_max) %>%
+  left_join(bathy) %>% 
+  select(Point, Year, L, Sphericity, D_bin, D_gray, `Branching_density`, Total_Density, depth, Fetch_max, bottomT_mean, current_mean) %>% 
+  mutate(code = paste(Point, Year, sep = "_")) %>% 
+  filter(Year == 2013) %>% 
+  select(-Point, -Year) %>% 
+  column_to_rownames(var = "code")
+  
+bcepi <- box.cox.chord(epi_dens)
+bcepi2013 <- box.cox.chord(maerl_epi %>% 
+                             filter(Year == 2013) %>% 
+                             rownames_to_column("Code") %>% 
+                             select(-Point:-Season) %>%
+                             column_to_rownames("Code"))
+trytree <- mvpart(form = data.matrix(bcepi) ~ ., data = comptree, margin = 0.08, xv = "pick", xvmult = 100, xval = nrow(epi_dens))
+summary(trytree)
+par(mfrow = c(1,2))
+hist(residuals(trytree), col = "bisque")
+plot(predict(trytree, type = "matrix"), residuals(trytree))
+abline(h = 0, lty =  3, col = "red")
+
+trytree$where
+
+
+```
