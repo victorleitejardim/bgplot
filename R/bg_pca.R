@@ -59,20 +59,23 @@
 #' @param add.labels logical; add geom_label for plotting the group names
 #'
 #' @return returns a grid.arrange with two plots with the species and sites
-#'  scaling biplots
+#'  scaling biplots.
+#'  
 #' @export
+#' 
+#' @import dplyr
+#' @import ggplot2
+#' @import ggrepel
+#' @import data.table
+#' @import vegan
+#' @import cowplot
+#' @import gridExtra
+#' @import ggpubr
 #'
 #' @examples
-#' not today, sorry...
+#' set.seed(100)
 
 bg_pca <- function(pca,axes=c(1,2), metadata= NULL, site.scaling = 1, species.scaling = 2, goodness.axis = 2, goodness.thresh = 0.3, main.group = NULL, second.group = NULL, nudge.x = NULL, nudge.y = NULL, scale.fill = NULL, scale.shape = NULL, scale.colour = NULL, labels = NULL, print.sp.thresh = FALSE, ext.plot.scale = 5, add.stat1 = TRUE, stat1 = "chull", add.stat2 = FALSE, stat2 = NULL, add.dens = TRUE, add.centroids = FALSE, point.size = 2.5, c.size = 5, p.alpha = 1, font.size = 18/.pt, axis.size = 22, axis.text = 20, conf.level = .95, ysites = NULL, xsites = NULL, ysp = NULL, xsp = NULL, add.labels = TRUE){
-
-  require(ggplot2)
-  require(dplyr)
-  require(cowplot)
-  require(data.table)
-  require(ggrepel)
-  require(gridExtra)
 
   metadata <- as.data.frame(metadata)
 
@@ -121,13 +124,13 @@ bg_pca <- function(pca,axes=c(1,2), metadata= NULL, site.scaling = 1, species.sc
   # Density of sites along the first axis selected in "axes"
   PC1_dens <- site_scores %>%
     group_by_(main.group) %>%
-    do(ggplot2:::compute_density(select_(.,axes_name[1]) %>% pull(), NULL)) %>%
+    do(ggplot2:::compute_density(select(.,axes_name[1]) %>% pull(), NULL)) %>%
     setnames("x", "PC1")
 
   # Density along the second axis selected in "axes"
   PC2_dens <- site_scores %>%
     group_by_(main.group) %>%
-    do(ggplot2:::compute_density(select_(.,axes_name[2]) %>% pull(), NULL)) %>%
+    do(ggplot2:::compute_density(select(.,axes_name[2]) %>% pull(), NULL)) %>%
     setnames("x", "PC2")
 
   # Upper limit of the density curves

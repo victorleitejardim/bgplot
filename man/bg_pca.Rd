@@ -133,7 +133,7 @@ the syntax "18/.pt"}
 }
 \value{
 returns a grid.arrange with two plots with the species and sites
-scaling biplots
+scaling biplots.
 }
 \description{
 This function is built on pca output of vegan rda function and
@@ -141,5 +141,5 @@ uses Aurelien Boye's code as a basis for creating pretty PCAs but
 with a lot of new cosmetic options
 }
 \examples{
-not today, sorry...
+set.seed(100)
 }

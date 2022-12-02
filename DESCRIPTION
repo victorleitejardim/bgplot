@@ -22,3 +22,13 @@ Suggests:
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 VignetteBuilder: knitr
+Imports: 
+    cowplot,
+    data.table,
+    dplyr,
+    ggplot2,
+    ggpubr,
+    ggrepel,
+    grid,
+    gridExtra,
+    vegan
